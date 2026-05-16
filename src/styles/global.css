@@ -20,6 +20,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -52,6 +52,8 @@ import Button from '@/components/ui/Button.astro';
     gap: clamp(2rem, 4vw, 4rem);
   }
 
+  .channels__group { min-width: 0; }
+
   .channels__group-title {
     font-size: var(--text-h3);
     font-weight: 700;
@@ -59,7 +61,8 @@ import Button from '@/components/ui/Button.astro';
     margin: 0 0 1.25rem;
     padding-block-end: 0.75rem;
     border-block-end: 2px solid var(--color-accent);
-    display: inline-block;
+    display: block;
+    width: fit-content;
   }
 
   .channels__list {
