@@ -1,15 +1,20 @@
-# CLAUDE.md — direct site (лендинг по референсу nkorytin.ru)
+# CLAUDE.md — direct site
 
 ## Что это
 
-Одностраничный продающий лендинг на **Astro + TypeScript**, визуально и
-структурно повторяющий референс `https://nkorytin.ru/`. Контент сейчас —
-**плейсхолдеры**; реальные тексты/ассеты заменяются позже правкой
+Два шаблона продающих лендингов на **Astro + TypeScript**:
+
+1. **Главная (`index.astro`)** — многосекционный хаб эксперта.
+   Референс: `https://nkorytin.ru/` ✅ **Готово (Phases 0–4)**
+2. **Продуктовая (`product.astro`)** — длинный sales page одного курса.
+   Референс: `https://nkorytin.ru/autofunnel` 🔄 **В работе (Phase 5)**
+
+Контент — **плейсхолдеры**; реальные тексты/ассеты заменяются правкой
 `src/content/site.ts`.
 
-Ключевые документы: `docs/RESEARCH.md` (анализ референса, дизайн-токены,
-карта секций), `docs/CONTENT.md` (модель контента), `docs/PLAN.md` (фазы и
-критерии успеха). Читай их перед работой над секциями.
+Ключевые документы: `docs/PLAN.md` (статус, фазы, критерии),
+`docs/PROMPT_CONTINUE.md` (prompt для продолжения Phase 5),
+`docs/RESEARCH.md` (анализ референса), `docs/CONTENT.md` (модель контента).
 
 ## Стек и решения (зафиксированы)
 
@@ -32,16 +37,24 @@
 ## Архитектура
 
 ```
-src/content/site.ts   — единственный источник контента
-src/layouts/Base.astro — head, шрифты, токены, cookie, slot
-src/components/sections — 12 секций (см. RESEARCH §4), порядок фиксирован
-src/components/ui       — Button, Card, SectionHeading, LeadForm(stub), CookieBanner
-src/styles              — tokens.css, typography.css, global.css
-src/pages/index.astro   — сборка секций по порядку
+src/content/site.ts        — единственный источник контента (index + product)
+src/layouts/Base.astro     — head, шрифты, токены, cookie, slot
+src/components/
+├── sections/              — 11 секций главной (Hero…Footer)
+├── product/               — 11 компонентов продуктовой страницы [Phase 5]
+└── ui/                    — Button, Card, SectionHeading, LeadForm, CookieBanner
+src/styles/                — tokens.css, typography.css, global.css
+src/pages/
+├── index.astro            — главная (hub-лендинг) ✅
+└── product.astro          — продуктовый sales page 🔄
 ```
 
-12 секций строго в порядке: Hero → Bridge → Magazine → Donate → Club →
-Services → Cases → Reviews → Channels → Affiliate → Footer → CookieBanner.
+Секции главной: Hero → Bridge → Magazine → Donate → Club →
+Services → Cases → Reviews → Channels → Affiliate → Footer.
+
+Секции продуктовой: ProductHero → ProductFeaturedCases → ProductPains →
+ProductSolutions → ProductNotFor → ProductTransformation → ProductAuthor →
+ProductFormat → ProductCurriculum → ProductResults → ProductCTA → Footer.
 
 ## Правила работы
 

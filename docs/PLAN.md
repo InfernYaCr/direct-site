@@ -2,109 +2,145 @@
 
 ## Цель
 
-Собрать одностраничный продающий лендинг, визуально и структурно повторяющий
-референс nkorytin.ru, на стеке **Astro + TypeScript**. Контент — плейсхолдеры
-с дизайн-токенами референса; пользователь заменит тексты/ассеты позже.
+Два шаблона на стеке **Astro + TypeScript**:
+1. **Главная (hub-лендинг)** — `src/pages/index.astro` — многосекционный хаб эксперта (референс: `nkorytin.ru/`).
+2. **Продуктовая страница** — `src/pages/product.astro` — длинный sales page одного курса (референс: `nkorytin.ru/autofunnel`).
+
+Контент — плейсхолдеры. Замена = правка `src/content/site.ts`.
+
+---
 
 ## Зафиксированные решения
 
 | Вопрос | Решение |
 |---|---|
-| Объём | Пиксель-копия как база → потом замена текстов своими |
-| Стек | Astro + TypeScript (статика, near-zero JS, лучшие CWV) |
-| Формы | UI-заглушки без отправки (бэкенд — отдельный этап) |
-| Контент | Плейсхолдеры; дизайн-токены сняты с референса |
-| Шрифт | Onest (свободная замена платного Qanelas) |
+| Стек | Astro 5.18.1 + TypeScript strict, статика, near-zero JS |
+| Шрифт | Onest Variable (OFL, самохост) — замена платного Qanelas |
+| Формы | UI-заглушки (preventDefault, success-state, без сети) |
+| Контент | Единый `src/content/site.ts`, все компоненты контент-агностичны |
+| Стилизация | CSS custom properties в `src/styles/tokens.css`, без хардкода |
 
-## Не-цели (явно вне объёма сейчас)
+## Не-цели (вне объёма)
 
-- Реальная отправка форм / бэкенд / CRM / email-рассылка.
-- CMS/админка. Контент = типизированный файл `src/content/site.ts`.
-- Мультиязычность, блог, личный кабинет, оплата.
-- Перенос точных изображений и текстов Корытина.
+- Реальная отправка форм / бэкенд / CRM.
+- CMS, мультиязычность, блог, личный кабинет, оплата.
+- Копирование текстов/фото Корытина дословно.
 
-## Критерии успеха (verifiable)
+---
 
-- [ ] `npm run build` проходит без ошибок, `astro check` чистый (strict TS).
-- [ ] Все 12 секций отрисованы в правильном порядке (см. RESEARCH §4).
-- [ ] Дизайн-токены вынесены в CSS-переменные, хардкода палитры нет.
-- [ ] Адаптив на 320/375/768/1024/1440 без горизонтального скролла.
-- [ ] Lighthouse: Performance ≥ 95, Accessibility ≥ 95 на десктопе и мобайле.
-- [ ] JS бюджет лендинга < 80 KB gzip (микросайт-бюджет из web-правил).
-- [ ] Семантическая разметка (header/main/section/footer), CTA доступны с клавиатуры.
-- [ ] Замена контента = правка только `src/content/site.ts`.
-- [ ] Визуальное сравнение со скриншотами референса по секциям (свет/ритм/иерархия).
+## Статус по фазам
 
-## Архитектура
+| Фаза | Статус | Ветка | Коммит |
+|---|---|---|---|
+| 0 — Scaffold | ✅ Done | `phase/0-scaffold` | `762f8b0` |
+| 1 — UI Primitives | ✅ Done | `phase/1-ui-primitives` | `b7d5653` |
+| 2 — Sections (index) | ✅ Done | `phase/2-sections` | `33dfc0b` |
+| 3 — Adaptive polish | ✅ Done | `phase/3-adaptive` | `633a605` |
+| 4 — Lighthouse audit | ✅ Done | `phase/4-lighthouse` | `3693c9a` |
+| 5 — Product page | 🔄 In progress | `phase/5-product-page` | — |
+
+### Что готово (Phase 0–4)
+
+**Главная страница (`index.astro`)** — 11 секций:
+`Hero → Bridge → Magazine → Donate → Club → Services → Cases → Reviews → Channels → Affiliate → Footer`
+
+**Метрики:**
+- JS: 0 байт · CSS: 7.9 KB gzip · font-display:swap на 4 subset'ах
+- Все гриды проверены: 320/375/768/1024/1280px без overflow
+- A11y: H1→H2→H3, aria-labelledby, alt, lang="ru", theme-color
+- `astro check`: 0 errors, 0 warnings, 0 hints
+- `astro build`: ✅
+
+---
+
+## Phase 5 — Продуктовая страница (текущая задача)
+
+### Референс
+
+`https://nkorytin.ru/autofunnel` — длинный sales page курса "Система автопродаж".
+
+### Новые файлы
 
 ```
 src/
-├── content/site.ts            # единственный источник контента (плейсхолдеры)
-├── layouts/Base.astro         # <head>, шрифты, токены, cookie, slot
-├── components/
-│   ├── sections/              # Hero, Bridge, Magazine, Donate, Club,
-│   │                          # Services, Cases, Reviews, Channels,
-│   │                          # Affiliate, Footer
-│   └── ui/                    # Button, Card, SectionHeading,
-│                              # LeadForm(stub), CookieBanner
-├── styles/                    # tokens.css, typography.css, global.css
-├── assets/                    # свои оптимизируемые изображения
-└── pages/index.astro          # сборка секций по порядку
-public/placeholder/            # SVG-плейсхолдеры
+├── pages/product.astro                       ← точка входа
+└── components/product/
+    ├── ProductHero.astro                     ← USP + headline + CTA + 4-col benefits
+    ├── ProductFeaturedCases.astro            ← 4 карточки до/после
+    ├── ProductPains.astro                    ← 13 болей с иконками
+    ├── ProductSolutions.astro               ← "кому поможет" 4 блока + подпункты
+    ├── ProductNotFor.astro                  ← 3 пункта "кому не подойдёт"
+    ├── ProductTransformation.astro          ← 5–7 карточек до/после в 2-col grid
+    ├── ProductAuthor.astro                  ← об авторе: фото-сетка + цифры
+    ├── ProductFormat.astro                  ← 6 нумерованных блоков формата
+    ├── ProductCurriculum.astro              ← 8 модулей программы
+    ├── ProductResults.astro                 ← 12 кейсов учеников
+    └── ProductCTA.astro                     ← финальный CTA + форма (stub) + бонус
 ```
 
-## Фазы
+### Дополнение `site.ts`
 
-### Фаза 0 — Каркас (≈30 мин)
-- `npm create astro@latest` (минимальный шаблон, TS strict).
-- Подключить Onest (self-host woff2, `font-display:swap`, preload основного веса).
-- `styles/tokens.css` со всеми переменными из RESEARCH §3.
-- `Base.astro`, пустой `index.astro`, заглушка `site.ts`.
-- **Проверка:** `npm run build` + `astro check` зелёные, dev-сервер открывается.
+Добавить экспорт `product` с типизированными интерфейсами и плейсхолдерами для:
+`hero`, `featuredCases[4]`, `pains[13]`, `solutions`, `notFor[3]`,
+`transformation[6]`, `author`, `format[6]`, `curriculum[8]`, `results[12]`, `cta`
 
-### Фаза 1 — UI-примитивы (≈45 мин)
-- `Button`, `Card`, `SectionHeading`, `CookieBanner`, `LeadForm` (stub: `preventDefault`, визуальный success-state, без сети).
-- Состояния hover/focus/active для CTA (доступные, видимый focus-ring).
-- **Проверка:** Storybook не нужен — демо-страница `/_kit`, скриншоты состояний.
+### Дизайн продуктовой страницы
 
-### Фаза 2 — Секции по порядку (основной объём)
-Реализуем по одной, каждая = атомарный коммит, после каждой — скриншот-сверка:
-1. Hero → 2. Bridge → 3. Magazine → 4. Donate → 5. Club →
-6. Services → 7. Cases → 8. Reviews → 9. Channels → 10. Affiliate →
-11. Footer → 12. CookieBanner.
-- **Проверка каждой:** рендерится из `site.ts`, адаптив 320–1440,
-  визуальное сравнение со скриншотом соответствующей секции референса.
+Те же дизайн-токены. Ключевые отличия от главной:
+- **Акцент**: оранжевый (`--color-accent`) — не синий как в референсе
+- **CTA кнопка** повторяется 4–5 раз (sticky не нужен — stub)
+- **Боли**: чёрные bullet-кружки слева, жирный заголовок + описание
+- **До/После карточки**: серый фон "до", белый с зелёным акцентом "после"
+- **Автор**: SVG-заглушка 2×2 сетки портретов + stats-chips
+- **Модули**: нумерованные карточки `01–08` с оранжевым номером
 
-### Фаза 3 — Адаптив и полировка (≈1 ч)
-- Прогон брейкпоинтов 320/375/768/1024/1440, фикс переполнений.
-- Чередование фонов, вертикальный ритм, типографическая шкала `clamp()`.
-- Reduced-motion, контраст, alt-тексты, tab-навигация.
-- **Проверка:** axe без критичных, скриншот-матрица брейкпоинтов.
+### Критерии готовности Phase 5
 
-### Фаза 4 — Производительность и аудит (≈45 мин)
-- Lighthouse desktop+mobile, добивание до целей.
-- Оптимизация шрифта/картинок (`<Image>`, размеры, lazy ниже фолда).
-- Финальный `code-reviewer` + `a11y` проход.
-- **Проверка:** все чек-боксы «Критерии успеха» закрыты.
+- [ ] `astro check` 0 errors после добавления нового кода
+- [ ] `astro build` зелёный
+- [ ] Все компоненты рендерятся из `site.ts` (нет зашитого контента)
+- [ ] Адаптив: 375/768/1280 без overflow
+- [ ] Семантика: H1 (один), правильная иерархия H2→H3
+- [ ] Коммиты атомарные: `feat(product): ProductHero`, `feat(product): ProductPains` и т.д.
+- [ ] Мерж в `main` после завершения
 
-### Фаза 5 (опц., по запросу) — Реальные формы/контент
-- Подключение сервиса форм или своего endpoint.
-- Замена плейсхолдеров реальным контентом и ассетами.
+---
 
-## Риски и развилки
+## Архитектура (итоговая)
 
-| Риск | Митигация |
-|---|---|
-| Точное совпадение «пиксель-в-пиксель» недостижимо без исходного Figma | Сверяем по скриншотам секций; цель — узнаваемость, не байт-в-байт |
-| Геометрия Onest ≠ Qanelas | Подбор `letter-spacing`/веса; при критичности — лицензировать Qanelas |
-| Большая галерея кейсов тяжёлая | Плейсхолдеры лёгкие; реальные — через `<Image>` + lazy |
-| «Копия контента» юридически | Контент трактуется как плейсхолдер, заменяется своим |
+```
+src/content/site.ts          ← единый источник контента
+src/layouts/Base.astro       ← head, шрифты, токены, slot
+src/components/
+├── sections/                ← 11 секций главной страницы
+├── product/                 ← 11 секций продуктовой страницы  [NEW]
+└── ui/                      ← Button, Card, SectionHeading, LeadForm, CookieBanner
+src/styles/                  ← tokens.css, typography.css, global.css
+src/pages/
+├── index.astro              ← главная (hub-лендинг)
+└── product.astro            ← продуктовая страница [NEW]
+public/placeholder/          ← SVG-плейсхолдеры
+```
 
-## Инструменты / MCP (см. ответ в чате)
+---
 
-- **context7** — актуальная докуметация Astro/Tailwind/View Transitions.
-- **Браузерный MCP (Claude in Chrome / Playwright)** — скриншоты секций
-  референса по брейкпоинтам и визуальная сверка нашей сборки. Ключевой для
-  «компоновки блоков как в референсе».
-- **jcodemunch** — навигация по своему коду по мере роста.
-- Figma Dev Mode MCP — не требуется (источник дизайна — сам референс).
+## Дизайн-токены (canonical)
+
+```
+--color-bg #ffffff       --color-bg-alt #f5f5f5     --color-bg-alt-2 #f9f9f9
+--color-text #1c1c1c     --color-text-strong #000    --color-text-muted rgba(0,0,0,0.55)
+--color-accent #eb4100   --color-accent-hover #d1290e --color-accent-2 #ffc029
+```
+
+## Команды
+
+```bash
+npm run dev          # дев-сервер
+npm run build        # прод-сборка
+npx astro check      # проверка типов и шаблонов
+```
+
+## Git
+
+Conventional commits: `feat(product): ...`, `fix(product): ...`
+Ветка: `phase/5-product-page` → мерж в `main` атомарными PR.
