@@ -1,0 +1,126 @@
+---
+import { donate } from '@/content/site';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="donate" aria-labelledby="donate-heading">
+  <div class="container">
+    <SectionHeading
+      id="donate-heading"
+      heading={donate.heading}
+      align="center"
+    />
+
+    <ul class="donate__grid" role="list">
+      {donate.products.map((product, i) => (
+        <li class="donate__card">
+          <!-- SVG product cover placeholder -->
+          <div class="donate__thumb" aria-hidden="true">
+            <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id={`dg-${i}`} x1="0" y1="0" x2="280" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color={i === 0 ? '#1c1c1c' : i === 1 ? '#2a1800' : '#0d1a2a'}/>
+                  <stop offset="100%" stop-color={i === 0 ? '#3a2020' : i === 1 ? '#4a2800' : '#1a2e44'}/>
+                </linearGradient>
+              </defs>
+              <rect width="280" height="200" rx="8" fill={`url(#dg-${i})`}/>
+              <rect x="0" y="0" width="5" height="200" fill="#eb4100"/>
+              <!-- mock content lines -->
+              <rect x="20" y="24" width="60" height="3" rx="1.5" fill="#eb4100" opacity="0.9"/>
+              <rect x="20" y="40" width="220" height="8" rx="2" fill="white" opacity="0.85"/>
+              <rect x="20" y="56" width="170" height="8" rx="2" fill="white" opacity="0.85"/>
+              <rect x="20" y="80" width="240" height="2.5" rx="1.25" fill="white" opacity="0.2"/>
+              <rect x="20" y="90" width="200" height="2.5" rx="1.25" fill="white" opacity="0.2"/>
+              <rect x="20" y="100" width="220" height="2.5" rx="1.25" fill="white" opacity="0.2"/>
+              <!-- donát badge -->
+              <rect x="180" y="148" width="80" height="28" rx="14" fill="#ffc029"/>
+              <text x="220" y="167" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#1c1c1c">ЗА ДОНАТ</text>
+            </svg>
+          </div>
+
+          <div class="donate__body">
+            <h3 class="donate__title">{product.title}</h3>
+            <p class="donate__blurb">{product.blurb}</p>
+            <Button href="#" variant="secondary">{product.cta}</Button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .donate {
+    background-color: var(--color-bg-alt);
+    padding-block: var(--space-section);
+  }
+
+  .donate__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-gap);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .donate__card {
+    background-color: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--duration-normal) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out);
+  }
+
+  .donate__card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .donate__thumb svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .donate__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .donate__title {
+    font-size: var(--text-h3);
+    font-weight: 700;
+    color: var(--color-text-strong);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .donate__blurb {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+
+  @media (max-width: 900px) {
+    .donate__grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .donate__grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .donate__card { transition: none; }
+    .donate__card:hover { transform: none; }
+  }
+</style>

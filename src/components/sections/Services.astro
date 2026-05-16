@@ -1,0 +1,131 @@
+---
+import { services } from '@/content/site';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="services" aria-labelledby="services-heading">
+  <div class="container">
+    <SectionHeading
+      id="services-heading"
+      heading={services.heading}
+    />
+
+    <p class="services__note">
+      <span class="services__note-icon" aria-hidden="true">⚡</span>
+      {services.note}
+    </p>
+
+    <ul class="services__grid" role="list">
+      {services.items.map((item) => (
+        <li class="services__card">
+          <div class="services__card-top">
+            <!-- Icon placeholder -->
+            <div class="services__icon" aria-hidden="true">
+              {item.id === 'consultation'
+                ? <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="#eb4100" stroke-width="2"/><path d="M16 22c0-4.4 3.6-8 8-8s8 3.6 8 8c0 3-1.6 5.6-4 7v3h-8v-3c-2.4-1.4-4-4-4-7Z" fill="#eb4100" opacity="0.15"/><path d="M20 29v3h8v-3c2.4-1.4 4-4 4-7 0-4.4-3.6-8-8-8s-8 3.6-8 8c0 3 1.6 5.6 4 7Z" stroke="#eb4100" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                : <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="#eb4100" stroke-width="2"/><rect x="14" y="16" width="20" height="16" rx="2" stroke="#eb4100" stroke-width="1.5"/><path d="M14 22h20" stroke="#eb4100" stroke-width="1.5"/><path d="M20 28h8" stroke="#eb4100" stroke-width="1.5" stroke-linecap="round"/></svg>
+              }
+            </div>
+            <h3 class="services__title">{item.title}</h3>
+          </div>
+
+          <p class="services__desc">{item.description}</p>
+
+          <div class="services__action">
+            <Button href="#" variant="primary">{item.formCta}</Button>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .services {
+    background-color: var(--color-bg-alt);
+    padding-block: var(--space-section);
+  }
+
+  .services__note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-accent);
+    background-color: rgba(235, 65, 0, 0.07);
+    border: 1px solid rgba(235, 65, 0, 0.18);
+    border-radius: var(--radius-md);
+    padding: 0.6rem 1rem;
+    margin-block: calc(var(--space-block) * -0.5) var(--space-block);
+    width: fit-content;
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-gap);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .services__card {
+    background-color: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow var(--duration-normal) var(--ease-out),
+                transform var(--duration-normal) var(--ease-out);
+  }
+
+  .services__card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+
+  .services__card-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .services__icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+  }
+
+  .services__icon svg { width: 100%; height: 100%; }
+
+  .services__title {
+    font-size: var(--text-h3);
+    font-weight: 700;
+    color: var(--color-text-strong);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .services__desc {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  .services__action { margin-block-start: auto; }
+
+  @media (max-width: 640px) {
+    .services__grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services__card { transition: none; }
+    .services__card:hover { transform: none; }
+  }
+</style>
