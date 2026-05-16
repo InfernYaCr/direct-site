@@ -2,6 +2,7 @@
 // Sections are imported and rendered in the exact order from RESEARCH.md §4.
 // Each section component will be added progressively in Phase 2.
 import Base from '@/layouts/Base.astro';
+import CookieBanner from '@/components/ui/CookieBanner.astro';
 ---
 
 <Base>
@@ -23,5 +24,6 @@ import Base from '@/layouts/Base.astro';
     </p>
   </main>
 
-  <!-- CookieBanner renders outside <main>, fixed at bottom -->
+  <!-- Fixed bottom — outside <main> intentionally -->
+  <CookieBanner />
 </Base>
