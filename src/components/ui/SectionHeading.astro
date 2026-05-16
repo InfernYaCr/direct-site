@@ -3,6 +3,7 @@ interface Props {
   heading: string;
   sub?: string;
   align?: 'left' | 'center';
+  id?: string;   // forwarded to h2 for aria-labelledby on parent <section>
   class?: string;
 }
 
@@ -10,12 +11,13 @@ const {
   heading,
   sub,
   align = 'left',
+  id,
   class: className,
 } = Astro.props;
 ---
 
 <header class:list={['section-heading', `section-heading--${align}`, className]}>
-  <h2 class="section-heading__title">{heading}</h2>
+  <h2 id={id} class="section-heading__title">{heading}</h2>
   {sub && <p class="section-heading__sub">{sub}</p>}
 </header>
 

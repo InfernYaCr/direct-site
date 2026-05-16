@@ -1,0 +1,140 @@
+---
+import { magazine } from '@/content/site';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import LeadForm from '@/components/ui/LeadForm.astro';
+---
+
+<section class="magazine" aria-labelledby="magazine-heading">
+  <div class="container magazine__inner">
+
+    <!-- Left: text + form -->
+    <div class="magazine__content">
+      <SectionHeading
+        id="magazine-heading"
+        heading={magazine.heading}
+        sub={magazine.body}
+      />
+      <LeadForm
+        id="magazine"
+        placeholder={magazine.formPlaceholder}
+        cta={magazine.formCta}
+        successMessage="Отлично! Проверьте почту — ссылка уже там."
+      />
+    </div>
+
+    <!-- Right: journal cover placeholder -->
+    <div class="magazine__visual" aria-hidden="true">
+      <div class="magazine__covers">
+        <!-- Print edition placeholder -->
+        <div class="magazine__cover magazine__cover--print">
+          <svg viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="cover-grad" x1="0" y1="0" x2="240" y2="320" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#1c1c1c"/>
+                <stop offset="100%" stop-color="#3a2a20"/>
+              </linearGradient>
+            </defs>
+            <rect width="240" height="320" rx="6" fill="url(#cover-grad)"/>
+            <!-- orange accent strip -->
+            <rect x="0" y="0" width="6" height="320" fill="#eb4100"/>
+            <!-- mock content lines -->
+            <rect x="24" y="40" width="100" height="4" rx="2" fill="#eb4100"/>
+            <rect x="24" y="60" width="180" height="12" rx="3" fill="white" opacity="0.9"/>
+            <rect x="24" y="80" width="140" height="12" rx="3" fill="white" opacity="0.9"/>
+            <rect x="24" y="108" width="188" height="3" rx="1.5" fill="white" opacity="0.2"/>
+            <rect x="24" y="120" width="188" height="3" rx="1.5" fill="white" opacity="0.2"/>
+            <rect x="24" y="132" width="140" height="3" rx="1.5" fill="white" opacity="0.2"/>
+            <!-- yellow badge -->
+            <circle cx="200" cy="260" r="30" fill="#ffc029"/>
+            <text x="200" y="255" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#1c1c1c">БЕСПЛАТНО</text>
+            <text x="200" y="267" text-anchor="middle" font-family="Arial" font-size="9" font-weight="700" fill="#1c1c1c">С ДОСТАВКОЙ</text>
+            <!-- label -->
+            <text x="120" y="308" text-anchor="middle" font-family="Arial" font-size="9" fill="white" opacity="0.4" letter-spacing="0.08em">ПЕЧАТНЫЙ ЖУРНАЛ</text>
+          </svg>
+        </div>
+
+        <!-- Digital edition placeholder — slightly offset -->
+        <div class="magazine__cover magazine__cover--digital">
+          <svg viewBox="0 0 200 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="digi-grad" x1="0" y1="0" x2="200" y2="270" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#eb4100"/>
+                <stop offset="100%" stop-color="#a02c00"/>
+              </linearGradient>
+            </defs>
+            <rect width="200" height="270" rx="6" fill="url(#digi-grad)"/>
+            <rect x="20" y="36" width="80" height="4" rx="2" fill="white" opacity="0.6"/>
+            <rect x="20" y="52" width="160" height="10" rx="2" fill="white" opacity="0.9"/>
+            <rect x="20" y="70" width="120" height="10" rx="2" fill="white" opacity="0.9"/>
+            <rect x="20" y="96" width="160" height="2.5" rx="1.25" fill="white" opacity="0.25"/>
+            <rect x="20" y="106" width="130" height="2.5" rx="1.25" fill="white" opacity="0.25"/>
+            <rect x="20" y="116" width="150" height="2.5" rx="1.25" fill="white" opacity="0.25"/>
+            <text x="100" y="256" text-anchor="middle" font-family="Arial" font-size="8" fill="white" opacity="0.5" letter-spacing="0.08em">ЭЛЕКТРОННАЯ ВЕРСИЯ</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .magazine {
+    background-color: var(--color-bg);
+    padding-block: var(--space-section);
+  }
+
+  .magazine__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+  }
+
+  /* — Covers stack — */
+  .magazine__visual { display: flex; justify-content: center; }
+
+  .magazine__covers {
+    position: relative;
+    width: min(280px, 100%);
+    height: 380px;
+  }
+
+  .magazine__cover {
+    position: absolute;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.18));
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .magazine__cover--print {
+    bottom: 0;
+    left: 0;
+    width: 72%;
+    z-index: 2;
+  }
+
+  .magazine__cover--digital {
+    top: 0;
+    right: 0;
+    width: 60%;
+    z-index: 1;
+    transform: rotate(4deg);
+  }
+
+  .magazine__covers:hover .magazine__cover--print  { transform: translateY(-6px); }
+  .magazine__covers:hover .magazine__cover--digital { transform: rotate(4deg) translateY(-4px); }
+
+  /* — Responsive — */
+  @media (max-width: 768px) {
+    .magazine__inner { grid-template-columns: 1fr; }
+    .magazine__visual { order: -1; }
+    .magazine__covers { height: 260px; width: min(220px, 80%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .magazine__cover,
+    .magazine__covers:hover .magazine__cover--print,
+    .magazine__covers:hover .magazine__cover--digital { transition: none; transform: none; }
+    .magazine__cover--digital { transform: rotate(4deg); }
+  }
+</style>
