@@ -1,0 +1,56 @@
+/* Design tokens — extracted from nkorytin.ru reference (2026-05-16).
+   All values sourced from the site's HTML/CSS; none are invented.
+   Replace with brand values when substituting real content. */
+:root {
+  /* — Palette — */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f5f5f5;
+  --color-bg-alt-2: #f9f9f9;
+  --color-text: #1c1c1c;
+  --color-text-strong: #000000;
+  --color-text-muted: rgba(0, 0, 0, 0.55);
+  --color-accent: #eb4100;       /* primary CTA */
+  --color-accent-hover: #d1290e; /* CTA hover / active */
+  --color-accent-2: #ffc029;     /* secondary accent (yellow) */
+  --color-overlay: rgba(0, 0, 0, 0.30);
+  --color-overlay-light: rgba(0, 0, 0, 0.20);
+
+  /* — Typography — */
+  --font-family: 'Onest Variable', Arial, sans-serif;
+
+  /* Fluid type scale — hero to body */
+  --text-hero: clamp(2.5rem, 1rem + 6vw, 6rem);
+  --text-h1: clamp(2rem, 0.8rem + 4.5vw, 4rem);
+  --text-h2: clamp(1.5rem, 0.6rem + 3.5vw, 2.75rem);
+  --text-h3: clamp(1.125rem, 0.5rem + 2vw, 1.75rem);
+  --text-lead: clamp(1.0625rem, 0.5rem + 1.5vw, 1.375rem);
+  --text-base: clamp(1rem, 0.9rem + 0.35vw, 1.125rem);
+  --text-small: 0.875rem;
+  --text-xs: 0.75rem;
+
+  /* — Spacing — */
+  --space-section: clamp(4rem, 2rem + 6vw, 9rem);
+  --space-block: clamp(2rem, 1rem + 3vw, 4.5rem);
+  --space-content: clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  --space-gap: clamp(0.75rem, 0.25rem + 1.5vw, 1.5rem);
+
+  /* — Corners & shadows — */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-btn: 6px;
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 6px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  /* — Motion — */
+  --duration-fast: 150ms;
+  --duration-normal: 280ms;
+  --duration-slow: 450ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* — Layout — */
+  --container-max: 1200px;
+  --container-pad: clamp(1rem, 5vw, 3rem);
+}

@@ -1,0 +1,53 @@
+---
+import { bridge } from '@/content/site';
+---
+
+<section class="bridge" aria-label={bridge.heading}>
+  <div class="container bridge__inner">
+    <div class="bridge__line" aria-hidden="true"></div>
+    <p class="bridge__heading">{bridge.heading}</p>
+    <div class="bridge__line" aria-hidden="true"></div>
+  </div>
+</section>
+
+<style>
+  .bridge {
+    background-color: var(--color-bg-alt);
+    padding-block: clamp(2rem, 3vw, 3.5rem);
+  }
+
+  .bridge__inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .bridge__heading {
+    flex-shrink: 0;
+    font-size: var(--text-h2);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text-strong);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .bridge__line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-accent) 40%,
+      var(--color-accent-2) 70%,
+      transparent
+    );
+    border-radius: 1px;
+  }
+
+  @media (max-width: 480px) {
+    .bridge__inner { flex-direction: column; gap: 0.75rem; }
+    .bridge__heading { white-space: normal; text-align: center; }
+    .bridge__line { width: 100%; height: 2px; }
+  }
+</style>

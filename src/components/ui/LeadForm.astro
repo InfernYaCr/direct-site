@@ -1,0 +1,148 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  id: string;              // unique id, keeps label → input association valid
+  placeholder?: string;
+  cta?: string;
+  successMessage?: string;
+}
+
+const {
+  id,
+  placeholder = 'Ваш email',
+  cta = 'Отправить',
+  successMessage = 'Готово! Ссылка придёт на почту.',
+} = Astro.props;
+
+const inputId = `${id}-email`;
+const formId  = `${id}-form`;
+---
+
+<div class="lead-form-wrapper" data-form-wrapper={id}>
+  <form
+    id={formId}
+    class="lead-form"
+    novalidate
+    aria-label={cta}
+  >
+    <div class="lead-form__field">
+      <label for={inputId} class="sr-only">Email</label>
+      <input
+        id={inputId}
+        name="email"
+        type="email"
+        class="lead-form__input"
+        placeholder={placeholder}
+        autocomplete="email"
+        required
+        aria-required="true"
+        aria-describedby={`${id}-error`}
+      />
+      <span id={`${id}-error`} class="lead-form__error" aria-live="polite" hidden>
+        Введите корректный email
+      </span>
+    </div>
+    <Button type="submit" variant="primary">{cta}</Button>
+  </form>
+
+  <div class="lead-form__success" role="status" aria-live="polite" hidden>
+    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <circle cx="11" cy="11" r="11" fill="#22c55e"/>
+      <path d="M6 11l3.5 3.5L16 8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    {successMessage}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.lead-form').forEach((form) => {
+    const wrapper  = form.closest<HTMLElement>('[data-form-wrapper]')!;
+    const errorEl  = wrapper.querySelector<HTMLElement>('.lead-form__error')!;
+    const successEl = wrapper.querySelector<HTMLElement>('.lead-form__success')!;
+    const input    = form.querySelector<HTMLInputElement>('input[type="email"]')!;
+
+    input.addEventListener('input', () => {
+      errorEl.hidden = true;
+      input.removeAttribute('aria-invalid');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (!input.validity.valid) {
+        errorEl.hidden = false;
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+        return;
+      }
+
+      // Stub: show success state without network request
+      form.hidden = true;
+      successEl.hidden = false;
+    });
+  });
+</script>
+
+<style>
+  .lead-form-wrapper { width: 100%; }
+
+  .lead-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .lead-form__field {
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .lead-form__input {
+    height: 3rem;
+    padding-inline: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-btn);
+    font-family: var(--font-family);
+    font-size: var(--text-base);
+    color: var(--color-text-strong);
+    background-color: var(--color-bg);
+    width: 100%;
+    transition: border-color var(--duration-fast);
+    outline: none;
+  }
+
+  .lead-form__input::placeholder { color: var(--color-text-muted); }
+
+  .lead-form__input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(235, 65, 0, 0.15);
+  }
+
+  .lead-form__input[aria-invalid='true'] {
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.15);
+  }
+
+  .lead-form__error {
+    font-size: var(--text-small);
+    color: #e53e3e;
+  }
+
+  .lead-form__success {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    font-size: var(--text-lead);
+    color: var(--color-text-strong);
+    padding-block: 0.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lead-form__input { transition: none; }
+  }
+</style>

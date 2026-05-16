@@ -1,0 +1,48 @@
+---
+interface Props {
+  hover?: boolean;       // adds lift on hover
+  padded?: boolean;      // internal padding (default true)
+  bg?: 'white' | 'alt'; // background variant
+  class?: string;
+}
+
+const {
+  hover = false,
+  padded = true,
+  bg = 'white',
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={['card', hover && 'card--hover', padded && 'card--padded', `card--${bg}`, className]}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .card--white { background-color: var(--color-bg); }
+  .card--alt   { background-color: var(--color-bg-alt); }
+
+  .card--padded { padding: var(--space-content); }
+
+  .card--hover {
+    transition:
+      transform var(--duration-normal) var(--ease-out),
+      box-shadow var(--duration-normal) var(--ease-out);
+  }
+
+  .card--hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card--hover { transition: none; }
+    .card--hover:hover { transform: none; }
+  }
+</style>

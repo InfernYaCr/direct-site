@@ -1,0 +1,115 @@
+---
+import { channels } from '@/content/site';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="channels" aria-labelledby="channels-heading">
+  <div class="container">
+    <SectionHeading
+      id="channels-heading"
+      heading="Telegram-каналы"
+      align="center"
+    />
+
+    <div class="channels__groups">
+      {channels.groups.map((group) => (
+        <div class="channels__group">
+          <h3 class="channels__group-title">{group.heading}</h3>
+          <ul class="channels__list" role="list">
+            {group.channels.map((ch) => (
+              <li class="channels__item">
+                <!-- Telegram-style channel preview placeholder -->
+                <div class="channels__preview" aria-hidden="true">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="24" fill="#229ed9"/>
+                    <path d="M10 24 L38 12 L30 38 L22 30 L10 24Z" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M22 30 L25 36 L30 38" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="channels__info">
+                  <p class="channels__name">{ch.title}</p>
+                </div>
+                <Button href={ch.href} variant="secondary">{ch.cta}</Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .channels {
+    background-color: var(--color-bg);
+    padding-block: var(--space-section);
+  }
+
+  .channels__groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .channels__group-title {
+    font-size: var(--text-h3);
+    font-weight: 700;
+    color: var(--color-text-strong);
+    margin: 0 0 1.25rem;
+    padding-block-end: 0.75rem;
+    border-block-end: 2px solid var(--color-accent);
+    display: inline-block;
+  }
+
+  .channels__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .channels__item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    transition: background-color var(--duration-fast);
+  }
+
+  .channels__item:hover { background-color: #ede8e4; }
+
+  .channels__preview {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .channels__preview svg { width: 100%; height: 100%; }
+
+  .channels__info { flex: 1; min-width: 0; }
+
+  .channels__name {
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-text-strong);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .channels__groups { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .channels__item { transition: none; }
+  }
+</style>

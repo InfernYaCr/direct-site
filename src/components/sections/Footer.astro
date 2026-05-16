@@ -1,0 +1,175 @@
+---
+import { footer } from '@/content/site';
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container site-footer__inner">
+
+    <!-- Top row: contacts -->
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <!-- favicon reused as footer logo -->
+        <img src="/placeholder/favicon.svg" width="32" height="32" alt="Логотип" loading="lazy"/>
+        <span class="site-footer__brand-name">[Имя Эксперта]</span>
+      </div>
+
+      <div class="site-footer__contacts">
+        <a href={`mailto:${footer.email}`} class="site-footer__link">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.25"/>
+            <path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.25"/>
+          </svg>
+          {footer.email}
+        </a>
+        <a href={footer.telegram} class="site-footer__link" target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="7.25" stroke="currentColor" stroke-width="1.25"/>
+            <path d="M3.5 8.5L7 11l5-6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          {footer.telegramLabel}
+        </a>
+      </div>
+    </div>
+
+    <hr class="site-footer__divider"/>
+
+    <!-- Middle row: policies -->
+    <nav class="site-footer__policies" aria-label="Юридические документы">
+      {footer.policies.map((p) => (
+        <a href={p.href} class="site-footer__policy-link">{p.label}</a>
+      ))}
+    </nav>
+
+    <!-- Bottom row: offers grid + copyright -->
+    <div class="site-footer__bottom">
+      <nav class="site-footer__offers" aria-label="Публичные оферты">
+        {footer.offers.map((o) => (
+          <a href={o.href} class="site-footer__offer-link">{o.label}</a>
+        ))}
+      </nav>
+
+      <p class="site-footer__copy">
+        © {new Date().getFullYear()} — Все права защищены
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-text-strong);
+    color: rgba(255, 255, 255, 0.75);
+    padding-block: clamp(2.5rem, 4vw, 4rem);
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* — Top — */
+  .site-footer__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .site-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .site-footer__brand-name {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .site-footer__contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .site-footer__link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: var(--text-small);
+    transition: color var(--duration-fast);
+  }
+
+  .site-footer__link:hover { color: #fff; }
+  .site-footer__link:focus-visible { outline: 2px solid var(--color-accent-2); border-radius: 2px; }
+
+  /* — Divider — */
+  .site-footer__divider {
+    border: none;
+    border-block-start: 1px solid rgba(255, 255, 255, 0.12);
+    margin: 0;
+  }
+
+  /* — Policies — */
+  .site-footer__policies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .site-footer__policy-link {
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    font-size: var(--text-small);
+    transition: color var(--duration-fast), text-decoration-color var(--duration-fast);
+  }
+
+  .site-footer__policy-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration-color: currentColor;
+  }
+
+  /* — Bottom — */
+  .site-footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .site-footer__offers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+  }
+
+  .site-footer__offer-link {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: var(--text-xs);
+    transition: color var(--duration-fast);
+  }
+
+  .site-footer__offer-link:hover { color: rgba(255, 255, 255, 0.75); }
+
+  .site-footer__copy {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer__link,
+    .site-footer__policy-link,
+    .site-footer__offer-link { transition: none; }
+  }
+</style>

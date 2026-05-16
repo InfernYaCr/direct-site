@@ -1,0 +1,196 @@
+---
+import { hero } from '@/content/site';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="container hero__inner">
+
+    <!-- Left: text content -->
+    <div class="hero__content">
+      <p class="hero__brand">{hero.brandName}</p>
+
+      <div class="hero__announce">
+        <span class="hero__announce-badge" aria-hidden="true">●</span>
+        {hero.programLabel}
+      </div>
+
+      <h1 id="hero-heading" class="hero__title">{hero.programTitle}</h1>
+
+      <p class="hero__tagline">{hero.tagline}</p>
+
+      <div class="hero__cta">
+        <Button href={hero.cta.href} variant="primary">{hero.cta.label}</Button>
+      </div>
+    </div>
+
+    <!-- Right: portrait placeholder -->
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__avatar">
+        <svg viewBox="0 0 400 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Портрет автора — плейсхолдер">
+          <defs>
+            <linearGradient id="avatar-grad" x1="0" y1="0" x2="400" y2="480" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f5f0ec"/>
+              <stop offset="100%" stop-color="#e8ddd5"/>
+            </linearGradient>
+            <radialGradient id="avatar-face" cx="50%" cy="40%" r="55%">
+              <stop offset="0%" stop-color="#f9f3ed"/>
+              <stop offset="100%" stop-color="#e0cdc2"/>
+            </radialGradient>
+            <clipPath id="avatar-clip">
+              <rect rx="24" width="400" height="480"/>
+            </clipPath>
+          </defs>
+          <!-- background -->
+          <rect width="400" height="480" rx="24" fill="url(#avatar-grad)"/>
+          <!-- decorative accent bar -->
+          <rect x="0" y="0" width="8" height="480" rx="4" fill="#eb4100" opacity="0.7"/>
+          <!-- body silhouette -->
+          <ellipse cx="200" cy="520" rx="180" ry="120" fill="#d4c4b8" opacity="0.5"/>
+          <!-- head -->
+          <circle cx="200" cy="195" r="95" fill="url(#avatar-face)"/>
+          <!-- label -->
+          <text x="200" y="400" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#b0a098" letter-spacing="0.1em">ФОТО АВТОРА</text>
+        </svg>
+        <!-- decorative accent dot -->
+        <div class="hero__accent-dot"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Decorative wave separator -->
+  <div class="hero__wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--color-bg-alt)"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background-color: var(--color-bg);
+    padding-block-start: clamp(3rem, 2rem + 5vw, 7rem);
+    padding-block-end: 0; /* wave overlaps */
+    overflow: hidden;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 4vw, 5rem);
+    align-items: center;
+    padding-block-end: 4rem;
+  }
+
+  /* — Left column — */
+  .hero__brand {
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 1.25rem;
+  }
+
+  .hero__announce {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(235, 65, 0, 0.08);
+    border: 1px solid rgba(235, 65, 0, 0.2);
+    border-radius: 999px;
+    padding: 0.35em 1em;
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-block-end: 1.5rem;
+  }
+
+  .hero__announce-badge {
+    font-size: 0.5em;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  .hero__title {
+    font-size: var(--text-hero);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--color-text-strong);
+    margin: 0 0 1.25rem;
+  }
+
+  .hero__tagline {
+    font-size: var(--text-lead);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 42ch;
+    margin: 0 0 2.5rem;
+  }
+
+  .hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* — Right column — */
+  .hero__visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__avatar {
+    position: relative;
+    width: min(420px, 100%);
+  }
+
+  .hero__avatar svg {
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* orange floating accent dot */
+  .hero__accent-dot {
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    width: clamp(60px, 8vw, 100px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--color-accent-2);
+    opacity: 0.75;
+    z-index: -1;
+  }
+
+  /* — Wave — */
+  .hero__wave {
+    width: 100%;
+    line-height: 0;
+    margin-block-start: -2px; /* prevent 1px gap */
+  }
+
+  .hero__wave svg { width: 100%; height: auto; display: block; }
+
+  /* — Responsive — */
+  @media (max-width: 768px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+    .hero__visual {
+      order: -1; /* portrait above text on mobile */
+    }
+    .hero__avatar { width: min(280px, 75%); }
+    .hero__accent-dot { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__announce-badge { animation: none; }
+  }
+</style>

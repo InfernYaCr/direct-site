@@ -1,0 +1,146 @@
+---
+import { affiliate } from '@/content/site';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="affiliate" aria-labelledby="affiliate-heading">
+  <div class="container affiliate__inner">
+
+    <!-- Left: text -->
+    <div class="affiliate__content">
+      <p class="affiliate__label">Для всех желающих</p>
+      <h2 id="affiliate-heading" class="affiliate__title">{affiliate.heading}</h2>
+      <p class="affiliate__body">{affiliate.body}</p>
+      <Button href={affiliate.cta.href} variant="primary">{affiliate.cta.label}</Button>
+    </div>
+
+    <!-- Right: visual with percentage -->
+    <div class="affiliate__visual" aria-hidden="true">
+      <div class="affiliate__percent-card">
+        <span class="affiliate__big-number">10%</span>
+        <span class="affiliate__big-label">от стоимости курса</span>
+        <div class="affiliate__divider"></div>
+        <ul class="affiliate__perks">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="8" fill="#22c55e"/>
+              <path d="M4.5 8l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Выплаты без задержек
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="8" fill="#22c55e"/>
+              <path d="M4.5 8l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Скидка друзьям
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="8" fill="#22c55e"/>
+              <path d="M4.5 8l2.5 2.5 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Личный кабинет
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .affiliate {
+    background-color: var(--color-bg-alt);
+    padding-block: var(--space-section);
+  }
+
+  .affiliate__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+  }
+
+  .affiliate__label {
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 0.75rem;
+  }
+
+  .affiliate__title {
+    font-size: var(--text-h1);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-text-strong);
+    margin: 0 0 1rem;
+  }
+
+  .affiliate__body {
+    font-size: var(--text-lead);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 42ch;
+    margin: 0 0 2rem;
+  }
+
+  /* — Percent card — */
+  .affiliate__visual { display: flex; justify-content: center; }
+
+  .affiliate__percent-card {
+    background-color: var(--color-text-strong);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    width: min(320px, 100%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  }
+
+  .affiliate__big-number {
+    display: block;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    color: var(--color-accent-2);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .affiliate__big-label {
+    display: block;
+    font-size: var(--text-base);
+    color: rgba(255,255,255,0.6);
+    margin-block-start: 0.25rem;
+  }
+
+  .affiliate__divider {
+    height: 1px;
+    background-color: rgba(255,255,255,0.12);
+    margin-block: 1.25rem;
+  }
+
+  .affiliate__perks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .affiliate__perks li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--text-base);
+    color: rgba(255,255,255,0.85);
+  }
+
+  @media (max-width: 768px) {
+    .affiliate__inner { grid-template-columns: 1fr; }
+    .affiliate__visual { order: -1; }
+  }
+</style>

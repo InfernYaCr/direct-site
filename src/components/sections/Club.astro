@@ -1,0 +1,112 @@
+---
+import { club } from '@/content/site';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="club" aria-labelledby="club-heading">
+  <div class="container club__inner">
+
+    <!-- Left: text -->
+    <div class="club__content">
+      <p class="club__label">Для экспертов и продюсеров</p>
+      <h2 id="club-heading" class="club__title">{club.heading}</h2>
+      <p class="club__body">{club.body}</p>
+      <Button href={club.cta.href} variant="primary">{club.cta.label}</Button>
+    </div>
+
+    <!-- Right: decorative emblem -->
+    <div class="club__visual" aria-hidden="true">
+      <div class="club__emblem">
+        <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="club-bg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#2a1800"/>
+              <stop offset="100%" stop-color="#1c1c1c"/>
+            </radialGradient>
+          </defs>
+          <!-- outer ring -->
+          <circle cx="160" cy="160" r="155" fill="url(#club-bg)" stroke="#ffc029" stroke-width="2" stroke-dasharray="8 6"/>
+          <!-- inner ring -->
+          <circle cx="160" cy="160" r="120" fill="none" stroke="#eb4100" stroke-width="1.5" opacity="0.4"/>
+          <!-- star / badge shape -->
+          <circle cx="160" cy="160" r="72" fill="#eb4100"/>
+          <text x="160" y="148" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700" fill="white" letter-spacing="0.14em">ЗАКРЫТЫЙ</text>
+          <text x="160" y="168" text-anchor="middle" font-family="Arial" font-size="22" font-weight="900" fill="white" letter-spacing="-0.02em">КЛУБ</text>
+          <text x="160" y="188" text-anchor="middle" font-family="Arial" font-size="9" fill="rgba(255,255,255,0.6)" letter-spacing="0.12em">TITANS</text>
+          <!-- decorative dots on ring -->
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
+            const rad = (deg * Math.PI) / 180;
+            const x = 160 + 155 * Math.cos(rad);
+            const y = 160 + 155 * Math.sin(rad);
+            return <circle cx={x} cy={y} r="4" fill="#ffc029"/>;
+          })}
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .club {
+    background-color: var(--color-bg);
+    padding-block: var(--space-section);
+  }
+
+  .club__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 6rem);
+    align-items: center;
+  }
+
+  .club__label {
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .club__title {
+    font-size: var(--text-h1);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-text-strong);
+    margin: 0 0 1rem;
+  }
+
+  .club__body {
+    font-size: var(--text-lead);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 42ch;
+    margin: 0 0 2rem;
+  }
+
+  /* — Emblem — */
+  .club__visual { display: flex; justify-content: center; }
+
+  .club__emblem {
+    width: min(320px, 100%);
+    animation: slow-spin 30s linear infinite;
+  }
+
+  .club__emblem svg { width: 100%; height: auto; }
+
+  @keyframes slow-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 768px) {
+    .club__inner { grid-template-columns: 1fr; }
+    .club__visual { order: -1; }
+    .club__emblem { width: min(220px, 60%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .club__emblem { animation: none; }
+  }
+</style>
