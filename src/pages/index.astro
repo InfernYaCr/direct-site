@@ -6,9 +6,14 @@ import CookieBanner from '@/components/ui/CookieBanner.astro';
 import Hero     from '@/components/sections/Hero.astro';
 import Bridge   from '@/components/sections/Bridge.astro';
 import Magazine from '@/components/sections/Magazine.astro';
-import Donate   from '@/components/sections/Donate.astro';
-import Club     from '@/components/sections/Club.astro';
-import Services from '@/components/sections/Services.astro';
+import Donate    from '@/components/sections/Donate.astro';
+import Club      from '@/components/sections/Club.astro';
+import Services  from '@/components/sections/Services.astro';
+import Cases     from '@/components/sections/Cases.astro';
+import Reviews   from '@/components/sections/Reviews.astro';
+import Channels  from '@/components/sections/Channels.astro';
+import Affiliate from '@/components/sections/Affiliate.astro';
+import Footer    from '@/components/sections/Footer.astro';
 ---
 
 <Base>
@@ -19,12 +24,13 @@ import Services from '@/components/sections/Services.astro';
     <Donate />
     <Club />
     <Services />
-    <!-- 7. Cases   — coming next -->
-    <!-- 8. Reviews -->
-    <!-- 9. Channels -->
-    <!-- 10. Affiliate -->
+    <Cases />
+    <Reviews />
+    <Channels />
+    <Affiliate />
   </main>
 
+  <Footer />
   <!-- Fixed bottom — outside <main> intentionally -->
   <CookieBanner />
 </Base>
