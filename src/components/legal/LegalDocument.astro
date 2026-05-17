@@ -1,0 +1,192 @@
+---
+import type { LegalDocument } from '@/content/site';
+import Base from '@/layouts/Base.astro';
+import Footer from '@/components/sections/Footer.astro';
+import CookieBanner from '@/components/ui/CookieBanner.astro';
+
+interface Props {
+  document: LegalDocument;
+}
+
+const { document } = Astro.props;
+---
+
+<Base title={document.title} description={document.description}>
+  <main class="legal-page">
+    <section class="legal-hero" aria-labelledby="legal-heading">
+      <div class="container legal-hero__inner">
+        <a class="legal-hero__back" href="/product">← Вернуться к продукту</a>
+        <p>{document.updated}</p>
+        <h1 id="legal-heading">{document.title}</h1>
+        <p>{document.intro}</p>
+      </div>
+    </section>
+
+    <section class="legal-content" aria-labelledby="legal-fill-heading">
+      <div class="container legal-content__inner">
+        <aside class="legal-fill" aria-labelledby="legal-fill-heading">
+          <h2 id="legal-fill-heading">Что заполнить своими данными</h2>
+          <ul>
+            {document.fillData.map((item) => <li>{item}</li>)}
+          </ul>
+        </aside>
+
+        <div class="legal-sections">
+          {document.sections.map((section) => (
+            <article class="legal-section">
+              <h2>{section.title}</h2>
+              {section.body?.map((paragraph) => <p>{paragraph}</p>)}
+              {section.items && (
+                <ul>
+                  {section.items.map((item) => <li>{item}</li>)}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <CookieBanner />
+</Base>
+
+<style>
+  .legal-page {
+    background-color: var(--color-bg);
+  }
+
+  .legal-hero {
+    padding-block: clamp(4rem, 8vw, 7rem);
+    background-color: var(--color-text-strong);
+    color: var(--color-bg);
+  }
+
+  .legal-hero__inner {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .legal-hero__back {
+    justify-self: start;
+    color: var(--color-accent-2);
+    font-size: var(--text-small);
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .legal-hero__back:hover {
+    text-decoration: underline;
+  }
+
+  .legal-hero p {
+    max-width: 68ch;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: var(--text-lead);
+    line-height: 1.55;
+  }
+
+  .legal-hero p:first-of-type {
+    color: var(--color-accent-2);
+    font-size: var(--text-small);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .legal-hero h1 {
+    max-width: 16ch;
+    margin: 0;
+    color: var(--color-bg);
+    font-size: var(--text-h1);
+    line-height: 1.08;
+  }
+
+  .legal-content {
+    padding-block: var(--space-section);
+  }
+
+  .legal-content__inner {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.34fr) minmax(0, 0.66fr);
+    gap: var(--space-block);
+    align-items: start;
+  }
+
+  .legal-fill {
+    position: sticky;
+    top: 2rem;
+    min-width: 0;
+    padding: var(--space-content);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg-alt);
+  }
+
+  .legal-fill h2 {
+    margin: 0 0 1rem;
+    color: var(--color-text-strong);
+    font-size: var(--text-h3);
+  }
+
+  .legal-fill ul,
+  .legal-section ul {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding-inline-start: 1.15rem;
+  }
+
+  .legal-fill li,
+  .legal-section li,
+  .legal-section p {
+    color: var(--color-text-muted);
+    line-height: 1.65;
+  }
+
+  .legal-fill li::marker,
+  .legal-section li::marker {
+    color: var(--color-accent);
+  }
+
+  .legal-sections {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .legal-section {
+    min-width: 0;
+    padding: var(--space-content);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .legal-section h2 {
+    margin: 0 0 1rem;
+    color: var(--color-text-strong);
+    font-size: var(--text-h3);
+    line-height: 1.2;
+  }
+
+  .legal-section p {
+    margin: 0 0 0.85rem;
+  }
+
+  .legal-section p:last-child {
+    margin-block-end: 0;
+  }
+
+  @media (max-width: 860px) {
+    .legal-content__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .legal-fill {
+      position: static;
+    }
+  }
+</style>
