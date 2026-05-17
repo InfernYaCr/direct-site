@@ -1,0 +1,118 @@
+---
+import { product } from '@/content/site';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section id="product-cta" class="product-cta" aria-labelledby="product-cta-heading">
+  <div class="container product-cta__inner">
+    <div class="product-cta__content">
+      <p class="product-cta__eyebrow">{product.cta.eyebrow}</p>
+      <h2 id="product-cta-heading">{product.cta.heading}</h2>
+      <p>{product.cta.body}</p>
+      <Button href={product.cta.href} variant="primary">{product.cta.label}</Button>
+    </div>
+
+    <div class="product-cta__stack">
+      <aside class="product-cta__bonus">
+        <h3>{product.cta.bonusTitle}</h3>
+        <p>{product.cta.bonusBody}</p>
+      </aside>
+
+      <div class="product-cta__form" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-cta {
+    padding-block: var(--space-section);
+    background-color: var(--color-text-strong);
+    color: var(--color-bg);
+  }
+
+  .product-cta__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+    gap: var(--space-block);
+    align-items: center;
+  }
+
+  .product-cta__eyebrow {
+    margin: 0 0 1rem;
+    color: var(--color-accent-2);
+    font-size: var(--text-small);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .product-cta h2 {
+    max-width: 15ch;
+    margin: 0 0 1.25rem;
+    color: var(--color-bg);
+    font-size: var(--text-h1);
+    line-height: 1.08;
+  }
+
+  .product-cta__content p {
+    max-width: 58ch;
+    margin: 0 0 2rem;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: var(--text-lead);
+    line-height: 1.55;
+  }
+
+  .product-cta__stack {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .product-cta__bonus {
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-lg);
+    background-color: rgba(255, 255, 255, 0.07);
+  }
+
+  .product-cta__bonus h3 {
+    margin: 0 0 0.75rem;
+    color: var(--color-accent-2);
+    font-size: var(--text-h3);
+  }
+
+  .product-cta__bonus p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.76);
+    line-height: 1.55;
+  }
+
+  .product-cta__form {
+    display: grid;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg);
+  }
+
+  .product-cta__form span {
+    display: block;
+    height: 3rem;
+    border-radius: var(--radius-btn);
+    background-color: var(--color-bg-alt);
+  }
+
+  .product-cta__form span:last-child {
+    width: 58%;
+    background-color: var(--color-accent);
+  }
+
+  @media (max-width: 820px) {
+    .product-cta__inner { grid-template-columns: 1fr; }
+  }
+</style>

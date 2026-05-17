@@ -1,0 +1,80 @@
+---
+import { product } from '@/content/site';
+---
+
+<section class="product-solutions" aria-labelledby="product-solutions-heading">
+  <div class="container">
+    <h2 id="product-solutions-heading" class="product-solutions__heading">{product.solutions.heading}</h2>
+
+    <div class="product-solutions__grid">
+      {product.solutions.items.map((item) => (
+        <article class="product-solutions__card">
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+          <ul>
+            {item.subpoints.map((point) => <li>{point}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-solutions {
+    padding-block: var(--space-section);
+  }
+
+  .product-solutions__heading {
+    max-width: 12ch;
+    margin: 0 0 var(--space-block);
+    color: var(--color-text-strong);
+    font-size: var(--text-h1);
+    line-height: 1.08;
+  }
+
+  .product-solutions__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-gap);
+  }
+
+  .product-solutions__card {
+    min-width: 0;
+    padding: var(--space-content);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .product-solutions__card h3 {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-strong);
+    font-size: var(--text-h3);
+  }
+
+  .product-solutions__card p {
+    margin: 0 0 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+
+  .product-solutions__card ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding-inline-start: 1.1rem;
+  }
+
+  .product-solutions__card li::marker {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 1024px) {
+    .product-solutions__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 560px) {
+    .product-solutions__grid { grid-template-columns: 1fr; }
+  }
+</style>

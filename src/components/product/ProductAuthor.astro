@@ -1,0 +1,131 @@
+---
+import { product } from '@/content/site';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="product-author" aria-labelledby="product-author-heading">
+  <div class="container product-author__inner">
+    <div class="product-author__portrait" aria-hidden="true">
+      <svg viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={product.author.portraitLabel}>
+        <rect width="520" height="520" rx="20" fill="var(--color-bg)" opacity="0.08"/>
+        {[0, 1, 2, 3].map((i) => {
+          const x = i % 2 === 0 ? 36 : 270;
+          const y = i < 2 ? 36 : 270;
+          return (
+            <g>
+              <rect x={x} y={y} width="214" height="214" rx="16" fill="var(--color-bg-alt)" />
+              <circle cx={x + 107} cy={y + 82} r="42" fill="var(--color-accent-2)" opacity="0.8" />
+              <path d={`M${x + 44} ${y + 174}c20-45 106-45 126 0`} stroke="var(--color-accent)" stroke-width="18" stroke-linecap="round" opacity="0.75"/>
+            </g>
+          );
+        })}
+      </svg>
+    </div>
+
+    <div class="product-author__content">
+      <p class="product-author__eyebrow">{product.author.role}</p>
+      <h2 id="product-author-heading">{product.author.heading}</h2>
+      <h3>{product.author.name}</h3>
+
+      <div class="product-author__stats">
+        {product.author.stats.map((stat) => (
+          <div class="product-author__stat">
+            <strong>{stat.n}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {product.author.bio.map((paragraph) => <p>{paragraph}</p>)}
+      <Button href={product.author.cta.href} variant="primary">{product.author.cta.label}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-author {
+    padding-block: var(--space-section);
+    background-color: var(--color-text-strong);
+    color: var(--color-bg);
+  }
+
+  .product-author__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--space-block);
+    align-items: center;
+  }
+
+  .product-author__portrait {
+    min-width: 0;
+  }
+
+  .product-author__portrait svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .product-author__eyebrow {
+    margin: 0 0 1rem;
+    color: var(--color-accent-2);
+    font-size: var(--text-small);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .product-author h2 {
+    margin: 0 0 0.75rem;
+    color: var(--color-bg);
+    font-size: var(--text-h1);
+    line-height: 1.08;
+  }
+
+  .product-author h3 {
+    margin: 0 0 1.25rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: var(--text-h3);
+  }
+
+  .product-author__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block-end: 1.5rem;
+  }
+
+  .product-author__stat {
+    min-width: 0;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .product-author__stat strong,
+  .product-author__stat span {
+    display: block;
+  }
+
+  .product-author__stat strong {
+    font-size: var(--text-h3);
+    line-height: 1;
+  }
+
+  .product-author__stat span {
+    margin-block-start: 0.25rem;
+    font-size: var(--text-small);
+  }
+
+  .product-author__content > p:not(.product-author__eyebrow) {
+    max-width: 60ch;
+    margin: 0 0 1rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 820px) {
+    .product-author__inner { grid-template-columns: 1fr; }
+    .product-author__portrait { max-width: 420px; }
+  }
+</style>

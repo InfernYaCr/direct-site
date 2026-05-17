@@ -1,0 +1,44 @@
+---
+import Base from '@/layouts/Base.astro';
+import CookieBanner from '@/components/ui/CookieBanner.astro';
+import Footer from '@/components/sections/Footer.astro';
+import ProductHero from '@/components/product/ProductHero.astro';
+import ProductPromise from '@/components/product/ProductPromise.astro';
+import ProductMethod from '@/components/product/ProductMethod.astro';
+import ProductOutcomes from '@/components/product/ProductOutcomes.astro';
+import ProductFeaturedCases from '@/components/product/ProductFeaturedCases.astro';
+import ProductPains from '@/components/product/ProductPains.astro';
+import ProductSolutions from '@/components/product/ProductSolutions.astro';
+import ProductNotFor from '@/components/product/ProductNotFor.astro';
+import ProductTransformation from '@/components/product/ProductTransformation.astro';
+import ProductAuthor from '@/components/product/ProductAuthor.astro';
+import ProductFormat from '@/components/product/ProductFormat.astro';
+import ProductCurriculum from '@/components/product/ProductCurriculum.astro';
+import ProductResults from '@/components/product/ProductResults.astro';
+import ProductBonus from '@/components/product/ProductBonus.astro';
+import ProductCTA from '@/components/product/ProductCTA.astro';
+import { product } from '@/content/site';
+---
+
+<Base title={product.meta.title} description={product.meta.description}>
+  <main id="main-content">
+    <ProductHero />
+    <ProductPromise />
+    <ProductMethod />
+    <ProductOutcomes />
+    <ProductFeaturedCases />
+    <ProductPains />
+    <ProductSolutions />
+    <ProductNotFor />
+    <ProductTransformation />
+    <ProductAuthor />
+    <ProductFormat />
+    <ProductCurriculum />
+    <ProductResults />
+    <ProductBonus />
+    <ProductCTA />
+  </main>
+
+  <Footer />
+  <CookieBanner />
+</Base>

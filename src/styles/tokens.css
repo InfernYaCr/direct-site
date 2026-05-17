@@ -12,6 +12,7 @@
   --color-accent: #eb4100;       /* primary CTA */
   --color-accent-hover: #d1290e; /* CTA hover / active */
   --color-accent-2: #ffc029;     /* secondary accent (yellow) */
+  --color-success: #22c55e;      /* positive before/after labels */
   --color-overlay: rgba(0, 0, 0, 0.30);
   --color-overlay-light: rgba(0, 0, 0, 0.20);
 

@@ -1,0 +1,224 @@
+---
+import { product } from '@/content/site';
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="product-hero" aria-labelledby="product-hero-heading">
+  <div class="container product-hero__inner">
+    <div class="product-hero__content">
+      <p class="product-hero__duration">{product.hero.duration}</p>
+      <p class="product-hero__eyebrow">{product.hero.eyebrow}</p>
+      <h1 id="product-hero-heading" class="product-hero__title">{product.hero.title}</h1>
+      <p class="product-hero__subtitle">{product.hero.subtitle}</p>
+      <Button href={product.hero.cta.href} variant="primary">{product.hero.cta.label}</Button>
+    </div>
+
+    <div class="product-hero__visual" aria-hidden="true">
+      <div class="product-hero__screen">
+        <span></span>
+        <span></span>
+        <span></span>
+        <h2>{product.hero.visualTitle}</h2>
+        <p>{product.hero.visualBody}</p>
+        <div class="product-hero__flow">
+          {product.hero.benefits.map((benefit) => (
+            <div>
+              <strong>{benefit.title}</strong>
+              <small>{benefit.body}</small>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="product-hero__benefits" aria-label={product.hero.eyebrow}>
+      {product.hero.benefits.map((benefit) => (
+        <article class="product-hero__benefit">
+          <h2>{benefit.title}</h2>
+          <p>{benefit.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-hero {
+    background-color: var(--color-text-strong);
+    color: var(--color-bg);
+    padding-block: clamp(3.5rem, 6vw, 6rem);
+    overflow: hidden;
+  }
+
+  .product-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(22rem, 0.95fr);
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .product-hero__content {
+    min-width: 0;
+  }
+
+  .product-hero__duration,
+  .product-hero__eyebrow {
+    margin: 0;
+    font-size: var(--text-small);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .product-hero__duration {
+    display: inline-flex;
+    margin-block-end: 1rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radius-btn);
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .product-hero__eyebrow {
+    color: var(--color-accent-2);
+    margin-block-end: 1rem;
+  }
+
+  .product-hero__title {
+    max-width: 18ch;
+    margin: 0;
+    color: var(--color-bg);
+    font-size: clamp(2.8rem, 4.2vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.02;
+  }
+
+  .product-hero__subtitle {
+    max-width: 58ch;
+    margin: 1.25rem 0 2rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: var(--text-lead);
+    line-height: 1.55;
+  }
+
+  .product-hero__visual {
+    position: relative;
+    min-width: 0;
+  }
+
+  .product-hero__visual::before {
+    content: "";
+    position: absolute;
+    inset: auto -10% -10% auto;
+    width: 52%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--color-accent-2);
+    opacity: 0.42;
+  }
+
+  .product-hero__screen {
+    position: relative;
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-lg);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  }
+
+  .product-hero__screen > span {
+    display: inline-block;
+    width: 0.65rem;
+    aspect-ratio: 1;
+    margin-inline-end: 0.35rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.34);
+  }
+
+  .product-hero__screen h2 {
+    margin: clamp(2rem, 5vw, 4rem) 0 1rem;
+    color: var(--color-bg);
+    font-size: var(--text-h2);
+    line-height: 1.08;
+  }
+
+  .product-hero__screen p {
+    margin: 0 0 1.5rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.55;
+  }
+
+  .product-hero__flow {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .product-hero__flow div {
+    min-width: 0;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .product-hero__flow strong,
+  .product-hero__flow small {
+    display: block;
+  }
+
+  .product-hero__flow strong {
+    color: var(--color-accent);
+    font-size: var(--text-h3);
+    line-height: 1;
+  }
+
+  .product-hero__flow small {
+    margin-block-start: 0.35rem;
+    color: var(--color-text-muted);
+    line-height: 1.35;
+  }
+
+  .product-hero__benefits {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-gap);
+    width: 100%;
+    margin-block-start: clamp(1.5rem, 3vw, 2.5rem);
+    grid-column: 1 / -1;
+  }
+
+  .product-hero__benefit {
+    min-width: 0;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: var(--radius-md);
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .product-hero__benefit h2 {
+    margin: 0 0 0.65rem;
+    color: var(--color-bg);
+    font-size: var(--text-h3);
+  }
+
+  .product-hero__benefit p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .product-hero__inner { grid-template-columns: 1fr; }
+    .product-hero__flow { grid-template-columns: 1fr; }
+    .product-hero__benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .product-hero__visual { order: 2; }
+    .product-hero__benefits { order: 3; }
+  }
+
+  @media (max-width: 560px) {
+    .product-hero__title { font-size: var(--text-h1); }
+    .product-hero__benefits { display: none; }
+  }
+</style>

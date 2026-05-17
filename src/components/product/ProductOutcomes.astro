@@ -1,0 +1,88 @@
+---
+import { product } from '@/content/site';
+---
+
+<section class="product-outcomes" aria-labelledby="product-outcomes-heading">
+  <div class="container product-outcomes__inner">
+    <h2 id="product-outcomes-heading">{product.outcomes.heading}</h2>
+
+    <div class="product-outcomes__grid">
+      {product.outcomes.items.map((item, index) => (
+        <article>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-outcomes {
+    padding-block: var(--space-section);
+    background-color: var(--color-bg);
+  }
+
+  .product-outcomes__inner {
+    display: grid;
+    gap: var(--space-block);
+  }
+
+  .product-outcomes h2 {
+    max-width: 15ch;
+    margin: 0;
+    color: var(--color-text-strong);
+    font-size: var(--text-h1);
+    line-height: 1.05;
+  }
+
+  .product-outcomes__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-gap);
+  }
+
+  .product-outcomes article {
+    min-width: 0;
+    min-height: 18rem;
+    padding: var(--space-content);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-text-strong);
+    color: var(--color-bg);
+  }
+
+  .product-outcomes span {
+    display: block;
+    margin-block-end: clamp(2rem, 5vw, 4rem);
+    color: var(--color-accent-2);
+    font-size: var(--text-small);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .product-outcomes h3 {
+    margin: 0 0 0.75rem;
+    color: var(--color-bg);
+    font-size: var(--text-h3);
+    line-height: 1.12;
+  }
+
+  .product-outcomes p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 1024px) {
+    .product-outcomes__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .product-outcomes__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+import { product } from '@/content/site';
+---
+
+<section class="product-format" aria-labelledby="product-format-heading">
+  <div class="container">
+    <h2 id="product-format-heading" class="product-format__heading">{product.format.heading}</h2>
+
+    <div class="product-format__grid">
+      {product.format.items.map((item) => (
+        <article class="product-format__item">
+          <span>{item.num}</span>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-format {
+    padding-block: var(--space-section);
+  }
+
+  .product-format__heading {
+    margin: 0 0 var(--space-block);
+    color: var(--color-text-strong);
+    font-size: var(--text-h1);
+    line-height: 1.08;
+  }
+
+  .product-format__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-gap);
+  }
+
+  .product-format__item {
+    min-width: 0;
+    padding: var(--space-content);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .product-format__item span {
+    display: block;
+    margin-block-end: 1rem;
+    color: var(--color-accent);
+    font-size: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+    font-weight: 800;
+    line-height: 0.9;
+  }
+
+  .product-format__item h3 {
+    margin: 0 0 0.75rem;
+    color: var(--color-text-strong);
+    font-size: var(--text-h3);
+  }
+
+  .product-format__item p {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 1024px) {
+    .product-format__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 560px) {
+    .product-format__grid { grid-template-columns: 1fr; }
+  }
+</style>

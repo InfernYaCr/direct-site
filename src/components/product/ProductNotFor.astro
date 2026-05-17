@@ -1,0 +1,73 @@
+---
+import { product } from '@/content/site';
+---
+
+<section class="product-not-for" aria-labelledby="product-not-for-heading">
+  <div class="container product-not-for__inner">
+    <h2 id="product-not-for-heading">{product.notFor.heading}</h2>
+
+    <div class="product-not-for__items">
+      {product.notFor.items.map((item) => (
+        <article class="product-not-for__item">
+          <svg viewBox="0 0 24 24" width="28" height="28" role="img" aria-label={product.labels.notForIcon}>
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-not-for {
+    padding-block: var(--space-section);
+  }
+
+  .product-not-for__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+    gap: var(--space-block);
+    align-items: start;
+  }
+
+  .product-not-for h2 {
+    margin: 0;
+    color: var(--color-text-strong);
+    font-size: var(--text-h1);
+    line-height: 1.08;
+  }
+
+  .product-not-for__items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-gap);
+  }
+
+  .product-not-for__item {
+    min-width: 0;
+    padding: var(--space-content);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .product-not-for__item svg {
+    color: var(--color-accent);
+    margin-block-end: 1rem;
+  }
+
+  .product-not-for__item p {
+    margin: 0;
+    color: var(--color-text);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .product-not-for__inner,
+    .product-not-for__items {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
