@@ -60,3 +60,12 @@
 Секция/фаза закрыта только когда: `astro check` чист, сборка зелёная, адаптив
 проверен, визуальная сверка с референсом сделана, ревью-агент отработал,
 коммит атомарный (`feat(<scope>): ...`).
+
+
+<claude-mem-context>
+# Memory Context
+
+# [direct site] recent context, 2026-05-17 9:10pm GMT+3
+
+No previous sessions found.
+</claude-mem-context>
