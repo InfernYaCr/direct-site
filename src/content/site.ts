@@ -210,7 +210,9 @@ export interface ProductPage {
     label: string;
     bonusTitle: string;
     bonusBody: string;
+    formEyebrow: string;
     formTitle: string;
+    formLead: string;
     formFields: string[];
     formNote: string;
   };
@@ -816,7 +818,9 @@ export const product = {
     label: 'Оставить заявку',
     bonusTitle: 'Бонус при старте',
     bonusBody: 'Шаблон карты клиентского пути и чек-лист аудита текущей воронки.',
+    formEyebrow: 'Заявка без оплаты',
     formTitle: 'Заявка на разбор',
+    formLead: 'Оставьте контакт и коротко опишите ситуацию. Следующий шаг можно подключить к Telegram, CRM или форме оплаты.',
     formFields: ['Ваше имя', 'Email или Telegram', 'Что сейчас не работает в продажах?'],
     formNote: 'Форма пока работает как UI-заглушка. Подключение CRM или Telegram-бота можно добавить следующим этапом.',
   },
