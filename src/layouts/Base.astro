@@ -1,5 +1,6 @@
 ---
 import { meta } from '@/content/site';
+import { withBase } from '@/utils/paths';
 import '@/styles/global.css';
 
 interface Props {
@@ -33,10 +34,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:image" content={new URL(withBase(ogImage) ?? '', Astro.site)} />
 
     <!-- Favicon placeholder — replace with real assets -->
-    <link rel="icon" type="image/svg+xml" href="/placeholder/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/placeholder/favicon.svg')} />
     <meta name="theme-color" content="#ffffff" />
   </head>
   <body>

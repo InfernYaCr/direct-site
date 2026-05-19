@@ -1,4 +1,6 @@
 ---
+import { withBase } from '@/utils/paths';
+
 interface Props {
   variant?: 'primary' | 'secondary' | 'ghost';
   href?: string;
@@ -18,11 +20,12 @@ const {
 } = Astro.props;
 
 const Tag = href ? 'a' : 'button';
+const resolvedHref = withBase(href);
 ---
 
 {Tag === 'a' ? (
   <a
-    href={href}
+    href={resolvedHref}
     class:list={['btn', `btn--${variant}`, className]}
     aria-label={ariaLabel}
     role="button"

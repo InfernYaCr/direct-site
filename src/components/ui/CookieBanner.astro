@@ -1,5 +1,6 @@
 ---
 import { cookie } from '@/content/site';
+import { withBase } from '@/utils/paths';
 ---
 
 <div
@@ -11,7 +12,7 @@ import { cookie } from '@/content/site';
 >
   <p class="cookie-banner__text">
     {cookie.text}
-    <a href={cookie.policyHref} class="cookie-banner__link">{cookie.policyLabel}</a>.
+    <a href={withBase(cookie.policyHref)} class="cookie-banner__link">{cookie.policyLabel}</a>.
   </p>
   <button
     id="cookie-accept"

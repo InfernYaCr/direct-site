@@ -3,6 +3,7 @@ import type { LegalDocument } from '@/content/site';
 import Base from '@/layouts/Base.astro';
 import Footer from '@/components/sections/Footer.astro';
 import CookieBanner from '@/components/ui/CookieBanner.astro';
+import { withBase } from '@/utils/paths';
 
 interface Props {
   document: LegalDocument;
@@ -15,7 +16,7 @@ const { document } = Astro.props;
   <main class="legal-page">
     <section class="legal-hero" aria-labelledby="legal-heading">
       <div class="container legal-hero__inner">
-        <a class="legal-hero__back" href="/product">← Вернуться к продукту</a>
+        <a class="legal-hero__back" href={withBase('/product')}>← Вернуться к продукту</a>
         <p>{document.updated}</p>
         <h1 id="legal-heading">{document.title}</h1>
         <p>{document.intro}</p>

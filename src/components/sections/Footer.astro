@@ -1,5 +1,6 @@
 ---
 import { footer } from '@/content/site';
+import { withBase } from '@/utils/paths';
 ---
 
 <footer class="site-footer" role="contentinfo">
@@ -9,7 +10,7 @@ import { footer } from '@/content/site';
     <div class="site-footer__top">
       <div class="site-footer__brand">
         <!-- favicon reused as footer logo -->
-        <img src="/placeholder/favicon.svg" width="32" height="32" alt="Логотип" loading="lazy"/>
+        <img src={withBase('/placeholder/favicon.svg')} width="32" height="32" alt="Логотип" loading="lazy"/>
         <span class="site-footer__brand-name">[Имя Эксперта]</span>
       </div>
 
@@ -36,7 +37,7 @@ import { footer } from '@/content/site';
     <!-- Middle row: policies -->
     <nav class="site-footer__policies" aria-label="Юридические документы">
       {footer.policies.map((p) => (
-        <a href={p.href} class="site-footer__policy-link">{p.label}</a>
+        <a href={withBase(p.href)} class="site-footer__policy-link">{p.label}</a>
       ))}
     </nav>
 
@@ -44,7 +45,7 @@ import { footer } from '@/content/site';
     <div class="site-footer__bottom">
       <nav class="site-footer__offers" aria-label="Публичные оферты">
         {footer.offers.map((o) => (
-          <a href={o.href} class="site-footer__offer-link">{o.label}</a>
+          <a href={withBase(o.href)} class="site-footer__offer-link">{o.label}</a>
         ))}
       </nav>
 

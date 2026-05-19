@@ -98,6 +98,26 @@ src/content/site.ts
 
 ## Деплой на GitHub
 
+Проект подготовлен для GitHub Pages через GitHub Actions.
+
+После успешного workflow сайт будет доступен по адресу:
+
+```text
+https://infernyacr.github.io/direct-site/
+```
+
+Основные страницы на хостинге:
+
+```text
+https://infernyacr.github.io/direct-site/
+https://infernyacr.github.io/direct-site/product
+https://infernyacr.github.io/direct-site/privacy
+https://infernyacr.github.io/direct-site/policyopd
+https://infernyacr.github.io/direct-site/oferta/avtovoronki
+```
+
+В настройках репозитория GitHub нужно открыть `Settings → Pages` и выбрать `Source: GitHub Actions`.
+
 Если remote ещё не настроен:
 
 ```bash
