@@ -117,6 +117,9 @@ https://infernyacr.github.io/direct-site/oferta/avtovoronki
 ```
 
 В настройках репозитория GitHub нужно открыть `Settings → Pages` и выбрать `Source: GitHub Actions`.
+Для бесплатного GitHub Pages репозиторий должен быть публичным. Для приватного
+репозитория нужен тариф GitHub, который поддерживает Pages для private repos,
+либо деплой на Vercel / Netlify / Cloudflare Pages.
 
 Если remote ещё не настроен:
 
