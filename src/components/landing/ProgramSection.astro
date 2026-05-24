@@ -5,24 +5,75 @@ import { program } from "@/data/site";
 
 <section class="section soft" id="program">
   <SectionHeading
-    eyebrow="Программа"
-    title="Состав продукта: что именно будет внутри после оплаты"
-    text="Каждый блок отвечает на простой вопрос: что делать QA с AI, как не доверять ему вслепую и как показать новый навык на практике."
+    eyebrow="Решение"
+    title="Как работает метод <span class='text-blue'>«Умный Навигатор»</span>"
+    text="Я полностью убираю фазу обучения. Алгоритм с первого дня знает, кого искать, потому что мы не начинаем с нуля."
   />
   <div class="program-wrap">
     <div class="program-card reveal">
-      <p class="eyebrow">Состав практики</p>
+      <p class="eyebrow">Что уже подготовлено</p>
       <ol>
         {program.map((item) => <li>{item}</li>)}
       </ol>
     </div>
-    <aside class="seo-note program-visual-note reveal delay-1">
-      <h3>Ключевые темы</h3>
-      <p>
-        AI в тестировании, промты для QA, первые API/UI проверки, тестовые данные,
-        метрики ответов AI, безопасность, нагрузка и итоговый отчёт по проекту.
-      </p>
-      <a class="button ghost" href="#pricing">Выбрать тариф</a>
+    <aside class="seo-note program-visual-note reveal delay-1" data-scroll-card data-scroll-scope="#program .program-wrap">
+      <div class="program-visual-note__copy scroll-photo-copy" data-scroll-copy>
+        <h3>Ключевые темы</h3>
+        <p>
+          Когда мы запускаем вашу клинику, я загружаю в кабинет готовые
+          «данные-доноры» — и алгоритм быстрее переходит в рабочий режим.
+          Маркетинг работает как кран: открыли бюджет — пошли пациенты.
+        </p>
+        <a class="button ghost" href="#pricing">Записаться на диагностику</a>
+      </div>
     </aside>
   </div>
 </section>
+
+<script>
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+  const updateScrollPhotoCopy = () => {
+    const cards = document.querySelectorAll("[data-scroll-card]");
+    const viewportHeight = window.innerHeight;
+    const isMobile = window.innerWidth <= 760;
+
+    cards.forEach((card) => {
+      const copy = card.querySelector("[data-scroll-copy]");
+      if (!copy) return;
+
+      if (isMobile) {
+        copy.style.setProperty("--photo-copy-y", "0px");
+        return;
+      }
+
+      const scopeSelector = card.dataset.scrollScope;
+      const scope = scopeSelector
+        ? document.querySelector(scopeSelector)
+        : card;
+      const rect = (scope ?? card).getBoundingClientRect();
+      const travel = Math.max(rect.height - card.clientHeight, viewportHeight * 0.72);
+      const progress = clamp(-rect.top / travel, 0, 1);
+      const top = parseFloat(getComputedStyle(copy).top || "0") || 0;
+      const bottomPad = 28;
+      const maxY = Math.max(0, card.clientHeight - copy.offsetHeight - top - bottomPad);
+
+      copy.style.setProperty("--photo-copy-y", `${Math.round(maxY * progress)}px`);
+    });
+  };
+
+  let ticking = false;
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      updateScrollPhotoCopy();
+      ticking = false;
+    });
+  };
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  window.addEventListener("load", updateScrollPhotoCopy);
+  updateScrollPhotoCopy();
+</script>

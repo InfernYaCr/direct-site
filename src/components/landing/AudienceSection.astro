@@ -2,10 +2,22 @@
 import { audience, audienceNot } from "@/data/site";
 ---
 
-<section class="section split-section">
+<section class="section split-section" id="author">
   <div class="split-copy reveal">
-    <p class="eyebrow">Для кого</p>
-    <h2>Для тех, кто хочет трезвый план, а не мотивационный плакат</h2>
+    <p class="eyebrow">Эксперт</p>
+    <h2>Но кто <span class="text-blue">я такой?</span></h2>
+    <div class="author-photo-card">
+      <img
+        src="/images/author-marketer.png"
+        alt="Ростислав Загребин, маркетолог для медицинских проектов"
+        loading="lazy"
+        decoding="async"
+      />
+      <div>
+        <strong>Ростислав Загребин</strong>
+        <span>Яндекс.Директ и ВК для медицины</span>
+      </div>
+    </div>
   </div>
   <div class="check-list">
     {audience.map((item) => (

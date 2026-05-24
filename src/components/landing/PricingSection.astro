@@ -1,62 +1,71 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
-import { leadMagnet, offers } from "@/data/site";
+import { leadMagnet } from "@/data/site";
 ---
 
 <section class="section" id="pricing">
   <SectionHeading
-    eyebrow="Тарифы"
-    title="Выбери формат"
-    text="Основной тариф — для самостоятельной практики. PRO — если хочешь личный разбор CV, проекта и следующих шагов."
+    eyebrow="Бесплатная диагностика"
+    title="Разберу ваш рекламный кабинет и покажу, где клиника теряет заявки"
+    text="30 минут по цифрам вашего ВК или Яндекс.Директ: без общих советов, без продажи «потестить ещё месяц», без обязательств работать дальше."
   />
-  <div class="pricing-grid">
-    {offers.map((offer) => (
-      <article class:list={["price-card paid-price-card reveal", { highlighted: offer.highlighted }]}>
-        <div class="price-card-top">
-          <img class="coin-icon" src="/images/pixel-coin.svg" alt="" loading="lazy" />
-          {offer.highlighted && <span class="badge">Рекомендуемый</span>}
+
+  <div class="diagnostic-offer reveal" id="free-guide">
+    <div class="diagnostic-offer__media">
+      <img
+        src="/images/diagnostics-analytics.png"
+        alt="Аналитика рекламы и планирование лечения в стоматологической клинике"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="diagnostic-media-card">
+        <span>что проверю</span>
+        <strong>Кабинет, заявки, стоимость пациента</strong>
+      </div>
+    </div>
+    <div class="diagnostic-offer__content">
+      <div class="diagnostic-offer__top">
+        <div>
+          <p class="eyebrow">Оффер для владельцев клиник</p>
+          <h3>Диагностика рекламы вместо гадания по отчётам агентства</h3>
+        </div>
+        <div class="diagnostic-price">
+          <span>Обычно</span>
+          <del>4 990 ₽</del>
+          <strong>0 ₽</strong>
+          <small>сейчас</small>
+        </div>
+      </div>
+      <p class="diagnostic-lead">
+        Вы увидите не «клики и охваты», а конкретные места, где бюджет уходит
+        на случайный трафик, слабые связки и заявки без записи.
+      </p>
+      <ul class="diagnostic-list">
+        <li>Полный разбор рекламного кабинета ВК / Яндекс.Директ</li>
+        <li>Цифры: сколько вы переплачиваете за пациента прямо сейчас</li>
+        <li>Понимание, реально ли выйти на 30–50 записей в месяц</li>
+        <li>План внедрения метода «Умный Навигатор» под вашу клинику</li>
+      </ul>
+      <div class="diagnostic-proof">
+        <div>
+          <strong>30 мин</strong>
+          <span>разбор по экрану</span>
         </div>
         <div>
-          <h3>{offer.name}</h3>
-          <p>{offer.description}</p>
+          <strong>0 ₽</strong>
+          <span>без обязательств</span>
         </div>
-        <div class="price-line">
-          {offer.oldPrice && <span>{offer.oldPrice}</span>}
-          <strong>{offer.price}</strong>
+        <div>
+          <strong>1 план</strong>
+          <span>что чинить первым</span>
         </div>
-        <ul>
-          {offer.features.map((feature) => <li>{feature}</li>)}
-        </ul>
-        <a
-          class="button primary full paid-tariff-button"
-          href={offer.checkoutUrl}
-          data-goal={offer.goalId}
-          data-plan={offer.id}
-        >
-          {offer.cta}
-        </a>
-      </article>
-    ))}
-  </div>
-  <div class="cat-banner reveal" id="free-guide">
-    <img
-      class="cat-banner-bg"
-      src="/images/pixel-cat-text-right.webp"
-      alt="Пиксельный кот-QA с баг-репортом и инструментами тестирования"
-      loading="lazy"
-      decoding="async"
-    />
-    <div class="cat-banner-copy">
-      <span class="cat-banner-tag">Бонус-уровень • {leadMagnet.price}</span>
-      <h3>{leadMagnet.name}</h3>
-      <p>{leadMagnet.description}</p>
+      </div>
       <a
-        class="button primary"
+        class="button primary diagnostic-offer__button"
         href={leadMagnet.href}
         data-goal={leadMagnet.goalId}
-        download
       >
-        {leadMagnet.cta}
+        Оставить заявку на диагностику
       </a>
     </div>
   </div>

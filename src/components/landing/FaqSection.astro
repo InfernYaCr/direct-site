@@ -1,19 +1,41 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 import { faq } from "@/data/site";
+
+const diagnosticSteps = faq.slice(0, 4).map((item) => ({
+  ...item,
+  title: item.question.replace(/^Шаг\s+\d+\.\s*/, ""),
+}));
+
+const diagnosticNotes = faq.slice(4);
 ---
 
 <section class="section soft" id="faq">
   <SectionHeading
-    eyebrow="FAQ"
-    title="Коротко про сомнения перед покупкой"
+    eyebrow="Как пройдёт диагностика"
+    title="Четыре шага к результату — всего 30 минут"
   />
-  <div class="faq-list">
-    {faq.map((item) => (
-      <details class="faq-item reveal">
-        <summary>{item.question}</summary>
-        <p>{item.answer}</p>
-      </details>
-    ))}
+  <div class="diagnostic-flow">
+    <div class="diagnostic-steps">
+      {diagnosticSteps.map((item, index) => (
+        <article class="diagnostic-step reveal">
+          <span class="diagnostic-step__number">{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <p>Шаг {index + 1}</p>
+            <h3>{item.title}</h3>
+            <small>{item.answer}</small>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="diagnostic-notes">
+      {diagnosticNotes.map((item) => (
+        <article class="diagnostic-note reveal">
+          <span>после диагностики</span>
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </article>
+      ))}
+    </div>
   </div>
 </section>

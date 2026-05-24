@@ -3,49 +3,58 @@ import SectionHeading from "@/components/SectionHeading.astro";
 
 const items = [
   {
-    title: "План на 30 дней",
-    meta: "практический маршрут",
+    title: "3–4 недели обучения за ваш счёт",
+    meta: "причина слива",
     icon: "/images/pixel-scroll.svg",
-    text: "Поймёшь, что учить первым, что можно отложить и как не утонуть в инструментах.",
+    text: "Каждое агентство запускает кабинет с чистого листа, и первые недели ваш бюджет уходит на обучение алгоритма.",
   },
   {
-    title: "Промты для QA",
-    meta: "для работы",
+    title: "Случайный трафик всем подряд",
+    meta: "фаза обучения",
     icon: "/images/pixel-robot.svg",
-    text: "Не “напиши тесты”, а нормальные запросы для требований, рисков, тестов и проверки ответа AI.",
+    text: "Нейросеть показывает рекламу школьникам, пенсионерам и тем, кто ищет «бесплатное удаление» или акцию за 19 900.",
   },
   {
-    title: "AI QA project",
-    meta: "для портфолио",
+    title: "Кресла пустые, лизинг капает",
+    meta: "итог",
     icon: "/images/pixel-cv.svg",
-    text: "Соберёшь проект, который показывает: ты умеешь не только писать тест-кейсы, но и проверять AI.",
+    text: "Вы платите за клики людей, которые никогда не запишутся на имплантацию за 80 000 ₽.",
   },
   {
-    title: "Roadmap",
-    meta: "30 дней",
+    title: "«Нужно ещё потестить связки»",
+    meta: "повтор сценария",
     icon: "/images/pixel-map.svg",
-    text: "Поймёшь, что делать manual, junior или middle QA, чтобы перейти к AI без паники и хаоса.",
+    text: "Через месяц агентство разводит руками, а вы из своего кармана финансируете обучение чужого алгоритма.",
   },
 ];
 ---
 
 <section class="section" id="inside">
   <SectionHeading
-    eyebrow="Что внутри"
-    title="Это не PDF про ChatGPT. Это понятный план, что делать QA с AI"
-    text="Внутри не обещание “AI всё сделает за тебя”, а практический маршрут: поставить задачу, проверить ответ, сделать первые проверки и собрать проект."
+    eyebrow="В чём проблема"
+    title="Дело не в «перегретом аукционе» и не в том, что реклама в стоматологии больше <span class='text-blue'>не работает</span>"
+    text="Настоящая причина: кабинет запускают с нуля, алгоритм действует методом тыка, а вы оплачиваете каждый этот тычок."
   />
-  <div class="inside-grid">
-    {items.map((item) => (
-      <article class="content-card reveal">
-        <img class="pixel-card-icon" src={item.icon} alt="" loading="lazy" />
-        <div>
-          <span>{item.meta}</span>
-          <h3>{item.title}</h3>
-        </div>
-        <p>{item.text}</p>
-        <a href="#pricing" aria-label={`Выбрать тариф для ${item.title}`}>↗</a>
-      </article>
-    ))}
+  <div class="problem-board reveal">
+    <div class="problem-board__visual" data-scroll-card data-scroll-scope="#inside .problem-board">
+      <img src="/images/problem-empty-chair.png" alt="Пустое стоматологическое кресло вечером" loading="lazy" />
+      <div class="problem-board__copy scroll-photo-copy" data-scroll-copy>
+        <span>фаза обучения</span>
+        <strong>3–4 недели</strong>
+        <p>алгоритм ищет вслепую за ваш счёт</p>
+      </div>
+    </div>
+    <div class="problem-board__list">
+      {items.map((item, index) => (
+        <article class="problem-step">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <p>{item.meta}</p>
+            <h3>{item.title}</h3>
+            <small>{item.text}</small>
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>

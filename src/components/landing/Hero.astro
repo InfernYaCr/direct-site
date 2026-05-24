@@ -1,5 +1,5 @@
 ---
-import { leadMagnet, offers } from "@/data/site";
+import { leadMagnet } from "@/data/site";
 ---
 
 <section class="hero section" id="top">
@@ -9,57 +9,42 @@ import { leadMagnet, offers } from "@/data/site";
     <span class="scan-line"></span>
   </div>
   <div class="hero-copy reveal">
-    <p class="eyebrow">AI для QA • практический набор на 30 дней</p>
-    <h1>AI уже меняет QA. Научись использовать его раньше остальных</h1>
+    <p class="eyebrow">30-минутная диагностика</p>
+    <h1>Сливаете 100 000 ₽/мес<br class="hero-title-break" /> на рекламу, а в кресле пусто?</h1>
     <p class="hero-text">
-      Если ты manual QA, junior или уже работаешь в тестировании, но чувствуешь,
-      что AI и automation уходят вперёд — начни с понятного плана. За 30 дней
-      разберёшься, где AI помогает QA, как проверять его ответы и как собрать
-      практический проект для портфолио или работы.
+      За 30 минут покажу, где утекают деньги — и как получать 30–50
+      платёжеспособных пациентов в месяц на имплантацию по цене до 1 500 ₽
+      за запись.
     </p>
-    <div class="mobile-hero-kit" aria-label="Что внутри AI QA набора">
-      <div class="mobile-hero-kit__head">
-        <img src="/images/pixel-map.svg" alt="" loading="lazy" decoding="async" />
-        <div>
-          <span>Roadmap 30 дней</span>
-          <strong>Первые шаги без воды</strong>
-        </div>
-      </div>
-      <div class="mobile-hero-kit__items">
-        <span>AI в работе</span>
-        <span>Первые проверки</span>
-        <span>Проект в портфолио</span>
-      </div>
-    </div>
+    <p class="hero-text">
+      Без новых тестов, без слива ещё одного бюджета на «обучение алгоритма»
+      и без вашего личного участия в настройках.
+    </p>
     <div class="hero-actions">
       <a
         class="button primary"
         href="#pricing"
         data-goal="paid_tariff_full"
       >
-        Получить план и практику — {offers[0].price}
+        Записаться на бесплатную диагностику
       </a>
-      <a class="button ghost" href="#free-guide" data-goal={leadMagnet.goalId}>
-        Забрать гайд бесплатно
+      <a class="button ghost" href="#pain" data-goal={leadMagnet.goalId}>
+        Сначала понять проблему
       </a>
     </div>
   </div>
-  <div class="hero-card human-hero-card reveal delay-1" aria-label="AI QA набор и авторский подход">
+  <div class="hero-card human-hero-card reveal delay-1" aria-label="Диагностика рекламы для стоматологии">
     <div class="human-visual">
       <img
-        src="/images/hero-qa-specialist.jpg"
-        alt="QA-специалист использует AI-инструменты в работе"
+        src="/images/hero-dentist-mask.png"
+        alt="Специалист в стоматологической клинике"
         loading="lazy"
         decoding="async"
       />
       <div class="hero-level-card">
-        <span>Level 01</span>
-        <strong>AI QA старт</strong>
-        <p>план + практика + проект</p>
-      </div>
-      <div class="pixel-orbit" aria-hidden="true">
-        <img src="/images/pixel-robot.svg" alt="" />
-        <img src="/images/pixel-trophy.svg" alt="" />
+        <span>Сейчас 0 ₽</span>
+        <strong>Аудит рекламы</strong>
+        <p>30 минут: кабинет, связки, заявки</p>
       </div>
     </div>
   </div>

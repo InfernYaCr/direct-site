@@ -15,7 +15,9 @@ const {
   canonical = Astro.url.href,
   noindex = false,
 } = Astro.props;
-const pageTitle = title === defaultSite.name ? title : `${title} | ${defaultSite.name}`;
+const pageTitle = title === defaultSite.title ? title : `${title} | ${defaultSite.name}`;
+// Абсолютный URL картинки-превью (OG) для соцсетей и мессенджеров.
+const ogImage = new URL("/images/hero-dentist-mask.png", Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -23,6 +25,7 @@ const pageTitle = title === defaultSite.name ? title : `${title} | ${defaultSite
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#151716" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
@@ -33,18 +36,29 @@ const pageTitle = title === defaultSite.name ? title : `${title} | ${defaultSite
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={defaultSite.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Product",
-      name: "AI QA Practice Kit",
+      "@type": "ProfessionalService",
+      name: defaultSite.name,
       description,
-      brand: defaultSite.name,
+      url: defaultSite.url,
+      image: ogImage,
+      areaServed: "RU",
+      serviceType: "Настройка рекламы Яндекс.Директ и ВК для стоматологий",
+      provider: {
+        "@type": "Person",
+        name: "Ростислав Загребин",
+        jobTitle: "Маркетолог по Яндекс.Директ и ВК для медицины",
+      },
       offers: {
-        "@type": "AggregateOffer",
-        lowPrice: "4990",
-        highPrice: "9900",
+        "@type": "Offer",
+        name: "Бесплатная 30-минутная диагностика рекламного кабинета",
+        price: "0",
         priceCurrency: "RUB",
       },
     })} />

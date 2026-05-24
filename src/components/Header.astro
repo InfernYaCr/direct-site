@@ -7,12 +7,12 @@ const homePath = Astro.url.pathname === "/" ? "" : "/";
 <header class="site-header">
   <a class="brand" href="/" aria-label="На главную">
     <span class="brand-mark" aria-hidden="true">
-      <span>QA</span>
+      <span>УН</span>
       <i></i>
     </span>
     <span class="brand-word">
-      <strong>QA<span>AI</span></strong>
-      <em>practice kit</em>
+      <strong>Умный<span>Навигатор</span></strong>
+      <em>для стоматологий</em>
     </span>
   </a>
 
@@ -23,7 +23,7 @@ const homePath = Astro.url.pathname === "/" ? "" : "/";
   <div class="header-actions">
     <a class="social-link" href={site.telegramUrl} aria-label="Telegram">TG</a>
     <a class="social-link" href={site.vkUrl} aria-label="VK">VK</a>
-    <a class="header-cta" href="#pricing">Выбрать гайд</a>
+    <a class="header-cta" href="#pricing">Диагностика 0 ₽</a>
   </div>
 
   <button
@@ -46,7 +46,7 @@ const homePath = Astro.url.pathname === "/" ? "" : "/";
     {navigation.map((item) => (
       <a href={`${homePath}${item.href}`} data-menu-link>{item.label}</a>
     ))}
-    <a class="mobile-menu-cta" href="#pricing" data-menu-link>Выбрать гайд</a>
+    <a class="mobile-menu-cta" href="#pricing" data-menu-link>Диагностика 0 ₽</a>
     <div class="mobile-menu-social">
       <a href={site.telegramUrl} aria-label="Telegram">Telegram</a>
       <a href={site.vkUrl} aria-label="VK">VK</a>

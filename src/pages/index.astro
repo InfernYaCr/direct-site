@@ -4,59 +4,25 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Hero from "@/components/landing/Hero.astro";
 import PainSection from "@/components/landing/PainSection.astro";
-import OutcomesSection from "@/components/landing/OutcomesSection.astro";
-import QuestSection from "@/components/landing/QuestSection.astro";
-import RagSection from "@/components/landing/RagSection.astro";
 import AudienceSection from "@/components/landing/AudienceSection.astro";
 import InsideSection from "@/components/landing/InsideSection.astro";
-import TestCasesSection from "@/components/landing/TestCasesSection.astro";
 import ProgramSection from "@/components/landing/ProgramSection.astro";
-import CasesSection from "@/components/landing/CasesSection.astro";
-import SeoContentSection from "@/components/landing/SeoContentSection.astro";
-import TrustSection from "@/components/landing/TrustSection.astro";
 import PricingSection from "@/components/landing/PricingSection.astro";
 import FaqSection from "@/components/landing/FaqSection.astro";
 import FinalCta from "@/components/landing/FinalCta.astro";
-import SoftCta from "@/components/landing/SoftCta.astro";
-import { ctaVariants } from "@/data/site";
 ---
 
 <BaseLayout>
   <Header />
   <main>
-    {/* 1. Боль: "это про меня?" */}
     <Hero />
     <PainSection />
-    <SoftCta compact eyebrow={ctaVariants[0].eyebrow} title={ctaVariants[0].title} />
-
-    {/* 2. Результат и состав: "что я получу?" */}
-    <OutcomesSection />
-    <SoftCta compact eyebrow={ctaVariants[1].eyebrow} title={ctaVariants[1].title} />
     <InsideSection />
-    <SoftCta compact eyebrow={ctaVariants[2].eyebrow} title={ctaVariants[2].title} />
-    <QuestSection />
-    <RagSection />
-    <SoftCta compact eyebrow={ctaVariants[3].eyebrow} title={ctaVariants[3].title} />
     <ProgramSection />
-    <SoftCta compact eyebrow={ctaVariants[4].eyebrow} title={ctaVariants[4].title} />
-
-    {/* 3. Доказательство пользы: "реально работает?" */}
-    <TestCasesSection />
-    <SoftCta compact eyebrow={ctaVariants[5].eyebrow} title={ctaVariants[5].title} />
     <AudienceSection />
-    <SoftCta compact eyebrow={ctaVariants[6].eyebrow} title={ctaVariants[6].title} />
-    <CasesSection />
-    <TrustSection />
-    <SoftCta compact eyebrow={ctaVariants[7].eyebrow} title={ctaVariants[7].title} />
-
-    {/* 4. Цена и снятие возражений: "сколько?" */}
     <PricingSection />
     <FaqSection />
-    <SoftCta compact eyebrow={ctaVariants[8].eyebrow} title={ctaVariants[8].title} />
     <FinalCta />
-
-    {/* SEO-контент: вне основного пути к покупке */}
-    <SeoContentSection />
   </main>
   <Footer />
 </BaseLayout>
