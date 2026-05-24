@@ -1,11 +1,11 @@
 ---
 import { navigation, site } from "@/data/site";
 
-const homePath = Astro.url.pathname === "/" ? "" : "/";
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <header class="site-header">
-  <a class="brand" href="/" aria-label="На главную">
+  <a class="brand" href={base} aria-label="На главную">
     <span class="brand-mark" aria-hidden="true">
       <span>УН</span>
       <i></i>
@@ -17,13 +17,13 @@ const homePath = Astro.url.pathname === "/" ? "" : "/";
   </a>
 
   <nav class="desktop-nav" aria-label="Основная навигация">
-    {navigation.map((item) => <a href={`${homePath}${item.href}`}>{item.label}</a>)}
+    {navigation.map((item) => <a href={`${base}${item.href}`}>{item.label}</a>)}
   </nav>
 
   <div class="header-actions">
     <a class="social-link" href={site.telegramUrl} aria-label="Telegram">TG</a>
     <a class="social-link" href={site.vkUrl} aria-label="VK">VK</a>
-    <a class="header-cta" href="#pricing">Диагностика 0 ₽</a>
+    <a class="header-cta" href={`${base}#pricing`}>Диагностика 0 ₽</a>
   </div>
 
   <button
@@ -44,9 +44,9 @@ const homePath = Astro.url.pathname === "/" ? "" : "/";
   <button class="mobile-menu-backdrop" type="button" aria-label="Закрыть меню" data-menu-close></button>
   <nav class="mobile-menu-panel" aria-label="Мобильная навигация">
     {navigation.map((item) => (
-      <a href={`${homePath}${item.href}`} data-menu-link>{item.label}</a>
+      <a href={`${base}${item.href}`} data-menu-link>{item.label}</a>
     ))}
-    <a class="mobile-menu-cta" href="#pricing" data-menu-link>Диагностика 0 ₽</a>
+    <a class="mobile-menu-cta" href={`${base}#pricing`} data-menu-link>Диагностика 0 ₽</a>
     <div class="mobile-menu-social">
       <a href={site.telegramUrl} aria-label="Telegram">Telegram</a>
       <a href={site.vkUrl} aria-label="VK">VK</a>

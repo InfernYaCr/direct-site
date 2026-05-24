@@ -970,7 +970,7 @@ body.menu-open .mobile-menu-panel {
   border-color: rgba(255, 253, 247, 0.2);
   background:
     linear-gradient(180deg, rgba(23, 24, 23, 0.06), rgba(23, 24, 23, 0.86)),
-    url("/images/ai-qa-program-bg.png") center / cover;
+    url("../images/ai-qa-program-bg.png") center / cover;
 }
 
 .program-visual-note::before {
@@ -1326,7 +1326,7 @@ body.menu-open .mobile-menu-panel {
   border-radius: 36px;
   background:
     linear-gradient(90deg, rgba(23, 24, 23, 0.96), rgba(23, 24, 23, 0.76) 48%, rgba(23, 24, 23, 0.3)),
-    url("/images/ai-qa-kit-bg.png") center right / cover;
+    url("../images/ai-qa-kit-bg.png") center right / cover;
   color: var(--paper);
 }
 
@@ -3483,7 +3483,7 @@ body.menu-open .mobile-menu-panel {
   border-radius: 38px;
   background:
     linear-gradient(90deg, rgba(255, 253, 247, 0.99) 0%, rgba(255, 253, 247, 0.97) 44%, rgba(255, 253, 247, 0.56) 66%, rgba(255, 253, 247, 0.16) 100%),
-    url("/images/quest-roadmap-workstation-bg.png") 86% 45% / 82% auto no-repeat;
+    url("../images/quest-roadmap-workstation-bg.png") 86% 45% / 82% auto no-repeat;
   box-shadow: 0 24px 70px rgba(16, 18, 15, 0.08);
 }
 
@@ -4148,7 +4148,7 @@ body.menu-open .mobile-menu-panel {
     padding: 24px;
     background:
       linear-gradient(180deg, rgba(255, 253, 247, 0.97), rgba(255, 253, 247, 0.82)),
-      url("/images/quest-roadmap-workstation-bg.png") 66% 40% / 180% auto no-repeat;
+      url("../images/quest-roadmap-workstation-bg.png") 66% 40% / 180% auto no-repeat;
   }
 
   .dark-card,
@@ -4312,7 +4312,7 @@ body.menu-open .mobile-menu-panel {
   .final-cta {
     background:
       linear-gradient(180deg, rgba(23, 24, 23, 0.94), rgba(23, 24, 23, 0.78)),
-      url("/images/ai-qa-kit-bg.png") center / cover;
+      url("../images/ai-qa-kit-bg.png") center / cover;
   }
 }
 
@@ -4374,7 +4374,7 @@ body.menu-open .mobile-menu-panel {
   .final-cta {
     background:
       linear-gradient(180deg, rgba(23, 24, 23, 0.96), rgba(23, 24, 23, 0.82)),
-      url("/images/ai-qa-kit-bg.png") 42% center / cover;
+      url("../images/ai-qa-kit-bg.png") 42% center / cover;
   }
 }
 
@@ -4590,7 +4590,7 @@ h3 {
 .program-visual-note {
   background:
     linear-gradient(180deg, rgba(7, 21, 38, 0.06), rgba(7, 21, 38, 0.88)),
-    url("/images/problem-empty-chair.png") center / cover;
+    url("../images/problem-empty-chair.png") center / cover;
 }
 
 .program-visual-note::before {
@@ -4774,7 +4774,7 @@ h3 {
   border-color: rgba(125, 211, 252, 0.34);
   background:
     linear-gradient(90deg, rgba(7, 21, 38, 0.96), rgba(7, 21, 38, 0.74) 48%, rgba(7, 21, 38, 0.34)),
-    url("/images/problem-empty-chair.png") center right / cover;
+    url("../images/problem-empty-chair.png") center right / cover;
 }
 
 @media (max-width: 1180px) {
@@ -5180,7 +5180,7 @@ body {
   border-radius: 34px;
   background:
     linear-gradient(180deg, rgba(7, 21, 38, 0.16), rgba(7, 21, 38, 0.92)),
-    url("/images/problem-empty-chair.png") center / cover;
+    url("../images/problem-empty-chair.png") center / cover;
   color: #fff;
   box-shadow: var(--shadow);
 }

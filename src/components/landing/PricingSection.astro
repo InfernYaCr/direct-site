@@ -1,6 +1,8 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 import { leadMagnet } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="section" id="pricing">
@@ -13,7 +15,7 @@ import { leadMagnet } from "@/data/site";
   <div class="diagnostic-offer reveal" id="free-guide">
     <div class="diagnostic-offer__media">
       <img
-        src="/images/diagnostics-analytics.png"
+        src={`${base}images/diagnostics-analytics.png`}
         alt="Аналитика рекламы и планирование лечения в стоматологической клинике"
         loading="lazy"
         decoding="async"

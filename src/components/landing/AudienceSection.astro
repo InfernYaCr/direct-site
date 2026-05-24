@@ -1,5 +1,7 @@
 ---
 import { audience, audienceNot } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="section split-section" id="author">
@@ -8,7 +10,7 @@ import { audience, audienceNot } from "@/data/site";
     <h2>Но кто <span class="text-blue">я такой?</span></h2>
     <div class="author-photo-card">
       <img
-        src="/images/author-marketer.png"
+        src={`${base}images/author-marketer.png`}
         alt="Ростислав Загребин, маркетолог для медицинских проектов"
         loading="lazy"
         decoding="async"

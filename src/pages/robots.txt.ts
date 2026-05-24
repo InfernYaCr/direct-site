@@ -1,6 +1,8 @@
-import { site } from "@/data/site";
+import { site as fallbackSite } from "@/data/site";
 
-export function GET() {
+export function GET({ site }: { site?: URL }) {
+  const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+  const root = new URL(base, site ?? new URL(fallbackSite.url));
   const robots = [
     "User-agent: *",
     "Allow: /",
@@ -8,7 +10,7 @@ export function GET() {
     "Disallow: /checkout/",
     "Disallow: /downloads/",
     "",
-    `Sitemap: ${new URL("sitemap.xml", site.url).toString()}`,
+    `Sitemap: ${new URL("sitemap.xml", root).toString()}`,
     "",
   ].join("\n");
 

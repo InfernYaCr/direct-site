@@ -1,5 +1,7 @@
 ---
 import { leadMagnet } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="hero section" id="top">
@@ -36,7 +38,7 @@ import { leadMagnet } from "@/data/site";
   <div class="hero-card human-hero-card reveal delay-1" aria-label="Диагностика рекламы для стоматологии">
     <div class="human-visual">
       <img
-        src="/images/hero-dentist-mask.png"
+        src={`${base}images/hero-dentist-mask.png`}
         alt="Специалист в стоматологической клинике"
         loading="lazy"
         decoding="async"

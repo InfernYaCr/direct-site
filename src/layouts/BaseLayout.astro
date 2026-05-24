@@ -16,8 +16,8 @@ const {
   noindex = false,
 } = Astro.props;
 const pageTitle = title === defaultSite.title ? title : `${title} | ${defaultSite.name}`;
-// Абсолютный URL картинки-превью (OG) для соцсетей и мессенджеров.
-const ogImage = new URL("/images/hero-dentist-mask.png", Astro.site ?? Astro.url).href;
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const ogImage = new URL(`${base}images/hero-dentist-mask.png`, Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -40,13 +40,13 @@ const ogImage = new URL("/images/hero-dentist-mask.png", Astro.site ?? Astro.url
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       name: defaultSite.name,
       description,
-      url: defaultSite.url,
+      url: new URL(base, Astro.site ?? Astro.url).href,
       image: ogImage,
       areaServed: "RU",
       serviceType: "Настройка рекламы Яндекс.Директ и ВК для стоматологий",
@@ -75,7 +75,7 @@ const ogImage = new URL("/images/hero-dentist-mask.png", Astro.site ?? Astro.url
         </p>
       </div>
       <div class="cookie-actions">
-        <a class="button ghost" href="/cookies/">Подробнее</a>
+        <a class="button ghost" href={`${base}cookies/`}>Подробнее</a>
         <button class="button primary" type="button" data-cookie-accept>Ок</button>
       </div>
     </div>

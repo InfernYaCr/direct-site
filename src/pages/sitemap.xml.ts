@@ -1,11 +1,13 @@
-import { site } from "@/data/site";
+import { site as fallbackSite } from "@/data/site";
 
 const pages = ["", "contacts/", "privacy/", "offer/", "refund/", "cookies/"];
 
-export function GET() {
+export function GET({ site }: { site?: URL }) {
+  const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+  const root = new URL(base, site ?? new URL(fallbackSite.url));
   const urls = pages
     .map((page) => {
-      const loc = new URL(page, site.url).toString();
+      const loc = new URL(page, root).toString();
       return `<url><loc>${loc}</loc><changefreq>weekly</changefreq><priority>${page ? "0.6" : "1.0"}</priority></url>`;
     })
     .join("");

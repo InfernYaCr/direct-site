@@ -1,29 +1,31 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 const items = [
   {
     title: "3–4 недели обучения за ваш счёт",
     meta: "причина слива",
-    icon: "/images/pixel-scroll.svg",
+    icon: `${base}images/pixel-scroll.svg`,
     text: "Каждое агентство запускает кабинет с чистого листа, и первые недели ваш бюджет уходит на обучение алгоритма.",
   },
   {
     title: "Случайный трафик всем подряд",
     meta: "фаза обучения",
-    icon: "/images/pixel-robot.svg",
+    icon: `${base}images/pixel-robot.svg`,
     text: "Нейросеть показывает рекламу школьникам, пенсионерам и тем, кто ищет «бесплатное удаление» или акцию за 19 900.",
   },
   {
     title: "Кресла пустые, лизинг капает",
     meta: "итог",
-    icon: "/images/pixel-cv.svg",
+    icon: `${base}images/pixel-cv.svg`,
     text: "Вы платите за клики людей, которые никогда не запишутся на имплантацию за 80 000 ₽.",
   },
   {
     title: "«Нужно ещё потестить связки»",
     meta: "повтор сценария",
-    icon: "/images/pixel-map.svg",
+    icon: `${base}images/pixel-map.svg`,
     text: "Через месяц агентство разводит руками, а вы из своего кармана финансируете обучение чужого алгоритма.",
   },
 ];
@@ -37,7 +39,7 @@ const items = [
   />
   <div class="problem-board reveal">
     <div class="problem-board__visual" data-scroll-card data-scroll-scope="#inside .problem-board">
-      <img src="/images/problem-empty-chair.png" alt="Пустое стоматологическое кресло вечером" loading="lazy" />
+      <img src={`${base}images/problem-empty-chair.png`} alt="Пустое стоматологическое кресло вечером" loading="lazy" />
       <div class="problem-board__copy scroll-photo-copy" data-scroll-copy>
         <span>фаза обучения</span>
         <strong>3–4 недели</strong>
