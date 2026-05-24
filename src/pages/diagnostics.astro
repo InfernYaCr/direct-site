@@ -21,6 +21,25 @@ const painCards = [
   },
 ];
 
+const heroFeatures = [
+  {
+    title: 'Понятно владельцу',
+    body: 'Без рекламного жаргона: показываю деньги, заявки и потери.',
+  },
+  {
+    title: 'Без новых тестов',
+    body: 'Сначала разбираем текущий кабинет, потом решаем, что запускать.',
+  },
+  {
+    title: 'Лично Ростислав',
+    body: 'Никаких менеджеров и отделов продаж на первом контакте.',
+  },
+  {
+    title: 'Конспект после созвона',
+    body: 'Короткий план с цифрами и следующими действиями.',
+  },
+];
+
 const leakCards = [
   'Алгоритм Яндекса или ВК первые 3–4 недели обучается на вашем бюджете.',
   'Реклама показывается школьникам, пенсионерам и людям с дешёвыми запросами.',
@@ -84,33 +103,51 @@ const photoNotes = [
   <main id="main-content" class="med-page">
     <section class="med-hero" aria-labelledby="med-hero-title">
       <div class="container med-hero__inner">
-        <div class="med-hero__content">
-          <p class="med-pill">30 минут · ВК / Яндекс.Директ · для стоматологий</p>
-          <h1 id="med-hero-title">Сливаете 100 000 ₽/мес на рекламу, а в кресле пусто?</h1>
-          <p class="med-hero__lead">
-            Покажу, где утекают деньги, и как получать 30–50 платёжеспособных пациентов в месяц на имплантацию по цене до 1 500 ₽ за запись.
-          </p>
-          <div class="med-hero__actions">
-            <a class="med-btn" href="#diagnostics-form">Записаться на диагностику</a>
-            <span>Обычная цена 4 990 ₽. Сейчас 0 ₽ для владельцев стоматологий.</span>
+        <header class="med-topbar" aria-label="Контакты и действие">
+          <a class="med-brand" href="/">
+            <strong>DIRECT METHOD</strong>
+            <span>реклама для стоматологий</span>
+          </a>
+          <div class="med-topbar__meta">
+            <span>Ответ в Telegram за 10 минут</span>
+            <span>ПН–ПТ · 9:00–20:00</span>
+          </div>
+          <a class="med-topbar__button" href="#diagnostics-form">Вам перезвонить?</a>
+        </header>
+
+        <div class="med-hero__stage">
+          <div class="med-hero__content">
+            <p class="med-pill">Бесплатная диагностика ВК / Яндекс.Директ</p>
+            <h1 id="med-hero-title">
+              Сливаете 100 000 ₽/мес на рекламу, а в кресле пусто?
+            </h1>
+            <p class="med-hero__lead">
+              За 30 минут покажу, где утекают деньги, и как получать 30–50 платёжеспособных пациентов в месяц на имплантацию по цене до 1 500 ₽ за запись.
+            </p>
+            <div class="med-hero__actions">
+              <a class="med-btn" href="#diagnostics-form">Открыть доступ</a>
+              <span>Обычная цена 4 990 ₽. Сейчас 0 ₽ для владельцев стоматологий.</span>
+            </div>
+          </div>
+
+          <aside class="med-hero__person" aria-label="Кто проводит диагностику">
+            <strong>Ростислав Загребин</strong>
+            <span>специалист по рекламе в медицине</span>
+          </aside>
+
+          <div class="med-hero__visual" aria-hidden="true">
+            <span>Место под фото: Ростислав / клиника / кабинет рекламы</span>
           </div>
         </div>
 
-        <aside class="med-hero__panel" aria-label="Ключевые показатели диагностики">
-          <div class="med-photo med-photo--hero">
-            <span>Место под фото: эксперт в клинике</span>
-          </div>
-          <div class="med-metrics">
+        <div class="med-hero__features" aria-label="Что входит в диагностику">
+          {heroFeatures.map((feature) => (
             <article>
-              <strong>3–5 день</strong>
-              <span>первые заявки после запуска связок</span>
+              <span></span>
+              <p><strong>{feature.title}</strong>{feature.body}</p>
             </article>
-            <article>
-              <strong>200+</strong>
-              <span>минус-фраз против дешёвых запросов</span>
-            </article>
-          </div>
-        </aside>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -426,18 +463,76 @@ const photoNotes = [
   }
 
   .med-hero {
-    padding-block: 56px 48px;
+    position: relative;
+    overflow: hidden;
+    padding-block: 50px 54px;
     background:
-      radial-gradient(circle at 80% 8%, rgba(18, 114, 75, 0.16), transparent 30%),
+      linear-gradient(90deg, rgba(247, 248, 243, 0.98) 0%, rgba(247, 248, 243, 0.9) 49%, rgba(247, 248, 243, 0.28) 100%),
+      radial-gradient(circle at 83% 24%, rgba(18, 114, 75, 0.18), transparent 24%),
       linear-gradient(135deg, #f7f8f3, #eff8f2 58%, #eaf3fb);
   }
 
   .med-hero__inner {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.72fr);
-    gap: 44px;
-    align-items: end;
-    min-height: 760px;
+    gap: 40px;
+    min-height: 840px;
+  }
+
+  .med-topbar {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .med-brand {
+    display: grid;
+    gap: 2px;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.1;
+  }
+
+  .med-brand strong {
+    font-size: 22px;
+    font-weight: 950;
+  }
+
+  .med-brand span,
+  .med-topbar__meta span {
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .med-topbar__meta {
+    display: flex;
+    gap: 34px;
+    justify-content: center;
+  }
+
+  .med-topbar__button {
+    display: inline-flex;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 18px;
+    border: 1px solid rgba(22, 33, 31, 0.18);
+    border-radius: 8px;
+    color: var(--ink);
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: rgba(255, 254, 250, 0.66);
+  }
+
+  .med-hero__stage {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: center;
+    min-height: 540px;
   }
 
   .med-hero__lead {
@@ -461,9 +556,88 @@ const photoNotes = [
     line-height: 1.45;
   }
 
-  .med-hero__panel {
+  .med-hero__person {
+    position: absolute;
+    right: 0;
+    top: 42%;
     display: grid;
+    gap: 8px;
+    max-width: 250px;
+    color: var(--ink);
+  }
+
+  .med-hero__person strong {
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .med-hero__person span {
+    color: var(--muted);
+    line-height: 1.35;
+  }
+
+  .med-hero__visual {
+    position: absolute;
+    right: -6vw;
+    bottom: -90px;
+    display: grid;
+    width: min(48vw, 680px);
+    height: 620px;
+    place-items: end center;
+    border-radius: 8px;
+    background:
+      linear-gradient(180deg, rgba(255, 254, 250, 0.05), rgba(255, 254, 250, 0.66)),
+      repeating-linear-gradient(0deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 48px),
+      linear-gradient(135deg, rgba(234, 243, 251, 0.62), rgba(237, 247, 241, 0.86));
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .med-hero__visual span {
+    max-width: 260px;
+    margin: 0 14% 120px 0;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: rgba(255, 254, 250, 0.88);
+    color: #40504b;
+    font-weight: 800;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .med-hero__features {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    padding-block-start: 26px;
+    border-block-start: 1px solid var(--line);
+  }
+
+  .med-hero__features article {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
     gap: 14px;
+    align-items: start;
+  }
+
+  .med-hero__features article > span {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background:
+      linear-gradient(135deg, var(--accent), #ffbd66);
+    box-shadow: 0 10px 24px rgba(233, 75, 27, 0.18);
+  }
+
+  .med-hero__features p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .med-hero__features strong {
+    display: block;
+    margin-block-end: 3px;
+    color: var(--ink);
   }
 
   .med-photo {
@@ -543,7 +717,18 @@ const photoNotes = [
   }
 
   .med-card {
-    padding: 24px;
+    overflow: hidden;
+    padding: 0 24px 24px;
+  }
+
+  .med-card::before {
+    content: "";
+    display: block;
+    height: 174px;
+    margin: 0 -24px 22px;
+    background:
+      linear-gradient(135deg, rgba(234, 243, 251, 0.8), rgba(237, 247, 241, 0.86)),
+      repeating-linear-gradient(135deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 18px);
   }
 
   .med-card span {
@@ -888,7 +1073,6 @@ const photoNotes = [
     .med-page h1 { font-size: 58px; }
     .med-page h2 { font-size: 44px; }
 
-    .med-hero__inner,
     .med-leak__inner,
     .med-offer__inner,
     .med-author__inner,
@@ -899,6 +1083,33 @@ const photoNotes = [
 
     .med-hero__inner {
       min-height: auto;
+    }
+
+    .med-topbar {
+      grid-template-columns: 1fr auto;
+    }
+
+    .med-topbar__meta {
+      display: none;
+    }
+
+    .med-hero__stage {
+      min-height: 640px;
+    }
+
+    .med-hero__person {
+      right: 0;
+      top: 58%;
+    }
+
+    .med-hero__visual {
+      right: -20vw;
+      width: 72vw;
+      opacity: 0.78;
+    }
+
+    .med-hero__features {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .med-pain__grid,
@@ -914,11 +1125,11 @@ const photoNotes = [
     }
 
     .med-hero {
-      padding-block: 36px 42px;
+      padding-block: 22px 34px;
     }
 
     .med-page h1 {
-      font-size: 42px;
+      font-size: 38px;
       line-height: 1.05;
     }
 
@@ -936,21 +1147,83 @@ const photoNotes = [
     }
 
     .med-hero__inner {
-      gap: 28px;
+      gap: 24px;
+    }
+
+    .med-topbar {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .med-brand strong {
+      font-size: 19px;
+    }
+
+    .med-topbar__button {
+      display: none;
+    }
+
+    .med-hero__stage {
+      min-height: 0;
+      padding-block: 22px 0;
+    }
+
+    .med-hero__visual,
+    .med-hero__person {
+      position: static;
+    }
+
+    .med-hero__visual {
+      display: none;
+    }
+
+    .med-hero__person {
+      max-width: none;
+      margin-block-start: 16px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 254, 250, 0.74);
+    }
+
+    .med-hero__person strong {
+      font-size: 24px;
+    }
+
+    .med-hero__features {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding-block-start: 18px;
+    }
+
+    .med-hero__features article {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 254, 250, 0.72);
+    }
+
+    .med-hero__features article > span {
+      width: 26px;
+      height: 26px;
+    }
+
+    .med-hero__features p {
+      font-size: 0;
+      line-height: 1.25;
+    }
+
+    .med-hero__features strong {
+      margin: 0;
+      font-size: 14px;
     }
 
     .med-hero__actions,
     .med-btn,
     .med-form button {
       width: 100%;
-    }
-
-    .med-photo--hero {
-      min-height: 180px;
-    }
-
-    .med-metrics {
-      display: none;
     }
 
     .med-pain__grid,
@@ -965,6 +1238,10 @@ const photoNotes = [
     .med-method__diagram span,
     .med-steps__timeline span {
       margin-block-end: 22px;
+    }
+
+    .med-card::before {
+      height: 130px;
     }
 
     .med-note {
