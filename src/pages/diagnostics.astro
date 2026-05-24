@@ -136,7 +136,18 @@ const photoNotes = [
           </aside>
 
           <div class="med-hero__visual" aria-hidden="true">
-            <span>Место под фото: Ростислав / клиника / кабинет рекламы</span>
+            <svg class="med-hero-illustration" viewBox="0 0 520 620" role="img" aria-label="Схема диагностики рекламы для стоматологии">
+              <rect x="70" y="92" width="342" height="422" rx="34" fill="#fffdf6" stroke="#c9ddd1" stroke-width="3"/>
+              <rect x="104" y="134" width="274" height="54" rx="18" fill="#dceee7"/>
+              <rect x="104" y="218" width="128" height="112" rx="24" fill="#bfe8e0"/>
+              <rect x="250" y="218" width="128" height="112" rx="24" fill="#ecf4ef"/>
+              <rect x="104" y="358" width="274" height="28" rx="14" fill="#dceee7"/>
+              <rect x="104" y="408" width="214" height="28" rx="14" fill="#dceee7"/>
+              <circle cx="410" cy="430" r="68" fill="#167a5b"/>
+              <path d="M380 429l21 21 43-54" fill="none" stroke="#fffdf6" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M145 285c28-42 57-42 85 0" fill="none" stroke="#167a5b" stroke-width="10" stroke-linecap="round"/>
+              <path d="M282 282h64" stroke="#789187" stroke-width="10" stroke-linecap="round"/>
+            </svg>
           </div>
         </div>
 
@@ -186,7 +197,17 @@ const photoNotes = [
 
         <div class="med-audit-card">
           <div class="med-photo med-photo--audit">
-            <span>Место под скрин: кабинет с пометками аудита</span>
+            <svg class="med-dashboard" viewBox="0 0 620 380" role="img" aria-label="Мокап рекламного кабинета с пометками аудита">
+              <rect x="18" y="18" width="584" height="344" rx="26" fill="#fffdf6" stroke="#c9ddd1" stroke-width="3"/>
+              <rect x="48" y="52" width="180" height="38" rx="14" fill="#dceee7"/>
+              <rect x="48" y="120" width="126" height="98" rx="18" fill="#ecf4ef"/>
+              <rect x="194" y="120" width="126" height="98" rx="18" fill="#ecf4ef"/>
+              <rect x="340" y="120" width="126" height="98" rx="18" fill="#ecf4ef"/>
+              <path d="M70 292c62-80 126-26 184-72 53-42 100-66 164 22 32 44 72 34 122-26" fill="none" stroke="#167a5b" stroke-width="10" stroke-linecap="round"/>
+              <circle cx="248" cy="218" r="24" fill="#bfe8e0" stroke="#167a5b" stroke-width="5"/>
+              <path d="M244 214l10 10 18-26" fill="none" stroke="#167a5b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="486" y="62" width="70" height="30" rx="15" fill="#bfe8e0"/>
+            </svg>
           </div>
           <h3>Что видно на разборе</h3>
           <ul>
@@ -277,7 +298,13 @@ const photoNotes = [
       <div class="container med-author__inner">
         <figure class="med-author__media">
           <div class="med-photo med-photo--portrait">
-            <span>Место под фото: Ростислав Загребин</span>
+            <svg class="med-portrait" viewBox="0 0 420 520" role="img" aria-label="Место под портрет Ростислава Загребина">
+              <rect x="42" y="34" width="336" height="452" rx="42" fill="#fffdf6" stroke="#c9ddd1" stroke-width="3"/>
+              <circle cx="210" cy="168" r="72" fill="#bfe8e0"/>
+              <path d="M116 404c18-86 70-130 94-130s76 44 94 130" fill="#dceee7"/>
+              <path d="M148 170c20 28 104 28 124 0" fill="none" stroke="#167a5b" stroke-width="10" stroke-linecap="round"/>
+              <path d="M154 404h112" stroke="#789187" stroke-width="10" stroke-linecap="round"/>
+            </svg>
           </div>
         </figure>
 
@@ -312,7 +339,16 @@ const photoNotes = [
           </div>
 
           <div class="med-photo med-photo--call">
-            <span>Место под фото: созвон или рабочий стол с аудитом</span>
+            <svg class="med-call" viewBox="0 0 560 300" role="img" aria-label="Мокап созвона и аудита рекламного кабинета">
+              <rect x="58" y="46" width="346" height="196" rx="22" fill="#fffdf6" stroke="#c9ddd1" stroke-width="3"/>
+              <rect x="86" y="76" width="136" height="86" rx="18" fill="#dceee7"/>
+              <rect x="244" y="80" width="116" height="18" rx="9" fill="#bfe8e0"/>
+              <rect x="244" y="120" width="92" height="18" rx="9" fill="#dceee7"/>
+              <rect x="244" y="160" width="128" height="18" rx="9" fill="#dceee7"/>
+              <rect x="134" y="244" width="320" height="18" rx="9" fill="#789187"/>
+              <circle cx="424" cy="98" r="50" fill="#167a5b"/>
+              <path d="M400 99l16 16 34-44" fill="none" stroke="#fffdf6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
         </div>
 
@@ -361,21 +397,24 @@ const photoNotes = [
 
 <style>
   :global(body) {
-    background: #f7f8f3;
-    color: #16211f;
+    background: #faf8f2;
+    color: #17211f;
   }
 
   .med-page {
-    --ink: #16211f;
-    --muted: #63706c;
-    --line: rgba(22, 33, 31, 0.12);
-    --paper: #fffefa;
-    --soft: #edf7f1;
-    --blue: #eaf3fb;
-    --accent: #e94b1b;
-    --green: #12724b;
-    --shadow: 0 18px 50px rgba(27, 55, 47, 0.09);
-    background: linear-gradient(180deg, #f7f8f3 0%, #fffefa 42%, #f4faf6 100%);
+    --ink: #17211f;
+    --muted: #6a746f;
+    --line: rgba(23, 33, 31, 0.12);
+    --paper: #fffdf6;
+    --soft: #ddeadd;
+    --mint: #bfe8e0;
+    --mist: #ecf4ef;
+    --accent: #167a5b;
+    --accent-dark: #0f5c44;
+    --green: #167a5b;
+    --sage: #789187;
+    --shadow: 0 18px 50px rgba(28, 69, 56, 0.09);
+    background: linear-gradient(180deg, #faf8f2 0%, #fffdf6 42%, #f1f7f2 100%);
   }
 
   .med-page :global(section:nth-of-type(even)) {
@@ -459,7 +498,7 @@ const photoNotes = [
     letter-spacing: 0;
     text-decoration: none;
     cursor: pointer;
-    box-shadow: 0 14px 30px rgba(233, 75, 27, 0.24);
+    box-shadow: 0 14px 30px rgba(22, 122, 91, 0.22);
   }
 
   .med-hero {
@@ -467,9 +506,9 @@ const photoNotes = [
     overflow: hidden;
     padding-block: 50px 54px;
     background:
-      linear-gradient(90deg, rgba(247, 248, 243, 0.98) 0%, rgba(247, 248, 243, 0.9) 49%, rgba(247, 248, 243, 0.28) 100%),
-      radial-gradient(circle at 83% 24%, rgba(18, 114, 75, 0.18), transparent 24%),
-      linear-gradient(135deg, #f7f8f3, #eff8f2 58%, #eaf3fb);
+      linear-gradient(90deg, rgba(250, 248, 242, 0.98) 0%, rgba(250, 248, 242, 0.9) 49%, rgba(250, 248, 242, 0.28) 100%),
+      radial-gradient(circle at 83% 24%, rgba(191, 232, 224, 0.52), transparent 24%),
+      linear-gradient(135deg, #faf8f2, #edf4ed 58%, #dceee7);
   }
 
   .med-hero__inner {
@@ -586,9 +625,8 @@ const photoNotes = [
     place-items: end center;
     border-radius: 8px;
     background:
-      linear-gradient(180deg, rgba(255, 254, 250, 0.05), rgba(255, 254, 250, 0.66)),
-      repeating-linear-gradient(0deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 48px),
-      linear-gradient(135deg, rgba(234, 243, 251, 0.62), rgba(237, 247, 241, 0.86));
+      linear-gradient(180deg, rgba(255, 253, 246, 0.05), rgba(255, 253, 246, 0.66)),
+      linear-gradient(135deg, rgba(191, 232, 224, 0.55), rgba(221, 234, 221, 0.88));
     clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
   }
 
@@ -624,8 +662,8 @@ const photoNotes = [
     height: 40px;
     border-radius: 50%;
     background:
-      linear-gradient(135deg, var(--accent), #ffbd66);
-    box-shadow: 0 10px 24px rgba(233, 75, 27, 0.18);
+      linear-gradient(135deg, var(--accent), var(--mint));
+    box-shadow: 0 10px 24px rgba(22, 122, 91, 0.16);
   }
 
   .med-hero__features p {
@@ -648,8 +686,15 @@ const photoNotes = [
     overflow: hidden;
     place-items: center;
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(234, 243, 251, 0.72)),
-      repeating-linear-gradient(135deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 16px);
+      linear-gradient(135deg, rgba(255, 253, 246, 0.9), rgba(191, 232, 224, 0.46));
+  }
+
+  .med-hero-illustration,
+  .med-dashboard,
+  .med-portrait,
+  .med-call {
+    width: min(88%, 520px);
+    height: auto;
   }
 
   .med-photo span {
@@ -666,9 +711,7 @@ const photoNotes = [
   .med-photo--hero {
     min-height: 520px;
     background:
-      linear-gradient(160deg, rgba(237, 247, 241, 0.84), rgba(234, 243, 251, 0.86)),
-      linear-gradient(90deg, transparent 0 58%, rgba(255, 255, 255, 0.72) 58% 61%, transparent 61%),
-      repeating-linear-gradient(0deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 44px);
+      linear-gradient(160deg, rgba(221, 234, 221, 0.84), rgba(191, 232, 224, 0.64));
   }
 
   .med-metrics {
@@ -727,8 +770,7 @@ const photoNotes = [
     height: 174px;
     margin: 0 -24px 22px;
     background:
-      linear-gradient(135deg, rgba(234, 243, 251, 0.8), rgba(237, 247, 241, 0.86)),
-      repeating-linear-gradient(135deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 18px);
+      linear-gradient(135deg, rgba(191, 232, 224, 0.66), rgba(221, 234, 221, 0.86));
   }
 
   .med-card span {
@@ -747,14 +789,14 @@ const photoNotes = [
     padding: 22px;
     border-left: 4px solid var(--accent);
     border-radius: 8px;
-    background: #fff4ea;
-    color: #5a3728;
+    background: #edf7f1;
+    color: #26443a;
     font-size: 22px;
     font-weight: 800;
   }
 
   .med-leak {
-    background: linear-gradient(180deg, #fffefa, #f4faf6);
+    background: linear-gradient(180deg, #fffdf6, #f1f7f2);
   }
 
   .med-leak__inner,
@@ -795,7 +837,7 @@ const photoNotes = [
   .med-audit-card li {
     padding: 14px;
     border-radius: 8px;
-    background: #f7f8f3;
+    background: #faf8f2;
     color: #31433e;
     line-height: 1.45;
   }
@@ -817,9 +859,9 @@ const photoNotes = [
   }
 
   .med-method__diagram article:nth-child(1) { background: #edf7f1; }
-  .med-method__diagram article:nth-child(2) { background: #eaf3fb; }
-  .med-method__diagram article:nth-child(3) { background: #fffefa; }
-  .med-method__diagram article:nth-child(4) { background: #fff2cf; }
+  .med-method__diagram article:nth-child(2) { background: #dceee7; }
+  .med-method__diagram article:nth-child(3) { background: #fffdf6; }
+  .med-method__diagram article:nth-child(4) { background: #ddeadd; }
 
   .med-method__diagram span {
     display: grid;
@@ -861,12 +903,12 @@ const photoNotes = [
   }
 
   .med-compare__list p:first-child {
-    background: #fffefa;
+    background: #fffdf6;
   }
 
   .med-compare__list p:last-child {
-    background: #e2f6ea;
-    color: #0f5d3d;
+    background: #dceee7;
+    color: var(--accent-dark);
   }
 
   .med-compare__list span {
@@ -891,7 +933,7 @@ const photoNotes = [
     width: 28px;
     height: 28px;
     margin-block-end: 22px;
-    color: var(--green);
+    color: var(--accent);
   }
 
   .med-offer__items path {
@@ -909,7 +951,7 @@ const photoNotes = [
   }
 
   .med-steps {
-    background: #f4f8fb;
+    background: #eef6f1;
   }
 
   .med-steps__timeline {
@@ -935,7 +977,7 @@ const photoNotes = [
   }
 
   .med-author {
-    background: #fff8ea;
+    background: #f1f7f2;
   }
 
   .med-photo--portrait {
@@ -960,7 +1002,7 @@ const photoNotes = [
   }
 
   .med-final {
-    background: linear-gradient(135deg, #f4faf6, #fff8ea);
+    background: linear-gradient(135deg, #f1f7f2, #fffdf6);
   }
 
   .med-bonus {
@@ -971,7 +1013,7 @@ const photoNotes = [
   }
 
   .med-bonus strong {
-    color: var(--green);
+    color: var(--accent);
     font-size: 22px;
   }
 
@@ -991,7 +1033,7 @@ const photoNotes = [
   }
 
   .med-form div > span {
-    color: var(--green);
+    color: var(--accent);
     font-size: 13px;
     font-weight: 900;
   }
@@ -1013,7 +1055,7 @@ const photoNotes = [
     width: 100%;
     border: 1px solid rgba(22, 33, 31, 0.16);
     border-radius: 8px;
-    background: #f7f8f3;
+    background: #faf8f2;
     color: var(--ink);
     font: inherit;
     padding: 14px;
@@ -1021,7 +1063,7 @@ const photoNotes = [
 
   .med-form input:focus,
   .med-form textarea:focus {
-    outline: 3px solid rgba(233, 75, 27, 0.18);
+    outline: 3px solid rgba(22, 122, 91, 0.18);
     border-color: var(--accent);
     background: #fff;
   }
@@ -1033,7 +1075,7 @@ const photoNotes = [
 
   .med-photo-guide {
     padding-block: 36px 72px;
-    background: #fffefa;
+    background: #fffdf6;
   }
 
   .med-photo-guide__inner {
