@@ -3,266 +3,213 @@ import Base from '@/layouts/Base.astro';
 import Footer from '@/components/sections/Footer.astro';
 import CookieBanner from '@/components/ui/CookieBanner.astro';
 
-const painPoints = [
-  'Уже отдали 2–3 агентствам по 60–150 тысяч в месяц. Получили красивые отчёты с «кликами» и «охватами» — а в кассе пусто.',
-  'Администратор говорит: «звонят не те, спрашивают только „удалить зуб бесплатно“».',
-  'Хирурги-имплантологи сидят без работы, а лизинг за оборудование и аренду никто не отменял.',
-  'Вечерами сами лезете в отчёты и считаете заявки в Excel — потому что доверять уже некому.',
-  'Сарафан закончился, конкурент через дорогу демпингует «имплант за 19 900», а вы честно держите 45 000 — и проигрываете.',
-  'Каждый новый маркетолог обещает «лиды по 300 рублей», а через месяц — снова кассовый разрыв.',
-];
-
-const leakPoints = [
-  'Вы платите за клики людей, которые никогда не запишутся на имплантацию за 80 000 ₽.',
-  'Кресла пустые, врачи без работы, лизинг капает.',
-  'Через месяц агентство разводит руками: «ну, нужно ещё потестить связки».',
-  'Вы из своего кармана финансируете обучение чужого алгоритма.',
-];
-
-const navigatorAssets = [
+const painCards = [
   {
-    title: 'Проверенные предложения',
+    tag: 'Деньги',
+    title: 'Бюджет уходит, кресла пустуют',
+    body: 'Вы уже платили агентствам по 60–150 тысяч в месяц, видели отчёты с кликами и охватами, но не видели нормального потока пациентов.',
+  },
+  {
+    tag: 'Заявки',
+    title: 'Звонят не те люди',
+    body: 'Администратор слышит вопросы про бесплатное удаление, дешёвые акции и случайные консультации вместо заявок на имплантацию.',
+  },
+  {
+    tag: 'Контроль',
+    title: 'Приходится проверять всё самому',
+    body: 'Вечером вы снова открываете отчёты и Excel, потому что уже не понимаете, кому можно доверять рекламный кабинет.',
+  },
+];
+
+const leakCards = [
+  'Алгоритм Яндекса или ВК первые 3–4 недели обучается на вашем бюджете.',
+  'Реклама показывается школьникам, пенсионерам и людям с дешёвыми запросами.',
+  'Вы оплачиваете клики людей, которые никогда не купят имплантацию за 80 000 ₽.',
+  'Через месяц агентство просит ещё времени на тесты, а лизинг и аренда продолжают капать.',
+];
+
+const navigatorBlocks = [
+  {
+    title: 'Данные-доноры',
+    body: 'Готовые аудитории людей, которые уже платили за дорогое лечение.',
+  },
+  {
+    title: 'Офферы под стоматологию',
     body: 'Связки под имплантацию, виниры, All-on-4 и ортодонтию.',
   },
   {
-    title: 'Платёжеспособные аудитории',
-    body: 'Люди, которые уже платили за дорогое лечение.',
+    title: 'Модерация',
+    body: 'Креативы, которые легче проходят правила медицинской рекламы.',
   },
   {
-    title: 'Медицинская модерация',
-    body: 'Креативы, которые легче проходят строгие правила площадок.',
-  },
-  {
-    title: '200+ минус-фраз',
-    body: 'Отсекаем «бесплатно», «дёшево», «по акции» и похожие запросы.',
+    title: 'Минус-фразы',
+    body: '200+ исключений против запросов «бесплатно», «дёшево», «по акции».',
   },
 ];
 
-const comparisons = [
+const comparisonRows = [
   ['3–4 недели обучения за ваш счёт', 'Заявки уже на 3–5 день'],
-  ['Случайный трафик «всем подряд»', 'Только платёжеспособные пациенты'],
-  ['Заявки «на бесплатное удаление»', 'Имплантация, виниры, All-on-4'],
+  ['Трафик «всем подряд»', 'Платёжеспособные пациенты'],
+  ['Запросы про бесплатное удаление', 'Имплантация, виниры, All-on-4'],
   ['CAC 8 000–15 000 ₽', 'CAC до 4 000 ₽ за запись'],
-  ['«Дайте ещё месяц на тесты»', '30–50 пациентов в месяц по прогнозу'],
+  ['«Нужно ещё потестить»', 'Прогнозируемые 30–50 пациентов в месяц'],
 ];
 
-const auditSteps = [
-  {
-    time: '5 мин',
-    title: 'Смотрим ваш кабинет',
-    body: 'Открываете доступ к Я.Директ или ВК. Я смотрю кампании, бюджеты, ставки и аудитории.',
-  },
-  {
-    time: '10 мин',
-    title: 'Показываю, где утекают деньги',
-    body: 'Конкретно по пунктам: где крутятся нецелевые запросы, где нет минус-фраз, где аудитория не похожа на пациентов с чеком.',
-  },
-  {
-    time: '8 мин',
-    title: 'Считаем экономику рекламы',
-    body: 'Сколько сейчас стоит пациент, сколько он должен стоить по рынку и сколько денег вы теряете в месяц.',
-  },
-  {
-    time: '7 мин',
-    title: 'План «Умного Навигатора»',
-    body: 'Какие готовые связки подходят под вашу клинику и за сколько дней можно выйти на стабильный поток.',
-  },
+const auditItems = [
+  'Покажу, где конкретно сливаются деньги в кабинете.',
+  'Посчитаем, сколько сейчас стоит пациент и сколько он должен стоить.',
+  'Оценим, можно ли выйти на 30–50 платёжеспособных записей в месяц.',
+  'Соберём план внедрения «Умного Навигатора» под вашу клинику.',
 ];
 
-const diagnosticResults = [
-  'Полный разбор текущего рекламного кабинета.',
-  'Цифры: сколько вы переплачиваете за пациента.',
-  'Понимание, реально ли выйти на 30–50 записей в месяц.',
-  'План внедрения метода «Умный Навигатор» под вашу клинику.',
+const callSteps = [
+  ['5 мин', 'Смотрим кабинет', 'Я.Директ или ВК: кампании, бюджеты, ставки, аудитории.'],
+  ['10 мин', 'Находим слив', 'Запросы, аудитории, минус-фразы и участки, где деньги уходят впустую.'],
+  ['8 мин', 'Считаем экономику', 'Текущая цена пациента, нормальная рыночная цена и потери за месяц.'],
+  ['7 мин', 'Собираем план', 'Какие связки подойдут под имплантацию, виниры, ортодонтию или All-on-4.'],
 ];
 
-const photoSlots = [
-  'Hero: фото Ростислава в клинике или светлый кабинет стоматологии.',
-  'Problem: скрин рекламного кабинета с замазанными данными и пометками.',
-  'Author: портрет Ростислава, лучше в деловом casual или на фоне рабочего места.',
-  'Bonus/CTA: фото созвона, ноутбука с рекламным кабинетом или мини-аудита.',
+const photoNotes = [
+  'Hero: Ростислав в клинике или светлый стоматологический кабинет.',
+  'Разбор: скрин рекламного кабинета с замазанными данными и пометками.',
+  'Автор: живой портрет Ростислава без стоковой постановки.',
+  'Финал: фото созвона или ноутбука с открытым аудитом.',
 ];
 ---
 
 <Base
-  title="30-минутная диагностика рекламы для стоматологий"
-  description="Светлый лендинг диагностики рекламного кабинета ВК и Яндекс.Директ для владельцев стоматологических клиник."
+  title="Диагностика рекламы для стоматологий"
+  description="30-минутная диагностика рекламного кабинета ВК и Яндекс.Директ для владельцев стоматологических клиник."
 >
-  <main id="main-content" class="diagnostics-page">
-    <section class="diag-hero" aria-labelledby="diag-hero-heading">
-      <div class="diag-hero__media" aria-hidden="true">
-        <div class="diag-photo diag-photo--hero">
-          <span>Фото: Ростислав или стоматологический кабинет</span>
-        </div>
-      </div>
-
-      <div class="container diag-hero__inner">
-        <div class="diag-hero__copy">
-          <p class="diag-kicker">30-минутная диагностика для владельцев стоматологий</p>
-          <h1 id="diag-hero-heading">
-            Сливаете 100 000 ₽/мес на рекламу, а в кресле пусто?
-          </h1>
-          <p>
-            За 30 минут покажу, где утекают деньги — и как получать 30–50 платёжеспособных пациентов в месяц на имплантацию по цене до 1 500 ₽ за запись.
+  <main id="main-content" class="med-page">
+    <section class="med-hero" aria-labelledby="med-hero-title">
+      <div class="container med-hero__inner">
+        <div class="med-hero__content">
+          <p class="med-pill">30 минут · ВК / Яндекс.Директ · для стоматологий</p>
+          <h1 id="med-hero-title">Сливаете 100 000 ₽/мес на рекламу, а в кресле пусто?</h1>
+          <p class="med-hero__lead">
+            Покажу, где утекают деньги, и как получать 30–50 платёжеспособных пациентов в месяц на имплантацию по цене до 1 500 ₽ за запись.
           </p>
-          <div class="diag-hero__actions">
-            <a class="diag-button" href="#diag-cta">Записаться на диагностику</a>
-            <span>Без новых тестов, без слива бюджета на «обучение алгоритма».</span>
+          <div class="med-hero__actions">
+            <a class="med-btn" href="#diagnostics-form">Записаться на диагностику</a>
+            <span>Обычная цена 4 990 ₽. Сейчас 0 ₽ для владельцев стоматологий.</span>
           </div>
         </div>
 
-        <div class="diag-hero__metrics" aria-label="Ключевые цифры">
-          <article>
-            <strong>0 ₽</strong>
-            <span>для владельцев стоматологий до конца месяца</span>
-          </article>
-          <article>
-            <strong>3–5 день</strong>
-            <span>первые заявки после запуска связок</span>
-          </article>
-          <article>
-            <strong>200+</strong>
-            <span>минус-фраз против дешёвых запросов</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="diag-section diag-pain" aria-labelledby="diag-pain-heading">
-      <div class="container diag-split">
-        <div class="diag-section__lead">
-          <p class="diag-kicker">Если вы владелец клиники</p>
-          <h2 id="diag-pain-heading">Вам это знакомо</h2>
-          <p>Главное ощущение — вы не понимаете, кому ещё можно верить.</p>
-        </div>
-
-        <div class="diag-pain__list">
-          {painPoints.map((point, index) => (
+        <aside class="med-hero__panel" aria-label="Ключевые показатели диагностики">
+          <div class="med-photo med-photo--hero">
+            <span>Место под фото: эксперт в клинике</span>
+          </div>
+          <div class="med-metrics">
             <article>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <p>{point}</p>
+              <strong>3–5 день</strong>
+              <span>первые заявки после запуска связок</span>
             </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="diag-section diag-problem" aria-labelledby="diag-problem-heading">
-      <div class="container diag-problem__inner">
-        <div class="diag-problem__copy">
-          <p class="diag-kicker">Почему так происходит</p>
-          <h2 id="diag-problem-heading">Реклама не умерла. Алгоритм просто ищет вслепую за ваш счёт</h2>
-          <p>
-            Каждое агентство запускает кабинет «с чистого листа» и первые 3–4 недели сливает ваш бюджет на то, чтобы алгоритм Яндекса или ВК научился искать пациентов.
-          </p>
-          <p>
-            В это время нейросеть показывает рекламу всем подряд: школьникам, пенсионерам, людям с запросами «бесплатное удаление» и «акция за 19 900».
-          </p>
-        </div>
-
-        <figure class="diag-proof">
-          <div class="diag-photo diag-photo--dashboard">
-            <span>Фото/скрин: рекламный кабинет с пометками аудита</span>
+            <article>
+              <strong>200+</strong>
+              <span>минус-фраз против дешёвых запросов</span>
+            </article>
           </div>
-          <figcaption>Место под реальный скрин кабинета с замазанными данными: ставки, запросы, расход, проблемные аудитории.</figcaption>
-        </figure>
-      </div>
-
-      <div class="container diag-leaks">
-        {leakPoints.map((point) => (
-          <article>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3v10" />
-              <path d="M12 17h.01" />
-              <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-            <p>{point}</p>
-          </article>
-        ))}
+        </aside>
       </div>
     </section>
 
-    <section class="diag-section diag-method" aria-labelledby="diag-method-heading">
+    <section class="med-section med-pain" aria-labelledby="med-pain-title">
       <div class="container">
-        <div class="diag-section__lead diag-section__lead--wide">
-          <p class="diag-kicker">Решение</p>
-          <h2 id="diag-method-heading">«Умный Навигатор» убирает фазу обучения</h2>
-          <p>
-            За 6 лет работы в маркетинге и 10+ проектов в медицине накопилась готовая обученная экосистема. Когда мы запускаем вашу клинику, я не начинаю с нуля: загружаю в кабинет готовые «данные-доноры», и алгоритм быстрее переходит в рабочий режим.
-          </p>
+        <div class="med-section__head">
+          <p class="med-pill">Ситуация владельца</p>
+          <h2 id="med-pain-title">Проблема выглядит не как “нет рекламы”. Проблема выглядит как отсутствие доверия к рекламе.</h2>
         </div>
 
-        <div class="diag-method__grid">
-          {navigatorAssets.map((item) => (
-            <article>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
+        <div class="med-pain__grid">
+          {painCards.map((card) => (
+            <article class="med-card">
+              <span>{card.tag}</span>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
             </article>
           ))}
         </div>
+
+        <p class="med-note">
+          Конкурент через дорогу демпингует «имплант за 19 900», сарафан закончился, а новый маркетолог снова обещает лиды по 300 рублей.
+        </p>
       </div>
     </section>
 
-    <section class="diag-section diag-compare" aria-labelledby="diag-compare-heading">
-      <div class="container">
-        <div class="diag-section__lead diag-section__lead--wide">
-          <p class="diag-kicker">Сравнение</p>
-          <h2 id="diag-compare-heading">Что меняется после запуска по методу</h2>
-        </div>
-
-        <div class="diag-compare__table">
-          <div class="diag-compare__head">
-            <span>Стандартное агентство</span>
-            <span>Умный Навигатор</span>
-          </div>
-          {comparisons.map(([before, after]) => (
-            <article>
-              <p>{before}</p>
-              <p>{after}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="diag-section diag-author" aria-labelledby="diag-author-heading">
-      <div class="container diag-author__inner">
-        <figure>
-          <div class="diag-photo diag-photo--portrait">
-            <span>Фото: портрет Ростислава Загребина</span>
-          </div>
-          <figcaption>Лучше использовать реальный портрет, не сток: доверие в медицинской нише держится на личности специалиста.</figcaption>
-        </figure>
-
-        <div class="diag-author__copy">
-          <p class="diag-kicker">Кто проводит диагностику</p>
-          <h2 id="diag-author-heading">Ростислав Загребин</h2>
+    <section class="med-section med-leak" aria-labelledby="med-leak-title">
+      <div class="container med-leak__inner">
+        <div class="med-leak__copy">
+          <p class="med-pill">Настоящая причина</p>
+          <h2 id="med-leak-title">Алгоритм учится вслепую. Вы оплачиваете каждый его тычок.</h2>
           <p>
-            6 лет в маркетинге, фокус — Яндекс.Директ и ВК для медицины. На первом клиенте сделал х10 по чистой прибыли за 1,5 года через Я.Директ и сайт.
+            Дело не в том, что реклама в стоматологии больше не работает. Обычно кабинет запускают с нуля, и первые недели площадка сама пытается понять, кого искать.
           </p>
+        </div>
+
+        <div class="med-audit-card">
+          <div class="med-photo med-photo--audit">
+            <span>Место под скрин: кабинет с пометками аудита</span>
+          </div>
+          <h3>Что видно на разборе</h3>
           <ul>
-            <li>10+ проектов в медицине и стоматологии.</li>
-            <li>Работа с бюджетами от 300 000 ₽/мес.</li>
-            <li>Опыт в 29+ нишах и сертификация по Яндекс.Директ.</li>
+            {leakCards.map((item) => <li>{item}</li>)}
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="diag-section diag-audit" aria-labelledby="diag-audit-heading">
+    <section class="med-section med-method" aria-labelledby="med-method-title">
       <div class="container">
-        <div class="diag-section__lead diag-section__lead--wide">
-          <p class="diag-kicker">Что получите за 30 минут</p>
-          <h2 id="diag-audit-heading">Бесплатная диагностика рекламного кабинета ВК / Яндекс.Директ</h2>
-          <p>Обычная цена — 4 990 ₽. Сейчас — 0 ₽ для владельцев стоматологий.</p>
+        <div class="med-method__intro">
+          <p class="med-pill">Решение</p>
+          <h2 id="med-method-title">«Умный Навигатор» даёт алгоритму ориентиры с первого дня</h2>
+          <p>
+            Я не начинаю с пустого кабинета. В запуск идут готовые данные, офферы, аудитории, креативы и минус-фразы, накопленные за 6 лет маркетинга и 10+ проектов в медицине.
+          </p>
         </div>
 
-        <div class="diag-audit__grid">
-          {diagnosticResults.map((item) => (
+        <div class="med-method__diagram" aria-label="Схема метода Умный Навигатор">
+          {navigatorBlocks.map((block, index) => (
             <article>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m5 12 4 4L19 6" />
-              </svg>
+              <span>{index + 1}</span>
+              <h3>{block.title}</h3>
+              <p>{block.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="med-section med-compare" aria-labelledby="med-compare-title">
+      <div class="container">
+        <div class="med-section__head">
+          <p class="med-pill">До / после</p>
+          <h2 id="med-compare-title">Что меняется в запуске</h2>
+        </div>
+
+        <div class="med-compare__list">
+          {comparisonRows.map(([before, after]) => (
+            <article>
+              <p><span>Обычно</span>{before}</p>
+              <p><span>С навигатором</span>{after}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="med-section med-offer" aria-labelledby="med-offer-title">
+      <div class="container med-offer__inner">
+        <div>
+          <p class="med-pill">Бесплатная диагностика</p>
+          <h2 id="med-offer-title">За 30 минут вы получите не “консультацию”, а разбор кабинета с цифрами</h2>
+        </div>
+
+        <div class="med-offer__items">
+          {auditItems.map((item) => (
+            <article>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
               <p>{item}</p>
             </article>
           ))}
@@ -270,61 +217,71 @@ const photoSlots = [
       </div>
     </section>
 
-    <section class="diag-section diag-steps" aria-labelledby="diag-steps-heading">
-      <div class="container">
-        <div class="diag-section__lead diag-section__lead--wide">
-          <p class="diag-kicker">Шаги к результату</p>
-          <h2 id="diag-steps-heading">Как пройдёт диагностика</h2>
+    <section class="med-section med-steps" aria-labelledby="med-steps-title">
+      <div class="container med-steps__inner">
+        <div class="med-section__head">
+          <p class="med-pill">Сценарий созвона</p>
+          <h2 id="med-steps-title">Как пройдёт диагностика</h2>
         </div>
 
-        <div class="diag-steps__list">
-          {auditSteps.map((step) => (
+        <div class="med-steps__timeline">
+          {callSteps.map(([time, title, body]) => (
             <article>
-              <span>{step.time}</span>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.body}</p>
-              </div>
+              <span>{time}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="diag-section diag-bonus" aria-labelledby="diag-bonus-heading">
-      <div class="container diag-bonus__inner">
-        <div>
-          <p class="diag-kicker">Сверх диагностики</p>
-          <h2 id="diag-bonus-heading">Бонус первым 3 клиникам в этом месяце</h2>
-          <p>
-            Бесплатная стратегическая консультация «Как удвоить поток пациентов за 14 дней без увеличения бюджета» — отдельный созвон, где разбираем всю систему привлечения целиком.
-          </p>
-        </div>
-        <figure>
-          <div class="diag-photo diag-photo--call">
-            <span>Фото: созвон, ноутбук, кабинет рекламы</span>
+    <section class="med-section med-author" aria-labelledby="med-author-title">
+      <div class="container med-author__inner">
+        <figure class="med-author__media">
+          <div class="med-photo med-photo--portrait">
+            <span>Место под фото: Ростислав Загребин</span>
           </div>
-          <figcaption>Можно заменить на фото рабочего процесса или короткий скрин структуры аудита.</figcaption>
         </figure>
+
+        <div class="med-author__copy">
+          <p class="med-pill">Кто проводит разбор</p>
+          <h2 id="med-author-title">Ростислав Загребин</h2>
+          <p>
+            6 лет в маркетинге, фокус — Яндекс.Директ и ВК для медицины. На первом клиенте сделал х10 по чистой прибыли за 1,5 года через Я.Директ и сайт.
+          </p>
+          <div class="med-author__facts">
+            <span>10+ проектов в медицине</span>
+            <span>Бюджеты от 300 000 ₽/мес</span>
+            <span>29+ ниш для переноса связок</span>
+            <span>Сертификация по Яндекс.Директ</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="diag-cta" class="diag-section diag-cta" aria-labelledby="diag-cta-heading">
-      <div class="container diag-cta__inner">
-        <div class="diag-cta__copy">
-          <p class="diag-kicker">Финальный шаг</p>
-          <h2 id="diag-cta-heading">Каждый день без нормально настроенной рекламы стоит вам денег</h2>
+    <section id="diagnostics-form" class="med-section med-final" aria-labelledby="med-final-title">
+      <div class="container med-final__inner">
+        <div class="med-final__copy">
+          <p class="med-pill">Финальный шаг</p>
+          <h2 id="med-final-title">Каждый день без нормально настроенной рекламы стоит вам денег</h2>
           <p>
-            Пока вы читаете эту страницу — у конкурента через дорогу уже идёт очередная запись на имплантацию. Диагностика бесплатная. 30 минут. Без обязательств.
+            Худшее, что может случиться: вы узнаете, где сейчас теряете деньги, и почините это сами. Никаких менеджеров и отделов продаж — пишу или звоню лично я.
           </p>
-          <p class="diag-cta__ps">
-            P.S. Если у вас сейчас не настроена реклама вообще — тоже приходите. Покажу, с чего начать, чтобы не повторить ошибки тех, кто уже слил полмиллиона.
-          </p>
+
+          <div class="med-bonus">
+            <strong>Бонус первым 3 клиникам</strong>
+            <span>Стратегическая консультация «Как удвоить поток пациентов за 14 дней без увеличения бюджета».</span>
+          </div>
+
+          <div class="med-photo med-photo--call">
+            <span>Место под фото: созвон или рабочий стол с аудитом</span>
+          </div>
         </div>
 
-        <form class="diag-form" aria-label="Заявка на бесплатную диагностику">
-          <div class="diag-form__head">
-            <span>Лично свяжусь за 10 минут</span>
+        <form class="med-form" aria-label="Заявка на бесплатную диагностику">
+          <div>
+            <span>Свяжусь в течение 10 минут</span>
             <h3>Заявка на диагностику</h3>
           </div>
           <label>
@@ -336,7 +293,7 @@ const photoSlots = [
             <input name="contact" type="text" autocomplete="tel" />
           </label>
           <label>
-            Сайт клиники / город
+            Город и сайт клиники
             <input name="clinic" type="text" />
           </label>
           <label>
@@ -344,21 +301,21 @@ const photoSlots = [
             <textarea name="message" rows="4"></textarea>
           </label>
           <button type="button">Записаться на бесплатную диагностику</button>
-          <p>Никаких менеджеров и отделов продаж. Пишу или звоню лично я.</p>
+          <p>Если реклама ещё не настроена, тоже приходите: покажу, с чего начать без слива бюджета.</p>
         </form>
       </div>
     </section>
 
-    <section class="diag-photo-plan" aria-labelledby="diag-photo-plan-heading">
-      <div class="container diag-photo-plan__inner">
-        <h2 id="diag-photo-plan-heading">Какие фото потом заменить на реальные</h2>
+    <section class="med-photo-guide" aria-labelledby="med-photo-guide-title">
+      <div class="container med-photo-guide__inner">
+        <h2 id="med-photo-guide-title">Места под реальные материалы</h2>
         <ul>
-          {photoSlots.map((slot) => <li>{slot}</li>)}
+          {photoNotes.map((note) => <li>{note}</li>)}
         </ul>
       </div>
     </section>
 
-    <a class="diag-sticky" href="#diag-cta">Записаться</a>
+    <a class="med-sticky" href="#diagnostics-form">Записаться</a>
   </main>
 
   <Footer />
@@ -367,721 +324,667 @@ const photoSlots = [
 
 <style>
   :global(body) {
-    background: #fbfbf8;
-    color: #13201f;
+    background: #f7f8f3;
+    color: #16211f;
   }
 
-  .diagnostics-page {
-    --diag-ink: #13201f;
-    --diag-muted: #65706d;
-    --diag-line: rgba(19, 32, 31, 0.12);
-    --diag-soft: #f2f7f4;
-    --diag-blue: #e8f2ff;
-    --diag-mint: #dff4ea;
-    --diag-amber: #fff1c7;
-    --diag-accent: #e94b1b;
-    --diag-green: #18784f;
-    background:
-      linear-gradient(180deg, #fbfbf8 0%, #ffffff 36%, #f6faf7 100%);
+  .med-page {
+    --ink: #16211f;
+    --muted: #63706c;
+    --line: rgba(22, 33, 31, 0.12);
+    --paper: #fffefa;
+    --soft: #edf7f1;
+    --blue: #eaf3fb;
+    --accent: #e94b1b;
+    --green: #12724b;
+    --shadow: 0 18px 50px rgba(27, 55, 47, 0.09);
+    background: linear-gradient(180deg, #f7f8f3 0%, #fffefa 42%, #f4faf6 100%);
   }
 
-  .diagnostics-page :global(section:nth-of-type(even)) {
+  .med-page :global(section:nth-of-type(even)) {
     background: transparent;
   }
 
-  .diag-section {
-    padding-block: clamp(4rem, 8vw, 7.5rem);
+  .med-section {
+    padding-block: 88px;
   }
 
-  .diag-kicker {
-    width: fit-content;
-    margin: 0 0 1rem;
-    padding: 0.45rem 0.7rem;
-    border: 1px solid var(--diag-line);
+  .med-pill {
+    display: inline-flex;
+    margin: 0 0 18px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    color: var(--diag-green);
-    font-size: 0.78rem;
+    background: rgba(255, 254, 250, 0.84);
+    color: var(--green);
+    font-size: 13px;
     font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .diag-section__lead {
-    max-width: 540px;
-  }
-
-  .diag-section__lead--wide {
-    max-width: 820px;
-    margin-block-end: clamp(1.5rem, 4vw, 3rem);
-  }
-
-  .diag-section h2,
-  .diag-hero h1 {
-    margin: 0;
-    color: var(--diag-ink);
     letter-spacing: 0;
-    line-height: 0.98;
+    line-height: 1.2;
   }
 
-  .diag-section h2 {
-    max-width: 920px;
-    font-size: clamp(2.15rem, 6vw, 5.6rem);
+  .med-page h1,
+  .med-page h2,
+  .med-page h3,
+  .med-page p {
+    letter-spacing: 0;
   }
 
-  .diag-section__lead p,
-  .diag-problem__copy p,
-  .diag-author__copy p,
-  .diag-bonus p,
-  .diag-cta__copy p {
-    color: var(--diag-muted);
-    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  .med-page h1,
+  .med-page h2 {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 900;
+    line-height: 1.02;
+  }
+
+  .med-page h1 {
+    max-width: 740px;
+    font-size: 76px;
+  }
+
+  .med-page h2 {
+    max-width: 880px;
+    font-size: 54px;
+  }
+
+  .med-page h3 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  .med-page p {
+    color: var(--muted);
     line-height: 1.55;
   }
 
-  .diag-button,
-  .diag-form button,
-  .diag-sticky {
+  .med-section__head {
+    max-width: 880px;
+    margin-block-end: 34px;
+  }
+
+  .med-btn,
+  .med-form button,
+  .med-sticky {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 3.25rem;
-    padding: 0.9rem 1.3rem;
+    min-height: 54px;
+    padding: 14px 20px;
     border: 0;
     border-radius: 8px;
-    background: var(--diag-accent);
+    background: var(--accent);
     color: #fff;
     font: inherit;
     font-weight: 900;
+    letter-spacing: 0;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    box-shadow: 0 14px 28px rgba(233, 75, 27, 0.24);
     cursor: pointer;
+    box-shadow: 0 14px 30px rgba(233, 75, 27, 0.24);
   }
 
-  .diag-hero {
-    position: relative;
-    min-height: min(860px, 92svh);
-    overflow: hidden;
-    padding-block: clamp(4rem, 7vw, 7rem) clamp(3rem, 5vw, 5rem);
-    background: #eff7f1;
-  }
-
-  .diag-hero__media {
-    position: absolute;
-    inset: clamp(1rem, 2.5vw, 2rem);
-    border-radius: 8px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #ffffff 0%, #e6f4ee 45%, #dcecff 100%);
-  }
-
-  .diag-hero__media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
+  .med-hero {
+    padding-block: 56px 48px;
     background:
-      linear-gradient(90deg, rgba(251, 251, 248, 0.98) 0%, rgba(251, 251, 248, 0.86) 42%, rgba(251, 251, 248, 0.2) 100%),
-      linear-gradient(0deg, rgba(251, 251, 248, 0.9), rgba(251, 251, 248, 0));
+      radial-gradient(circle at 80% 8%, rgba(18, 114, 75, 0.16), transparent 30%),
+      linear-gradient(135deg, #f7f8f3, #eff8f2 58%, #eaf3fb);
   }
 
-  .diag-hero__inner {
-    position: relative;
+  .med-hero__inner {
     display: grid;
-    min-height: calc(min(860px, 92svh) - clamp(7rem, 12vw, 12rem));
-    align-content: end;
-    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.72fr);
+    gap: 44px;
+    align-items: end;
+    min-height: 760px;
   }
 
-  .diag-hero__copy {
-    max-width: 820px;
-    padding-block-start: clamp(1rem, 4vw, 3rem);
+  .med-hero__lead {
+    max-width: 720px;
+    margin: 24px 0 0;
+    color: #344642;
+    font-size: 24px;
   }
 
-  .diag-hero h1 {
-    font-size: clamp(2.8rem, 5.6vw, 5rem);
-    max-width: 18ch;
-  }
-
-  .diag-hero__copy > p:not(.diag-kicker) {
-    max-width: 760px;
-    margin: 1.4rem 0 0;
-    color: #344541;
-    font-size: clamp(1.12rem, 1.7vw, 1.45rem);
-    line-height: 1.52;
-  }
-
-  .diag-hero__actions {
+  .med-hero__actions {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-block-start: 2rem;
+    gap: 18px;
+    margin-block-start: 32px;
   }
 
-  .diag-hero__actions span {
-    max-width: 360px;
-    color: var(--diag-muted);
-    font-size: 0.98rem;
+  .med-hero__actions span {
+    max-width: 330px;
+    color: var(--muted);
     line-height: 1.45;
   }
 
-  .diag-hero__metrics {
+  .med-hero__panel {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.9rem;
-    max-width: 880px;
+    gap: 14px;
   }
 
-  .diag-hero__metrics article {
-    padding: 1rem;
-    border: 1px solid rgba(19, 32, 31, 0.1);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.84);
-    backdrop-filter: blur(12px);
-  }
-
-  .diag-hero__metrics strong {
-    display: block;
-    color: var(--diag-ink);
-    font-size: clamp(1.45rem, 3vw, 2.2rem);
-    line-height: 1;
-  }
-
-  .diag-hero__metrics span {
-    display: block;
-    margin-block-start: 0.5rem;
-    color: var(--diag-muted);
-    line-height: 1.35;
-  }
-
-  .diag-photo {
-    position: relative;
+  .med-photo {
     display: grid;
-    min-height: 320px;
-    border: 1px dashed rgba(19, 32, 31, 0.26);
+    min-height: 280px;
+    border: 1px solid rgba(22, 33, 31, 0.16);
     border-radius: 8px;
     overflow: hidden;
     place-items: center;
     background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(232, 242, 255, 0.65)),
-      repeating-linear-gradient(45deg, rgba(19, 32, 31, 0.07) 0 1px, transparent 1px 14px);
+      linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(234, 243, 251, 0.72)),
+      repeating-linear-gradient(135deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 16px);
   }
 
-  .diag-photo span {
-    max-width: 18rem;
-    padding: 0.75rem 0.9rem;
+  .med-photo span {
+    max-width: 260px;
+    padding: 12px 14px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.88);
-    color: #40504d;
+    background: rgba(255, 254, 250, 0.88);
+    color: #40504b;
     font-weight: 800;
     line-height: 1.35;
     text-align: center;
   }
 
-  .diag-photo--hero {
-    position: absolute;
-    inset: auto 0 0 auto;
-    width: min(56vw, 760px);
-    height: 100%;
-    min-height: 0;
-    border: 0;
-    border-radius: 0;
+  .med-photo--hero {
+    min-height: 520px;
     background:
-      linear-gradient(135deg, rgba(232, 242, 255, 0.45), rgba(223, 244, 234, 0.9)),
-      linear-gradient(90deg, transparent 0 58%, rgba(255, 255, 255, 0.8) 58% 60%, transparent 60%),
-      repeating-linear-gradient(0deg, rgba(19, 32, 31, 0.08) 0 1px, transparent 1px 42px);
+      linear-gradient(160deg, rgba(237, 247, 241, 0.84), rgba(234, 243, 251, 0.86)),
+      linear-gradient(90deg, transparent 0 58%, rgba(255, 255, 255, 0.72) 58% 61%, transparent 61%),
+      repeating-linear-gradient(0deg, rgba(22, 33, 31, 0.08) 0 1px, transparent 1px 44px);
   }
 
-  .diag-photo--dashboard {
-    min-height: 420px;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(232, 242, 255, 0.72)),
-      repeating-linear-gradient(0deg, rgba(19, 32, 31, 0.08) 0 1px, transparent 1px 48px);
-  }
-
-  .diag-photo--portrait {
-    aspect-ratio: 4 / 5;
-  }
-
-  .diag-photo--call {
-    min-height: 360px;
-  }
-
-  .diag-split,
-  .diag-problem__inner,
-  .diag-author__inner,
-  .diag-bonus__inner,
-  .diag-cta__inner {
+  .med-metrics {
     display: grid;
-    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: start;
-  }
-
-  .diag-pain__list,
-  .diag-leaks,
-  .diag-method__grid,
-  .diag-audit__grid {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .diag-pain__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
   }
 
-  .diag-pain__list article,
-  .diag-leaks article,
-  .diag-method__grid article,
-  .diag-audit__grid article,
-  .diag-steps__list article {
-    min-width: 0;
-    border: 1px solid var(--diag-line);
+  .med-metrics article,
+  .med-card,
+  .med-audit-card,
+  .med-method__diagram article,
+  .med-compare__list article,
+  .med-offer__items article,
+  .med-steps__timeline article,
+  .med-form,
+  .med-bonus {
+    border: 1px solid var(--line);
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.86);
-    box-shadow: 0 16px 46px rgba(21, 54, 46, 0.08);
+    background: rgba(255, 254, 250, 0.9);
+    box-shadow: var(--shadow);
   }
 
-  .diag-pain__list article {
-    padding: 1rem;
+  .med-metrics article {
+    padding: 18px;
   }
 
-  .diag-pain__list span {
+  .med-metrics strong {
     display: block;
-    margin-block-end: 1.5rem;
-    color: var(--diag-accent);
-    font-weight: 900;
+    color: var(--ink);
+    font-size: 26px;
+    line-height: 1;
   }
 
-  .diag-pain__list p,
-  .diag-leaks p,
-  .diag-method__grid p,
-  .diag-audit__grid p,
-  .diag-steps__list p {
-    margin: 0;
-    color: var(--diag-muted);
-    line-height: 1.55;
+  .med-metrics span {
+    display: block;
+    margin-block-start: 8px;
+    color: var(--muted);
+    line-height: 1.35;
   }
 
-  .diag-problem {
-    background: linear-gradient(180deg, #f7fbff, #ffffff);
-  }
-
-  .diag-proof {
-    margin: 0;
-  }
-
-  .diag-proof figcaption,
-  .diag-author figcaption,
-  .diag-bonus figcaption {
-    margin-block-start: 0.7rem;
-    color: var(--diag-muted);
-    font-size: 0.92rem;
-    line-height: 1.45;
-  }
-
-  .diag-leaks {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-block-start: 1rem;
-  }
-
-  .diag-leaks article,
-  .diag-audit__grid article {
-    padding: 1.1rem;
-  }
-
-  .diag-leaks svg,
-  .diag-audit__grid svg {
-    width: 1.65rem;
-    height: 1.65rem;
-    margin-block-end: 1rem;
-    color: var(--diag-accent);
-  }
-
-  .diag-leaks path,
-  .diag-audit__grid path {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .diag-method {
-    background: linear-gradient(180deg, #ffffff, #f4faf7);
-  }
-
-  .diag-method__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .diag-method__grid article {
-    min-height: 220px;
-    padding: 1.2rem;
-  }
-
-  .diag-method__grid article:nth-child(1) { background: var(--diag-mint); }
-  .diag-method__grid article:nth-child(2) { background: var(--diag-blue); }
-  .diag-method__grid article:nth-child(3) { background: #ffffff; }
-  .diag-method__grid article:nth-child(4) { background: var(--diag-amber); }
-
-  .diag-method__grid h3 {
-    margin: 0 0 1rem;
-    color: var(--diag-ink);
-    font-size: 1.35rem;
-    line-height: 1.08;
-  }
-
-  .diag-compare__table {
-    overflow: hidden;
-    border: 1px solid var(--diag-line);
-    border-radius: 8px;
-    background: #ffffff;
-    box-shadow: 0 18px 52px rgba(21, 54, 46, 0.08);
-  }
-
-  .diag-compare__head,
-  .diag-compare__table article {
+  .med-pain__grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
   }
 
-  .diag-compare__head {
-    background: #13201f;
-    color: #fff;
+  .med-card {
+    padding: 24px;
+  }
+
+  .med-card span {
+    display: block;
+    margin-block-end: 34px;
+    color: var(--accent);
     font-weight: 900;
   }
 
-  .diag-compare__head span,
-  .diag-compare__table p {
-    margin: 0;
-    padding: 1rem;
-    line-height: 1.45;
+  .med-card p {
+    margin: 16px 0 0;
   }
 
-  .diag-compare__table article + article,
-  .diag-compare__table article p + p,
-  .diag-compare__head span + span {
-    border-block-start: 1px solid var(--diag-line);
-  }
-
-  .diag-compare__table article p + p,
-  .diag-compare__head span + span {
-    border-block-start: 0;
-    border-inline-start: 1px solid var(--diag-line);
-  }
-
-  .diag-compare__table article p:last-child {
-    background: #effaf4;
-    color: #11613f;
+  .med-note {
+    margin: 22px 0 0;
+    padding: 22px;
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    background: #fff4ea;
+    color: #5a3728;
+    font-size: 22px;
     font-weight: 800;
   }
 
-  .diag-author {
-    background: #f8f3e8;
+  .med-leak {
+    background: linear-gradient(180deg, #fffefa, #f4faf6);
   }
 
-  .diag-author figure,
-  .diag-bonus figure {
-    margin: 0;
-  }
-
-  .diag-author__copy ul {
+  .med-leak__inner,
+  .med-offer__inner,
+  .med-author__inner,
+  .med-final__inner {
     display: grid;
-    gap: 0.7rem;
-    margin: 1.4rem 0 0;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  .med-leak__copy p,
+  .med-method__intro p,
+  .med-final__copy > p,
+  .med-author__copy > p {
+    max-width: 660px;
+    font-size: 21px;
+  }
+
+  .med-audit-card {
+    padding: 18px;
+  }
+
+  .med-photo--audit {
+    min-height: 320px;
+    margin-block-end: 20px;
+  }
+
+  .med-audit-card ul {
+    display: grid;
+    gap: 12px;
+    margin: 16px 0 0;
     padding: 0;
     list-style: none;
   }
 
-  .diag-author__copy li {
-    padding: 0.95rem 1rem;
-    border: 1px solid var(--diag-line);
+  .med-audit-card li {
+    padding: 14px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.68);
-    color: var(--diag-ink);
-    font-weight: 800;
-  }
-
-  .diag-audit__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .diag-audit__grid svg {
-    color: var(--diag-green);
-  }
-
-  .diag-steps {
-    background: #f7fbff;
-  }
-
-  .diag-steps__list {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .diag-steps__list article {
-    display: grid;
-    grid-template-columns: 7rem minmax(0, 1fr);
-    gap: 1rem;
-    padding: 1.1rem;
-    align-items: start;
-  }
-
-  .diag-steps__list span {
-    color: var(--diag-accent);
-    font-size: 1.4rem;
-    font-weight: 900;
-    line-height: 1;
-  }
-
-  .diag-steps__list h3 {
-    margin: 0 0 0.5rem;
-    color: var(--diag-ink);
-    font-size: 1.35rem;
-  }
-
-  .diag-bonus__inner {
-    align-items: center;
-  }
-
-  .diag-cta {
-    background: linear-gradient(135deg, #f7fbff, #f5fbf7 56%, #fff7df);
-  }
-
-  .diag-cta__inner {
-    align-items: stretch;
-  }
-
-  .diag-cta__ps {
-    padding: 1rem;
-    border: 1px solid rgba(24, 120, 79, 0.18);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.68);
-  }
-
-  .diag-form {
-    display: grid;
-    gap: 0.85rem;
-    padding: clamp(1rem, 3vw, 1.6rem);
-    border: 1px solid var(--diag-line);
-    border-radius: 8px;
-    background: #ffffff;
-    box-shadow: 0 22px 70px rgba(21, 54, 46, 0.12);
-  }
-
-  .diag-form__head span {
-    display: block;
-    color: var(--diag-green);
-    font-size: 0.82rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .diag-form__head h3 {
-    margin: 0.35rem 0 0.5rem;
-    color: var(--diag-ink);
-    font-size: clamp(1.6rem, 3vw, 2.5rem);
-    line-height: 1.02;
-  }
-
-  .diag-form label {
-    display: grid;
-    gap: 0.45rem;
-    color: var(--diag-ink);
-    font-weight: 800;
-  }
-
-  .diag-form input,
-  .diag-form textarea {
-    width: 100%;
-    border: 1px solid rgba(19, 32, 31, 0.16);
-    border-radius: 8px;
-    background: #f9fbfa;
-    color: var(--diag-ink);
-    font: inherit;
-    padding: 0.9rem 1rem;
-  }
-
-  .diag-form input:focus,
-  .diag-form textarea:focus {
-    outline: 3px solid rgba(233, 75, 27, 0.18);
-    border-color: var(--diag-accent);
-    background: #fff;
-  }
-
-  .diag-form p {
-    margin: 0;
-    color: var(--diag-muted);
-    font-size: 0.92rem;
+    background: #f7f8f3;
+    color: #31433e;
     line-height: 1.45;
   }
 
-  .diag-photo-plan {
-    padding-block: 2rem 5rem;
-    background: #ffffff;
+  .med-method__intro {
+    max-width: 900px;
+    margin-block-end: 34px;
   }
 
-  .diag-photo-plan__inner {
+  .med-method__diagram {
     display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-    gap: 2rem;
-    padding-block-start: 2rem;
-    border-block-start: 1px solid var(--diag-line);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
   }
 
-  .diag-photo-plan h2 {
-    margin: 0;
-    color: var(--diag-ink);
-    font-size: clamp(1.6rem, 3vw, 2.4rem);
-    line-height: 1.08;
+  .med-method__diagram article {
+    min-height: 250px;
+    padding: 22px;
   }
 
-  .diag-photo-plan ul {
+  .med-method__diagram article:nth-child(1) { background: #edf7f1; }
+  .med-method__diagram article:nth-child(2) { background: #eaf3fb; }
+  .med-method__diagram article:nth-child(3) { background: #fffefa; }
+  .med-method__diagram article:nth-child(4) { background: #fff2cf; }
+
+  .med-method__diagram span {
     display: grid;
-    gap: 0.65rem;
-    margin: 0;
-    padding-inline-start: 1.2rem;
-    color: var(--diag-muted);
-    line-height: 1.55;
+    width: 42px;
+    height: 42px;
+    margin-block-end: 48px;
+    border-radius: 50%;
+    place-items: center;
+    background: var(--ink);
+    color: #fff;
+    font-weight: 900;
   }
 
-  .diag-sticky {
+  .med-method__diagram p {
+    margin: 14px 0 0;
+  }
+
+  .med-compare {
+    background: #edf7f1;
+  }
+
+  .med-compare__list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .med-compare__list article {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .med-compare__list p {
+    margin: 0;
+    padding: 18px;
+    color: var(--ink);
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .med-compare__list p:first-child {
+    background: #fffefa;
+  }
+
+  .med-compare__list p:last-child {
+    background: #e2f6ea;
+    color: #0f5d3d;
+  }
+
+  .med-compare__list span {
+    display: block;
+    margin-block-end: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .med-offer__items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .med-offer__items article {
+    padding: 20px;
+  }
+
+  .med-offer__items svg {
+    width: 28px;
+    height: 28px;
+    margin-block-end: 22px;
+    color: var(--green);
+  }
+
+  .med-offer__items path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .med-offer__items p {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 800;
+  }
+
+  .med-steps {
+    background: #f4f8fb;
+  }
+
+  .med-steps__timeline {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .med-steps__timeline article {
+    padding: 22px;
+  }
+
+  .med-steps__timeline span {
+    display: block;
+    margin-block-end: 46px;
+    color: var(--accent);
+    font-size: 28px;
+    font-weight: 900;
+  }
+
+  .med-steps__timeline p {
+    margin: 12px 0 0;
+  }
+
+  .med-author {
+    background: #fff8ea;
+  }
+
+  .med-photo--portrait {
+    min-height: 540px;
+  }
+
+  .med-author__facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-block-start: 24px;
+  }
+
+  .med-author__facts span {
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: rgba(255, 254, 250, 0.76);
+    color: var(--ink);
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  .med-final {
+    background: linear-gradient(135deg, #f4faf6, #fff8ea);
+  }
+
+  .med-bonus {
+    display: grid;
+    gap: 8px;
+    margin-block: 24px;
+    padding: 18px;
+  }
+
+  .med-bonus strong {
+    color: var(--green);
+    font-size: 22px;
+  }
+
+  .med-bonus span {
+    color: var(--ink);
+    line-height: 1.45;
+  }
+
+  .med-photo--call {
+    min-height: 260px;
+  }
+
+  .med-form {
+    display: grid;
+    gap: 14px;
+    padding: 24px;
+  }
+
+  .med-form div > span {
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .med-form h3 {
+    margin-block-start: 8px;
+    font-size: 34px;
+  }
+
+  .med-form label {
+    display: grid;
+    gap: 8px;
+    color: var(--ink);
+    font-weight: 800;
+  }
+
+  .med-form input,
+  .med-form textarea {
+    width: 100%;
+    border: 1px solid rgba(22, 33, 31, 0.16);
+    border-radius: 8px;
+    background: #f7f8f3;
+    color: var(--ink);
+    font: inherit;
+    padding: 14px;
+  }
+
+  .med-form input:focus,
+  .med-form textarea:focus {
+    outline: 3px solid rgba(233, 75, 27, 0.18);
+    border-color: var(--accent);
+    background: #fff;
+  }
+
+  .med-form p {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .med-photo-guide {
+    padding-block: 36px 72px;
+    background: #fffefa;
+  }
+
+  .med-photo-guide__inner {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 32px;
+    padding-block-start: 28px;
+    border-block-start: 1px solid var(--line);
+  }
+
+  .med-photo-guide h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 30px;
+    line-height: 1.1;
+  }
+
+  .med-photo-guide ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .med-sticky {
     position: fixed;
     z-index: 20;
-    right: 1rem;
-    bottom: 1rem;
+    right: 16px;
+    bottom: 16px;
     display: none;
-    min-height: 3rem;
-    padding-inline: 1.1rem;
-    box-shadow: 0 16px 44px rgba(233, 75, 27, 0.3);
+    min-height: 48px;
+    padding-inline: 18px;
   }
 
-  @media (max-width: 1024px) {
-    .diag-split,
-    .diag-problem__inner,
-    .diag-author__inner,
-    .diag-bonus__inner,
-    .diag-cta__inner,
-    .diag-photo-plan__inner {
+  @media (max-width: 1040px) {
+    .med-page h1 { font-size: 58px; }
+    .med-page h2 { font-size: 44px; }
+
+    .med-hero__inner,
+    .med-leak__inner,
+    .med-offer__inner,
+    .med-author__inner,
+    .med-final__inner,
+    .med-photo-guide__inner {
       grid-template-columns: 1fr;
     }
 
-    .diag-method__grid,
-    .diag-leaks,
-    .diag-audit__grid {
+    .med-hero__inner {
+      min-height: auto;
+    }
+
+    .med-pain__grid,
+    .med-method__diagram,
+    .med-steps__timeline {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  @media (max-width: 680px) {
-    .diag-hero {
-      min-height: auto;
-      padding-block: 5.5rem 3rem;
+  @media (max-width: 640px) {
+    .med-section {
+      padding-block: 60px;
     }
 
-    .diag-hero__media {
-      inset: 0;
-      border-radius: 0;
+    .med-hero {
+      padding-block: 36px 42px;
     }
 
-    .diag-hero__media::after {
-      background:
-        linear-gradient(180deg, rgba(251, 251, 248, 0.94) 0%, rgba(251, 251, 248, 0.92) 52%, rgba(251, 251, 248, 0.76) 100%);
+    .med-page h1 {
+      font-size: 42px;
+      line-height: 1.05;
     }
 
-    .diag-photo--hero {
-      width: 100%;
-      height: 48%;
-      opacity: 0.55;
+    .med-page h2 {
+      font-size: 34px;
+      line-height: 1.06;
     }
 
-    .diag-hero__inner {
-      min-height: auto;
-      align-content: start;
+    .med-hero__lead,
+    .med-leak__copy p,
+    .med-method__intro p,
+    .med-final__copy > p,
+    .med-author__copy > p {
+      font-size: 18px;
     }
 
-    .diag-hero h1 {
-      max-width: 100%;
-      font-size: clamp(2.35rem, 10.5vw, 3.4rem);
-      line-height: 1.03;
+    .med-hero__inner {
+      gap: 28px;
     }
 
-    .diag-hero__actions {
-      align-items: stretch;
-    }
-
-    .diag-button {
+    .med-hero__actions,
+    .med-btn,
+    .med-form button {
       width: 100%;
     }
 
-    .diag-pain__list,
-    .diag-method__grid,
-    .diag-leaks,
-    .diag-audit__grid {
-      grid-template-columns: 1fr;
+    .med-photo--hero {
+      min-height: 180px;
     }
 
-    .diag-hero__metrics {
+    .med-metrics {
       display: none;
     }
 
-    .diag-section h2 {
-      font-size: clamp(2.2rem, 12vw, 3.8rem);
-    }
-
-    .diag-compare__head {
-      display: none;
-    }
-
-    .diag-compare__table article {
+    .med-pain__grid,
+    .med-method__diagram,
+    .med-steps__timeline,
+    .med-offer__items,
+    .med-author__facts {
       grid-template-columns: 1fr;
     }
 
-    .diag-compare__table article p + p {
-      border-inline-start: 0;
-      border-block-start: 1px solid var(--diag-line);
+    .med-card span,
+    .med-method__diagram span,
+    .med-steps__timeline span {
+      margin-block-end: 22px;
     }
 
-    .diag-compare__table p::before {
-      display: block;
-      margin-block-end: 0.35rem;
-      color: var(--diag-muted);
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .med-note {
+      font-size: 18px;
     }
 
-    .diag-compare__table p:first-child::before {
-      content: "Стандартное агентство";
-    }
-
-    .diag-compare__table p:last-child::before {
-      content: "Умный Навигатор";
-      color: var(--diag-green);
-    }
-
-    .diag-steps__list article {
+    .med-compare__list article {
       grid-template-columns: 1fr;
     }
 
-    .diag-form button {
-      min-height: 4rem;
+    .med-photo--portrait {
+      min-height: 360px;
     }
 
-    .diag-sticky {
+    .med-form {
+      padding: 18px;
+    }
+
+    .med-sticky {
       display: inline-flex;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .diag-button,
-    .diag-form button,
-    .diag-sticky {
-      transition: none;
     }
   }
 </style>
