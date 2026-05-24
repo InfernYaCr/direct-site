@@ -11,9 +11,11 @@ import { product } from '@/content/site';
         <article class="product-solutions__card">
           <h3>{item.title}</h3>
           <p>{item.body}</p>
-          <ul>
-            {item.subpoints.map((point) => <li>{point}</li>)}
-          </ul>
+          {item.subpoints.length > 0 && (
+            <ul>
+              {item.subpoints.map((point) => <li>{point}</li>)}
+            </ul>
+          )}
         </article>
       ))}
     </div>

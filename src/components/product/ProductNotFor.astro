@@ -10,7 +10,9 @@ import { product } from '@/content/site';
       {product.notFor.items.map((item) => (
         <article class="product-not-for__item">
           <svg viewBox="0 0 24 24" width="28" height="28" role="img" aria-label={product.labels.notForIcon}>
-            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M12 8v5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M12 16h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
           </svg>
           <p>{item.text}</p>
         </article>
