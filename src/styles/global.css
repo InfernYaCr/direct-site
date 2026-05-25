@@ -1475,28 +1475,147 @@ body.menu-open .mobile-menu-panel {
 }
 
 .site-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 28px;
+  position: relative;
+  display: grid;
+  gap: clamp(26px, 3vw, 38px);
   width: min(var(--max), calc(100% - 36px));
-  margin: 0 auto;
-  padding: 42px 0 58px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+  margin: 56px auto 28px;
+  padding: clamp(32px, 4vw, 54px) clamp(24px, 3.5vw, 52px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  background:
+    radial-gradient(130% 150% at 8% -12%, rgba(7, 142, 234, 0.22), transparent 46%),
+    linear-gradient(165deg, #0c1d31 0%, #060d18 72%);
+  color: rgba(255, 255, 255, 0.66);
+  box-shadow: 0 34px 90px rgba(4, 10, 18, 0.32);
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 46px 46px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.site-footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 48px;
+}
+
+.footer-intro {
+  flex: 1 1 320px;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  max-width: 460px;
+}
+
+.footer-intro p {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.footer-cta {
+  justify-self: start;
+  width: max-content;
+  margin-top: 4px;
+  padding: 11px 20px;
+  border: 1px solid rgba(7, 142, 234, 0.45);
+  border-radius: 999px;
+  background: rgba(7, 142, 234, 0.16);
+  color: #cfe7ff;
+  font-weight: 750;
+  font-size: 0.92rem;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.footer-cta:hover {
+  transform: translateY(-2px);
+  border-color: rgba(7, 142, 234, 0.7);
+  background: rgba(7, 142, 234, 0.26);
 }
 
 .footer-brand {
-  margin-bottom: 14px;
-  color: var(--text);
+  margin: 0;
 }
 
 .footer-links {
+  flex: 0 0 auto;
+  min-width: 130px;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  font-weight: 650;
+}
+
+.footer-top > .footer-links:first-of-type {
+  margin-left: auto;
+}
+
+.footer-links__title {
+  margin-bottom: 4px;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-footer .footer-links a {
+  width: max-content;
+  color: rgba(255, 255, 255, 0.64);
+  transition: color 160ms ease;
+}
+
+.site-footer .footer-links a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  align-content: start;
-  justify-content: flex-end;
-  font-weight: 650;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-copy {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.85rem;
+}
+
+.site-footer .brand-word {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.site-footer .brand-word strong {
+  color: #fff;
+}
+
+.site-footer .brand-word strong span {
+  color: #4aa8f5;
+}
+
+.site-footer .brand-word em {
+  color: rgba(255, 255, 255, 0.48);
 }
 
 .dev-credit {
@@ -1556,6 +1675,27 @@ body.menu-open .mobile-menu-panel {
   font-size: 0.72rem;
   font-style: normal;
   text-transform: uppercase;
+}
+
+.site-footer .dev-credit {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.86);
+  box-shadow: none;
+}
+
+.site-footer .dev-credit:hover {
+  border-color: rgba(7, 142, 234, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.site-footer .dev-credit strong {
+  color: #fff;
+}
+
+.site-footer .dev-credit em {
+  background: rgba(7, 142, 234, 0.2);
+  color: #7cc4ff;
 }
 
 .thank-page {
@@ -2731,6 +2871,10 @@ body.menu-open .mobile-menu-panel {
 
   .footer-links {
     justify-content: flex-start;
+  }
+
+  .footer-top > .footer-links:first-of-type {
+    margin-left: 0;
   }
 
   .dev-credit {
@@ -4487,6 +4631,7 @@ body.menu-open .mobile-menu-panel {
   --blue: #2563eb;
   --blue-2: #0ea5e9;
   --blue-soft: #dbeafe;
+  --red: #dc2626;
   --shadow: 0 24px 70px rgba(15, 46, 86, 0.12);
   --radius: 24px;
 }
@@ -4506,6 +4651,10 @@ body::before {
 
 .text-blue {
   color: var(--blue);
+}
+
+.text-red {
+  color: var(--red);
 }
 
 h1 {
