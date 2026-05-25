@@ -19,7 +19,7 @@ export const navigation = [
   { label: "Проблема", href: "#inside" },
   { label: "Решение", href: "#program" },
   { label: "Автор", href: "#author" },
-  { label: "Диагностика", href: "#pricing" },
+  { label: "Диагностика", href: "#lead-form" },
 ];
 
 export const leadMagnet = {
@@ -28,7 +28,7 @@ export const leadMagnet = {
   description:
     "Разберём ваш рекламный кабинет ВК или Яндекс.Директ, найдём точки слива бюджета и оценим, реально ли выйти на 30–50 платёжеспособных записей в месяц.",
   cta: "Записаться на диагностику",
-  href: "https://t.me/your_username",
+  href: "#lead-form",
   goalId: "lead_free_guide",
 };
 
@@ -47,8 +47,8 @@ export const offers = [
       "Соберём план внедрения метода «Умный Навигатор» под вашу клинику",
     ],
     cta: "Оставить заявку на диагностику",
-    checkoutUrl: "https://t.me/your_username",
-    paymentUrl: "https://t.me/your_username",
+    checkoutUrl: "#lead-form",
+    paymentUrl: "#lead-form",
     goalId: "paid_tariff_full",
     highlighted: true,
   },
@@ -65,8 +65,8 @@ export const offers = [
       "Только первым 3 клиникам в этом месяце",
     ],
     cta: "Забрать бонус",
-    checkoutUrl: "https://t.me/your_username",
-    paymentUrl: "https://t.me/your_username",
+    checkoutUrl: "#lead-form",
+    paymentUrl: "#lead-form",
     goalId: "paid_tariff_pro",
   },
 ];

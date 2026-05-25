@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { site } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const nextSteps = [
+  "Проверь email, который указал при оплате.",
+  "Сохрани письмо с доступом и открой AI QA Practice Kit.",
+  "Подпишись на TG/VK: туда будем выкладывать обновления и разборы.",
+];
+---
+
+<BaseLayout
+  title="Спасибо за покупку"
+  description="Страница успешной оплаты AI QA Practice Kit. Здесь можно скачать материалы и перейти в Telegram."
+  noindex={true}
+>
+  <Header />
+  <main class="thank-page" id="top">
+    <section class="section thank-hero">
+      <div class="thank-card reveal">
+        <div class="thank-copy">
+          <p class="eyebrow">Оплата прошла</p>
+          <h1>Спасибо. Твой AI QA набор готов.</h1>
+          <p>
+            Если оплата прошла успешно, материалы придут на email, указанный при оплате.
+            Если письмо не появилось за 10 минут, напиши в поддержку — проверим заказ и продублируем доступ.
+          </p>
+          <p class="thank-note">
+            Котик уже принял оплату, поднял чек-лист и желает спокойных релизов.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href={`mailto:${site.supportEmail}`}>Написать в поддержку</a>
+            <a class="button ghost" href={base}>На главную</a>
+            <a class="button ghost" href={site.telegramUrl}>Telegram</a>
+          </div>
+        </div>
+
+        <div class="thank-side">
+          <div class="thank-mascot">
+            <img
+              src={`${base}images/pixel-cat-mascot-note-v1.webp`}
+              alt="Пиксельный котик с чек-листом желает успеха после покупки AI QA набора"
+              loading="eager"
+              decoding="async"
+            />
+            <div class="thank-mascot-label">
+              <span>AI QA Kit</span>
+              <strong>Workbook • QA prompts • dataset • release report</strong>
+            </div>
+          </div>
+          <div class="mini-steps">
+            {nextSteps.map((step, index) => (
+              <div>
+                <span>{index + 1}</span>
+                <p>{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="thank-social reveal">
+        <div>
+          <p class="eyebrow">Следующий шаг</p>
+          <h2>Подпишись, чтобы получать обновления по AI QA practice</h2>
+          <p>
+            В каналах будем публиковать разборы, дополнительные QA prompts, обновления workbook
+            и заметки по AI-инструментам для тестировщиков.
+          </p>
+        </div>
+        <div class="soft-cta-actions">
+          <a class="button primary" href={site.telegramUrl}>Telegram</a>
+          <a class="button ghost" href={site.vkUrl}>VK</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

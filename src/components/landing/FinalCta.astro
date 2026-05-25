@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
       запись на имплантацию. Диагностика бесплатная. 30 минут. Без обязательств.
     </p>
   </div>
-  <form class="lead-form" action={`${base}send-lead.php`} method="post" data-goal="lead_form_submit">
+  <form id="lead-form" class="lead-form" action={`${base}send-lead.php`} method="post" data-goal="lead_form_submit">
     <input type="hidden" name="source" value="final_cta" />
     <input type="hidden" name="redirect" value={`${base}thank-you/?lead=diagnostic`} />
     <label>
