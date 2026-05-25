@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Hero from "@/components/landing/Hero.astro";
 import PainSection from "@/components/landing/PainSection.astro";
@@ -13,8 +12,7 @@ import FinalCta from "@/components/landing/FinalCta.astro";
 ---
 
 <BaseLayout>
-  <Header />
-  <main>
+  <main class="home-main">
     <Hero />
     <PainSection />
     <InsideSection />
