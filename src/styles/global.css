@@ -6563,3 +6563,137 @@ body {
     display: none;
   }
 }
+
+/* Desktop polish for the compact diagnostic offer and final CTA */
+@media (min-width: 981px) {
+  .diagnostic-offer {
+    grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1.18fr);
+    width: min(100%, 1180px);
+    margin-inline: auto;
+    border-radius: 30px;
+  }
+
+  .diagnostic-offer::before {
+    inset: 14px;
+    border-radius: 24px;
+  }
+
+  .diagnostic-offer__media,
+  .diagnostic-offer__media img {
+    min-height: 480px;
+  }
+
+  .diagnostic-offer__media img {
+    object-position: 46% center;
+  }
+
+  .diagnostic-media-card {
+    right: 22px;
+    bottom: 22px;
+    left: 22px;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .diagnostic-offer__content {
+    gap: 16px;
+    padding: clamp(32px, 3.3vw, 46px);
+  }
+
+  .diagnostic-offer__top {
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 188px);
+    gap: clamp(16px, 2vw, 26px);
+  }
+
+  .diagnostic-offer__top h3 {
+    max-width: 500px;
+    margin-top: 10px;
+    font-size: clamp(1.85rem, 2.25vw, 2.55rem);
+    line-height: 1.08;
+  }
+
+  .diagnostic-price {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .diagnostic-price del {
+    font-size: 1.1rem;
+  }
+
+  .diagnostic-price strong {
+    font-size: clamp(3.2rem, 4.5vw, 4.7rem);
+  }
+
+  .diagnostic-lead {
+    max-width: 620px;
+    font-size: clamp(1rem, 1.05vw, 1.12rem);
+    line-height: 1.5;
+  }
+
+  .diagnostic-list {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .diagnostic-list li {
+    min-height: 0;
+    padding: 12px 14px;
+    font-size: 0.94rem;
+  }
+
+  .diagnostic-proof div {
+    padding: 12px;
+  }
+
+  .diagnostic-proof strong {
+    font-size: clamp(1.2rem, 1.45vw, 1.55rem);
+  }
+
+  .diagnostic-offer__button {
+    min-width: 280px;
+    min-height: 56px;
+  }
+
+  .final-cta {
+    grid-template-columns: minmax(0, 720px) minmax(260px, 330px);
+    min-height: clamp(390px, 32vw, 500px);
+    align-items: end;
+    padding: clamp(38px, 5vw, 64px);
+  }
+
+  .final-cta > div {
+    max-width: 720px;
+  }
+
+  .final-cta h2 {
+    max-width: 720px;
+    font-size: clamp(2.9rem, 4.25vw, 5rem);
+    line-height: 1.04;
+  }
+
+  .final-cta-sub {
+    max-width: 640px;
+    font-size: clamp(1rem, 1.1vw, 1.16rem);
+  }
+
+  .final-cta .button {
+    justify-self: end;
+    min-width: 0;
+    width: min(100%, 320px);
+    min-height: 58px;
+    margin-bottom: 0;
+    padding-inline: 26px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .diagnostic-offer__top h3 {
+    font-size: clamp(1.65rem, 7.5vw, 2.15rem);
+  }
+
+  .diagnostic-lead {
+    font-size: 1rem;
+  }
+}
