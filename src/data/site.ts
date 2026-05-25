@@ -5,7 +5,7 @@ export const site = {
     "Бесплатная 30-минутная диагностика рекламного кабинета ВК или Яндекс.Директ для владельцев стоматологий. Покажу, где утекают деньги и как получать 30–50 платёжеспособных пациентов в месяц.",
   url: "https://navigator.example",
   telegramUrl: "https://t.me/your_username",
-  vkUrl: "https://vk.com/your_community",
+  vkUrl: "https://vk.com/valen_group",
   supportEmail: "hello@example.com",
   seller: {
     name: "Загребин Ростислав — заменить реквизиты перед запуском",
