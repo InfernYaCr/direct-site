@@ -5,25 +5,21 @@ const items = [
   {
     title: "3–4 недели обучения за ваш счёт",
     meta: "причина слива",
-    icon: "/images/pixel-scroll.svg",
-    text: "Каждое агентство запускает кабинет с чистого листа, и первые недели ваш бюджет уходит на обучение алгоритма.",
+    text: "Каждое агентство запускает кабинет «с чистого листа», и первые недели ваш бюджет уходит на то, чтобы Яндекс или ВК научился искать пациентов.",
   },
   {
     title: "Случайный трафик всем подряд",
     meta: "фаза обучения",
-    icon: "/images/pixel-robot.svg",
     text: "Нейросеть показывает рекламу школьникам, пенсионерам и тем, кто ищет «бесплатное удаление» или акцию за 19 900.",
   },
   {
     title: "Кресла пустые, лизинг капает",
     meta: "итог",
-    icon: "/images/pixel-cv.svg",
     text: "Вы платите за клики людей, которые никогда не запишутся на имплантацию за 80 000 ₽.",
   },
   {
     title: "«Нужно ещё потестить связки»",
     meta: "повтор сценария",
-    icon: "/images/pixel-map.svg",
     text: "Через месяц агентство разводит руками, а вы из своего кармана финансируете обучение чужого алгоритма.",
   },
 ];
@@ -33,28 +29,70 @@ const items = [
   <SectionHeading
     eyebrow="В чём проблема"
     title="Дело не в «перегретом аукционе» и не в том, что реклама в стоматологии больше <span class='text-blue'>не работает</span>"
-    text="Настоящая причина: кабинет запускают с нуля, алгоритм действует методом тыка, а вы оплачиваете каждый этот тычок."
+    text="Настоящая причина, почему вы уже отдали полмиллиона маркетологам и не получили пациентов: каждый новый подрядчик заново обучает алгоритм за ваш счёт."
   />
   <div class="problem-board reveal">
-    <div class="problem-board__visual" data-scroll-card data-scroll-scope="#inside .problem-board">
-      <img src="/images/problem-empty-chair.png" alt="Пустое стоматологическое кресло вечером" loading="lazy" />
-      <div class="problem-board__copy scroll-photo-copy" data-scroll-copy>
-        <span>фаза обучения</span>
-        <strong>3–4 недели</strong>
-        <p>алгоритм ищет вслепую за ваш счёт</p>
+    <div
+      class="problem-board__visual"
+      aria-label="Схема фазы обучения рекламного алгоритма"
+    >
+      <div class="learning-card">
+        <span class="learning-card__label">Фаза обучения</span>
+        <strong>Алгоритм ищет вслепую</strong>
+        <p>Пока система не понимает, кого считать вашим пациентом, она тратит бюджет на проверки гипотез.</p>
+      </div>
+      <div class="learning-scroll">
+        <div class="learning-result-title">Что в итоге</div>
+        <div class="learning-flow">
+          <span>01</span>
+          <div>
+            <p>{items[0].text}</p>
+          </div>
+        </div>
+        <div class="learning-flow">
+          <span>02</span>
+          <div>
+            <p>{items[1].text}</p>
+          </div>
+        </div>
+        <div class="learning-flow">
+          <span>03</span>
+          <div>
+            <p>{items[2].text}</p>
+          </div>
+        </div>
+        <div class="learning-flow">
+          <span>04</span>
+          <div>
+            <p>{items[3].text}</p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="problem-board__list">
+      <div class="problem-story">
+        <p>
+          В фазе обучения нейросеть действует методом тыка. Она показывает рекламу всем подряд,
+          пока пытается понять, кто похож на платёжеспособного пациента.
+        </p>
+        <p>
+          В итоге кресла пустые, врачи без работы, лизинг капает, а через месяц вам снова говорят:
+          «нужно ещё потестить связки».
+        </p>
+      </div>
       {items.map((item, index) => (
         <article class="problem-step">
           <span>{String(index + 1).padStart(2, "0")}</span>
           <div>
             <p>{item.meta}</p>
             <h3>{item.title}</h3>
-            <small>{item.text}</small>
           </div>
         </article>
       ))}
+      <div class="problem-summary">
+        Это и есть главный слив: не «дорогая стоматология в рекламе», а обучение чужого алгоритма
+        на вашем бюджете.
+      </div>
     </div>
   </div>
 </section>

@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
-
 :root {
   --bg: #f3f0e7;
   --bg-soft: #e8e3d7;
@@ -4589,8 +4587,9 @@ h3 {
 
 .program-visual-note {
   background:
-    linear-gradient(180deg, rgba(7, 21, 38, 0.06), rgba(7, 21, 38, 0.88)),
-    url("/images/problem-empty-chair.png") center / cover;
+    radial-gradient(circle at 78% 24%, rgba(147, 197, 253, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(7, 21, 38, 0.08), rgba(7, 21, 38, 0.9)),
+    #071526;
 }
 
 .program-visual-note::before {
@@ -4773,8 +4772,9 @@ h3 {
 .final-cta {
   border-color: rgba(125, 211, 252, 0.34);
   background:
-    linear-gradient(90deg, rgba(7, 21, 38, 0.96), rgba(7, 21, 38, 0.74) 48%, rgba(7, 21, 38, 0.34)),
-    url("/images/problem-empty-chair.png") center right / cover;
+    radial-gradient(circle at 84% 22%, rgba(147, 197, 253, 0.18), transparent 28%),
+    linear-gradient(90deg, rgba(7, 21, 38, 0.96), rgba(7, 21, 38, 0.76) 58%, rgba(7, 21, 38, 0.42)),
+    #071526;
 }
 
 @media (max-width: 1180px) {
@@ -5179,8 +5179,9 @@ body {
   overflow: hidden;
   border-radius: 34px;
   background:
-    linear-gradient(180deg, rgba(7, 21, 38, 0.16), rgba(7, 21, 38, 0.92)),
-    url("/images/problem-empty-chair.png") center / cover;
+    radial-gradient(circle at 72% 28%, rgba(147, 197, 253, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(7, 21, 38, 0.18), rgba(7, 21, 38, 0.94)),
+    #071526;
   color: #fff;
   box-shadow: var(--shadow);
 }
@@ -5255,48 +5256,107 @@ body {
 .problem-board__visual {
   position: relative;
   order: 2;
+  display: grid;
+  gap: clamp(20px, 3vw, 34px);
+  align-content: start;
   min-height: 520px;
+  padding: clamp(24px, 3vw, 36px);
   overflow: hidden;
   border-radius: 28px;
-  background: var(--dark);
-}
-
-.problem-board__visual img {
-  width: 100%;
-  height: 100%;
-  min-height: 520px;
-  object-fit: cover;
-  opacity: 0.72;
-}
-
-.problem-board__visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 28%, rgba(7, 21, 38, 0.92));
-}
-
-.problem-board__visual div {
-  position: absolute;
-  right: 24px;
-  bottom: 24px;
-  left: 24px;
-  z-index: 1;
+  background:
+    linear-gradient(135deg, rgba(147, 197, 253, 0.13), transparent 34%),
+    radial-gradient(circle at 86% 18%, rgba(238, 107, 58, 0.18), transparent 28%),
+    #071526;
   color: #fff;
 }
 
-.problem-board__visual strong {
-  display: block;
-  margin-top: 8px;
-  font-size: clamp(3rem, 6vw, 5.2rem);
-  line-height: 0.9;
+.problem-board__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
-.problem-board__visual p {
-  max-width: 380px;
+.learning-card,
+.learning-scroll {
+  position: relative;
+  z-index: 1;
+}
+
+.learning-card {
+  max-width: 460px;
+}
+
+.learning-card__label {
+  display: inline-block;
+}
+
+.learning-card strong {
+  display: block;
   margin-top: 12px;
+  font-size: clamp(2.55rem, 4.4vw, 4.6rem);
+  line-height: 0.94;
+}
+
+.learning-card p {
+  max-width: 420px;
+  margin-top: 18px;
   color: rgba(255, 255, 255, 0.72);
-  font-weight: 700;
+  font-size: clamp(1rem, 1.2vw, 1.14rem);
+  font-weight: 760;
+  line-height: 1.42;
+}
+
+.learning-scroll {
+  display: grid;
+  gap: 12px;
+  padding-bottom: 24px;
+}
+
+.learning-result-title {
+  margin-top: clamp(8px, 1.4vw, 18px);
+  color: #93c5fd;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.learning-flow {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 18px 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.learning-flow > span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(238, 107, 58, 0.28);
+  border-radius: 15px;
+  background: rgba(238, 107, 58, 0.15);
+  color: #fed7aa;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.learning-flow p {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: clamp(0.95rem, 1.05vw, 1.04rem);
+  font-weight: 650;
+  line-height: 1.5;
 }
 
 .problem-board__list {
@@ -5304,6 +5364,50 @@ body {
   order: 1;
   gap: 14px;
   align-content: center;
+}
+
+.problem-story,
+.problem-summary {
+  padding: clamp(20px, 2vw, 26px);
+  border: 1px solid rgba(37, 99, 235, 0.11);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 16px 38px rgba(15, 46, 86, 0.05);
+}
+
+.problem-story {
+  display: grid;
+  gap: 12px;
+}
+
+.problem-story p {
+  color: #334155;
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  font-weight: 620;
+  line-height: 1.58;
+}
+
+.problem-summary {
+  position: relative;
+  border-color: rgba(15, 23, 42, 0.1);
+  background:
+    linear-gradient(135deg, rgba(219, 234, 254, 0.48), rgba(255, 255, 255, 0) 56%),
+    #fff;
+  color: #172033;
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  font-weight: 850;
+  line-height: 1.48;
+}
+
+.problem-summary::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 0;
+  width: 4px;
+  border-radius: 0 99px 99px 0;
+  background: #93c5fd;
 }
 
 .problem-step {
@@ -5372,8 +5476,7 @@ body {
   }
 
   .pain-board__main,
-  .problem-board__visual,
-  .problem-board__visual img {
+  .problem-board__visual {
     min-height: 360px;
   }
 }
@@ -5406,6 +5509,15 @@ body {
 
   .problem-step::before {
     display: none;
+  }
+
+  .learning-card strong {
+    font-size: clamp(2.2rem, 10vw, 3.6rem);
+  }
+
+  .learning-flow {
+    grid-template-columns: 42px minmax(0, 1fr);
+    padding: 16px;
   }
 }
 
