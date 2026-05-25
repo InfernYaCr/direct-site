@@ -40,6 +40,18 @@ const nextSteps = [
         </div>
 
         <div class="thank-side">
+          <div class="thank-dental-visual">
+            <img
+              src={`${base}images/dental-diagnostics-bg.webp`}
+              alt="Кабинет стоматологии и аналитика рекламных заявок"
+              loading="eager"
+              decoding="async"
+            />
+            <div class="thank-dental-badge">
+              <span>30 минут</span>
+              <strong>Кабинет, заявки, стоимость пациента</strong>
+            </div>
+          </div>
           <div class="mini-steps">
             {nextSteps.map((step, index) => (
               <div>
@@ -48,21 +60,6 @@ const nextSteps = [
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      <div class="thank-social reveal">
-        <div>
-          <p class="eyebrow">Цель для Метрики</p>
-          <h2>Эту страницу можно использовать как цель успешной отправки формы</h2>
-          <p>
-            В Яндекс.Метрике поставьте цель на посещение URL
-            <strong>{`${base}thank-you/?lead=diagnostic`}</strong>. Тогда каждая отправленная форма
-            будет считаться заявкой.
-          </p>
-        </div>
-        <div class="soft-cta-actions">
-          <a class="button primary" href="#top">Ок</a>
         </div>
       </div>
     </section>

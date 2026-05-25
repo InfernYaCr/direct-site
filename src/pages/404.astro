@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { site } from "@/data/site";
 
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
@@ -12,22 +13,30 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
     <section class="section not-found-hero">
       <div class="not-found-card reveal">
         <div>
-          <p class="eyebrow">404 • bug report</p>
-          <h1>Страница ушла в failed test.</h1>
+          <p class="eyebrow">404 • страница не найдена</p>
+          <h1>Похоже, этот кабинет уже закрыт.</h1>
           <p>
-            Похоже, этот URL не проходит проверку. Вернись на главную, скачай гайд
-            или напиши в поддержку, если ссылка должна была работать.
+            Ссылка ведёт в пустой коридор. Вернитесь на главную или оставьте заявку
+            на диагностику рекламы стоматологии.
           </p>
           <div class="hero-actions">
             <a class="button primary" href={base}>На главную</a>
-            <a class="button ghost" href={`${base}thank-you/`}>Страница доступа</a>
+            <a class="button ghost" href={`${base}#pricing`}>Записаться на диагностику</a>
           </div>
         </div>
-        <div class="bug-card" aria-label="Ошибка 404">
-          <span>HTTP 404</span>
-          <strong>Expected: page</strong>
-          <p>Actual: nothing found</p>
-          <small>severity: medium</small>
+        <div class="not-found-visual" aria-label="Ошибка 404">
+          <img
+            src={`${base}images/dental-empty-chair-bg.webp`}
+            alt="Пустое стоматологическое кресло"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="not-found-code">
+            <span>HTTP 404</span>
+            <strong>Пустое окно</strong>
+            <p>Страница не найдена, но диагностику рекламы можно открыть за 30 минут.</p>
+            <a href={site.telegramUrl}>Написать в Telegram</a>
+          </div>
         </div>
       </div>
     </section>
