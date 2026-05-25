@@ -6569,13 +6569,14 @@ body {
 }
 
 .hero-note {
-  position: absolute;
-  right: clamp(20px, 4vw, 80px);
-  bottom: clamp(14px, 2vw, 28px);
-  z-index: 3;
-  margin: 0;
+  display: block;
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: rgba(255, 255, 255, 0.5);
-  font-size: clamp(0.96rem, 1.25vw, 1.12rem);
+  font-size: clamp(0.86rem, 1vw, 0.98rem);
   font-weight: 600;
 }
 
@@ -6610,10 +6611,10 @@ body {
 
 .hero-level-card {
   position: absolute;
-  top: clamp(278px, 31vw, 372px);
-  right: clamp(-26px, 1.2vw, 16px);
-  bottom: auto;
-  z-index: 1;
+  top: auto;
+  right: clamp(18px, 4vw, 96px);
+  bottom: clamp(150px, 14vw, 230px);
+  z-index: 4;
   display: block;
   max-width: 330px;
   padding: 18px 24px;
@@ -6651,14 +6652,21 @@ body {
   }
 
   .hero-card {
-    width: min(50vw, 560px);
-    height: 720px;
+    width: min(46vw, 500px);
+    height: 620px;
   }
 
   .hero-person {
-    width: min(62vw, 720px);
-    right: -120px;
-    bottom: -110px;
+    width: min(50vw, 560px);
+    right: -86px;
+    bottom: -42px;
+  }
+
+  .hero-level-card {
+    right: clamp(12px, 3vw, 34px);
+    bottom: clamp(170px, 21vw, 222px);
+    max-width: 270px;
+    padding: 14px 18px;
   }
 }
 
@@ -6745,7 +6753,7 @@ body {
     right: auto;
     bottom: clamp(146px, 38vw, 178px);
     left: 0;
-    z-index: 1;
+    z-index: 4;
     max-width: min(218px, 58vw);
     padding: 12px 14px;
     border-radius: 14px;
@@ -6761,17 +6769,9 @@ body {
   }
 
   .hero-note {
-    right: auto;
-    bottom: clamp(18px, 5.6vw, 32px);
-    left: 0;
-    max-width: min(300px, 78vw);
-    padding: 12px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.46);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.85rem;
-    backdrop-filter: blur(12px);
+    margin-top: 9px;
+    color: rgba(255, 255, 255, 0.54);
+    font-size: 0.78rem;
   }
 }
 
@@ -6796,7 +6796,7 @@ body {
   }
 
   .hero-note {
-    display: none;
+    display: block;
   }
 }
 
@@ -6869,5 +6869,37 @@ body:has(.home-main) .header-cta {
 
   body:has(.home-main) .brand-word em {
     display: none;
+  }
+}
+
+@media (min-width: 821px) and (max-width: 1180px) {
+  body:has(.home-main) .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.62fr) minmax(300px, 0.38fr) !important;
+    align-items: center;
+  }
+
+  body:has(.home-main) .hero-copy {
+    width: min(620px, 58vw);
+  }
+
+  body:has(.home-main) .hero-card {
+    align-self: end;
+    justify-self: end;
+    display: block !important;
+    width: min(46vw, 500px);
+    height: min(62vh, 620px);
+  }
+
+  body:has(.home-main) .hero-person {
+    right: -86px;
+    bottom: -42px;
+    width: min(50vw, 560px);
+  }
+
+  body:has(.home-main) .hero-level-card {
+    right: clamp(12px, 3vw, 34px);
+    bottom: clamp(88px, 12vw, 132px);
+    max-width: 270px;
   }
 }
