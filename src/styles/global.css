@@ -6599,6 +6599,7 @@ body {
 
 .hero-person {
   position: absolute;
+  z-index: 2;
   right: max(-70px, calc((1560px - 100vw) / 3 - 60px));
   bottom: -126px;
   width: min(60vw, 930px);
@@ -6609,10 +6610,10 @@ body {
 
 .hero-level-card {
   position: absolute;
-  top: clamp(24px, 3.4vw, 52px);
-  right: clamp(20px, 4vw, 78px);
+  top: clamp(278px, 31vw, 372px);
+  right: clamp(-26px, 1.2vw, 16px);
   bottom: auto;
-  z-index: 3;
+  z-index: 1;
   display: block;
   max-width: 330px;
   padding: 18px 24px;
@@ -6742,8 +6743,9 @@ body {
   .hero-level-card {
     top: auto;
     right: auto;
-    bottom: clamp(190px, 49vw, 230px);
+    bottom: clamp(188px, 49vw, 226px);
     left: 0;
+    z-index: 1;
     max-width: min(218px, 58vw);
     padding: 12px 14px;
     border-radius: 14px;
