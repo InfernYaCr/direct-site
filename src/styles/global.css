@@ -6686,9 +6686,9 @@ body {
   }
 
   .hero-pill {
-    margin-bottom: 28px;
-    padding: 11px 16px;
-    font-size: 0.95rem;
+    margin-bottom: 18px;
+    padding: 9px 14px;
+    font-size: 0.88rem;
   }
 
   .hero h1 {
@@ -6705,7 +6705,7 @@ body {
   }
 
   .hero-text-lead {
-    margin-top: 24px;
+    margin-top: 16px;
   }
 
   .hero-text + .hero-text {
@@ -6717,33 +6717,33 @@ body {
   }
 
   .hero-actions {
-    margin-top: 32px;
+    margin-top: 20px;
   }
 
   .hero .button.primary {
     width: 100%;
-    min-height: 78px;
+    min-height: 62px;
     border-radius: 12px;
-    font-size: clamp(1.05rem, 5vw, 1.38rem);
+    font-size: clamp(1rem, 4.6vw, 1.18rem);
   }
 
   .hero-card {
     width: 100%;
-    height: clamp(310px, 44vh, 430px);
-    margin-top: 10px;
+    height: clamp(255px, 34vh, 320px);
+    margin-top: 4px;
   }
 
   .hero-person {
     right: 50%;
     bottom: 0;
-    width: min(90vw, 420px);
+    width: min(80vw, 365px);
     transform: translateX(70%);
   }
 
   .hero-level-card {
     top: auto;
     right: auto;
-    bottom: clamp(188px, 49vw, 226px);
+    bottom: clamp(146px, 38vw, 178px);
     left: 0;
     z-index: 1;
     max-width: min(218px, 58vw);
@@ -6782,16 +6782,21 @@ body {
   }
 
   .hero h1 {
-    font-size: clamp(1.9rem, 8.3vw, 2.34rem);
+    font-size: clamp(1.72rem, 7.4vw, 2.02rem);
   }
 
   .hero-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.38;
   }
 
   .hero .button.primary {
-    min-height: 70px;
+    min-height: 58px;
     padding: 0 18px;
+  }
+
+  .hero-note {
+    display: none;
   }
 }
 
@@ -6853,7 +6858,7 @@ body:has(.home-main) .header-cta {
   }
 
   body:has(.home-main) .hero {
-    padding-top: 92px;
+    padding-top: 82px;
   }
 }
 
