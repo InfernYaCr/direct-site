@@ -7089,6 +7089,10 @@ body {
   color: #078eea;
 }
 
+.hero h1 span.text-red {
+  color: var(--red);
+}
+
 .hero-text {
   max-width: 790px;
   color: rgba(255, 255, 255, 0.62);
