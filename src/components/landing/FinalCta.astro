@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
   class="section final-cta reveal"
   style={`--final-cta-bg: url("${base}images/dental-empty-chair-bg.webp")`}
 >
-  <div>
+  <div class="final-cta__copy">
     <p class="eyebrow">Финальный шаг</p>
     <h2>Каждый день без нормально настроенной рекламы стоит вам денег.</h2>
     <p class="final-cta-sub">
@@ -14,5 +14,47 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
       запись на имплантацию. Диагностика бесплатная. 30 минут. Без обязательств.
     </p>
   </div>
-  <a class="button primary" href="#pricing" data-goal="paid_tariff_full">Записаться на диагностику</a>
+  <form class="lead-form" action={`${base}send-lead.php`} method="post" data-goal="lead_form_submit">
+    <input type="hidden" name="source" value="final_cta" />
+    <input type="hidden" name="redirect" value={`${base}thank-you/?lead=diagnostic`} />
+    <label>
+      <span>Имя</span>
+      <input
+        type="text"
+        name="name"
+        placeholder="Как к вам обращаться"
+        autocomplete="name"
+        minlength="2"
+        maxlength="80"
+        required
+      />
+    </label>
+    <label>
+      <span>Телефон</span>
+      <input
+        type="tel"
+        name="phone"
+        placeholder="+7 999 123-45-67"
+        autocomplete="tel"
+        inputmode="tel"
+        minlength="8"
+        maxlength="32"
+        required
+      />
+    </label>
+    <label class="lead-form__trap" aria-hidden="true">
+      <span>Сайт</span>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </label>
+    <label class="lead-form__consent">
+      <input type="checkbox" name="consent" value="yes" required />
+      <span>
+        Согласен на обработку персональных данных и принимаю условия
+        <a href={`${base}privacy/`} target="_blank">политики конфиденциальности</a>.
+      </span>
+    </label>
+    <button class="button primary lead-form__button" type="submit">
+      Записаться на диагностику
+    </button>
+  </form>
 </section>
