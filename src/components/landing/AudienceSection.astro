@@ -8,7 +8,9 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
   <div class="split-copy reveal">
     <p class="eyebrow">Эксперт</p>
     <h2>Но кто <span class="text-blue">я такой?</span></h2>
-    <div class="author-photo-card">
+  </div>
+  <div class="split-body">
+    <div class="author-photo-card reveal">
       <img
         src={`${base}images/Rostislav-photo.webp`}
         alt="Ростислав Загребин, маркетолог для медицинских проектов"
@@ -20,19 +22,19 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
         <span>Яндекс.Директ и ВК для медицины</span>
       </div>
     </div>
-  </div>
-  <div class="check-list">
-    {audience.map((item) => (
-      <div class="check-item reveal">
-        <span>✓</span>
-        <p>{item}</p>
-      </div>
-    ))}
-    {audienceNot.map((item) => (
-      <div class="check-item reveal is-negative">
-        <span>✕</span>
-        <p>{item}</p>
-      </div>
-    ))}
+    <div class="check-list">
+      {audience.map((item) => (
+        <div class="check-item reveal">
+          <span>✓</span>
+          <p>{item}</p>
+        </div>
+      ))}
+      {audienceNot.map((item) => (
+        <div class="check-item reveal is-negative">
+          <span>✕</span>
+          <p>{item}</p>
+        </div>
+      ))}
+    </div>
   </div>
 </section>

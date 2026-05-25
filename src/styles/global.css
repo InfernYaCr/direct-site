@@ -743,16 +743,19 @@ body.menu-open .mobile-menu-panel {
 
 .split-section {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 44px;
-  align-items: start;
+  gap: clamp(20px, 2.4vw, 32px);
 }
 
 .split-copy {
-  position: sticky;
-  top: 88px;
   display: grid;
-  gap: 12px;
+  gap: 10px;
+}
+
+.split-body {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(24px, 3vw, 44px);
+  align-items: start;
 }
 
 .check-list {
@@ -2404,6 +2407,7 @@ body.menu-open .mobile-menu-panel {
 
   .hero,
   .split-section,
+  .split-body,
   .program-wrap {
     grid-template-columns: 1fr;
   }
@@ -4684,14 +4688,10 @@ h3 {
     linear-gradient(0deg, rgba(7, 21, 38, 0.72), transparent 48%);
 }
 
-.split-section {
-  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
-}
-
 .author-photo-card {
   position: relative;
   overflow: hidden;
-  margin-top: 2px;
+  margin-top: 0;
   border: 1px solid rgba(37, 99, 235, 0.18);
   border-radius: 28px;
   background: #fff;
