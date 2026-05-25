@@ -1324,7 +1324,7 @@ body.menu-open .mobile-menu-panel {
   border-radius: 36px;
   background:
     linear-gradient(90deg, rgba(23, 24, 23, 0.96), rgba(23, 24, 23, 0.76) 48%, rgba(23, 24, 23, 0.3)),
-    url("/images/ai-qa-kit-bg.png") center right / cover;
+    var(--final-cta-bg, none) center right / cover;
   color: var(--paper);
 }
 
@@ -4310,7 +4310,7 @@ body.menu-open .mobile-menu-panel {
   .final-cta {
     background:
       linear-gradient(180deg, rgba(23, 24, 23, 0.94), rgba(23, 24, 23, 0.78)),
-      url("/images/ai-qa-kit-bg.png") center / cover;
+      var(--final-cta-bg, none) center / cover;
   }
 }
 
@@ -4372,7 +4372,7 @@ body.menu-open .mobile-menu-panel {
   .final-cta {
     background:
       linear-gradient(180deg, rgba(23, 24, 23, 0.96), rgba(23, 24, 23, 0.82)),
-      url("/images/ai-qa-kit-bg.png") 42% center / cover;
+      var(--final-cta-bg, none) 42% center / cover;
   }
 }
 
@@ -4589,6 +4589,7 @@ h3 {
   background:
     radial-gradient(circle at 78% 24%, rgba(147, 197, 253, 0.16), transparent 30%),
     linear-gradient(180deg, rgba(7, 21, 38, 0.08), rgba(7, 21, 38, 0.9)),
+    var(--program-bg, none) center / cover,
     #071526;
 }
 
@@ -4774,6 +4775,7 @@ h3 {
   background:
     radial-gradient(circle at 84% 22%, rgba(147, 197, 253, 0.18), transparent 28%),
     linear-gradient(90deg, rgba(7, 21, 38, 0.96), rgba(7, 21, 38, 0.76) 58%, rgba(7, 21, 38, 0.42)),
+    var(--final-cta-bg, none) center right / cover,
     #071526;
 }
 
@@ -5181,6 +5183,7 @@ body {
   background:
     radial-gradient(circle at 72% 28%, rgba(147, 197, 253, 0.18), transparent 30%),
     linear-gradient(180deg, rgba(7, 21, 38, 0.18), rgba(7, 21, 38, 0.94)),
+    var(--pain-bg, none) center / cover,
     #071526;
   color: #fff;
   box-shadow: var(--shadow);
@@ -5266,6 +5269,7 @@ body {
   background:
     linear-gradient(135deg, rgba(147, 197, 253, 0.13), transparent 34%),
     radial-gradient(circle at 86% 18%, rgba(238, 107, 58, 0.18), transparent 28%),
+    var(--problem-bg, none) center / cover,
     #071526;
   color: #fff;
 }

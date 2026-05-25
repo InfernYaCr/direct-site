@@ -1,7 +1,11 @@
 ---
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
-<section class="section final-cta reveal">
+<section
+  class="section final-cta reveal"
+  style={`--final-cta-bg: url("${base}images/dental-empty-chair-bg.webp")`}
+>
   <div>
     <p class="eyebrow">Финальный шаг</p>
     <h2>Каждый день без нормально настроенной рекламы стоит вам денег.</h2>

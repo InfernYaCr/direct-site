@@ -1,6 +1,8 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 const pains = [
   "Уже отдали 2–3 агентствам по 60–150 тысяч в месяц. Получили красивые отчёты с «кликами» и «охватами» — а в кассе пусто.",
   "Администратор говорит: «звонят не те, спрашивают только „удалить зуб бесплатно“».",
@@ -19,7 +21,10 @@ const pains = [
     text="Реклама вроде работает, отчёты выглядят красиво, но в расписании хирурга-имплантолога всё равно пустые окна."
   />
   <div class="pain-board reveal">
-    <article class="pain-board__main">
+    <article
+      class="pain-board__main"
+      style={`--pain-bg: url("${base}images/dental-empty-chair-bg.webp")`}
+    >
       <span>главный симптом</span>
       <h3>Деньги уходят, а платёжеспособных записей нет</h3>
       <p>{pains[0]}</p>

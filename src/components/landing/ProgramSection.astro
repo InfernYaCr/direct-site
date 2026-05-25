@@ -1,6 +1,8 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 import { program } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="section soft" id="program">
@@ -16,7 +18,12 @@ import { program } from "@/data/site";
         {program.map((item) => <li>{item}</li>)}
       </ol>
     </div>
-    <aside class="seo-note program-visual-note reveal delay-1" data-scroll-card data-scroll-scope="#program .program-wrap">
+    <aside
+      class="seo-note program-visual-note reveal delay-1"
+      data-scroll-card
+      data-scroll-scope="#program .program-wrap"
+      style={`--program-bg: url("${base}images/dental-growth-analytics-bg.webp")`}
+    >
       <div class="program-visual-note__copy scroll-photo-copy" data-scroll-copy>
         <h3>Ключевые темы</h3>
         <p>

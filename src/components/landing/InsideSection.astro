@@ -1,6 +1,8 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 const items = [
   {
     title: "3–4 недели обучения за ваш счёт",
@@ -35,6 +37,7 @@ const items = [
     <div
       class="problem-board__visual"
       aria-label="Схема фазы обучения рекламного алгоритма"
+      style={`--problem-bg: url("${base}images/dental-diagnostics-bg.webp")`}
     >
       <div class="learning-card">
         <span class="learning-card__label">Фаза обучения</span>
