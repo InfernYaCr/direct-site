@@ -1,10 +1,12 @@
 ---
 import { site } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
 <footer class="site-footer">
   <div>
-    <a class="brand footer-brand" href="/">
+    <a class="brand footer-brand" href={base}>
       <span class="brand-mark" aria-hidden="true">
         <span>УН</span>
         <i></i>
@@ -17,11 +19,11 @@ import { site } from "@/data/site";
     <p>Диагностика рекламы ВК и Яндекс.Директ для стоматологических клиник.</p>
   </div>
   <div class="footer-links">
-    <a href="/contacts/">Контакты</a>
-    <a href="/privacy/">Политика</a>
-    <a href="/offer/">Оферта</a>
-    <a href="/refund/">Возврат</a>
-    <a href="/cookies/">Cookies</a>
+    <a href={`${base}contacts/`}>Контакты</a>
+    <a href={`${base}privacy/`}>Политика</a>
+    <a href={`${base}offer/`}>Оферта</a>
+    <a href={`${base}refund/`}>Возврат</a>
+    <a href={`${base}cookies/`}>Cookies</a>
     <a href={site.telegramUrl}>Telegram</a>
     <a href={site.vkUrl}>VK</a>
     <a href={`mailto:${site.supportEmail}`}>Поддержка</a>

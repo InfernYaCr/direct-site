@@ -1,11 +1,13 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
 
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
 const cases = [
   {
     tag: "AI Docs",
     title: "Карта рисков и план проверок",
-    image: "/images/pixel-cat-pointing-left-v1.webp",
+    image: `${base}images/pixel-cat-pointing-left-v1.webp`,
     prompt: "Разбери задачу с AI: что может пойти не так, какие сценарии критичны и что нельзя выпускать без проверки.",
     result: "Получаешь понятный план проверок, а не просто список красивых тест-кейсов.",
     tools: ["ChatGPT", "Cursor", "Allure", "Markdown"],
@@ -17,7 +19,7 @@ const cases = [
   {
     tag: "RAG QA",
     title: "Метрики качества AI-агентов",
-    image: "/images/pixel-cat-rag-looking-right-v1.webp",
+    image: `${base}images/pixel-cat-rag-looking-right-v1.webp`,
     catLeft: true,
     prompt: "Оцени ответ RAG-агента: faithfulness, relevance и где он галлюцинирует.",
     result: "Понимаешь, почему агент врёт и что именно мерить: точность, релевантность контекста, галлюцинации.",
@@ -30,7 +32,7 @@ const cases = [
   {
     tag: "Locust",
     title: "Нагрузочное с нуля",
-    image: "/images/pixel-cat-load-gauge-v1.webp",
+    image: `${base}images/pixel-cat-load-gauge-v1.webp`,
     prompt: "Напиши locustfile на 100 RPS для endpoint логина и объясни шаги запуска.",
     result: "Готовый сценарий нагрузки + на что смотреть в отчёте: RPS, latency, ошибки под нагрузкой.",
     tools: ["Locust", "k6", "Grafana", "Prometheus"],
