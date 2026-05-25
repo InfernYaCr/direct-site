@@ -60,7 +60,8 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
         : card;
       const rect = (scope ?? card).getBoundingClientRect();
       const travel = Math.max(rect.height - card.clientHeight, viewportHeight * 0.72);
-      const progress = clamp(-rect.top / travel, 0, 1);
+      const startOffset = viewportHeight * 0.45;
+      const progress = clamp((startOffset - rect.top) / travel, 0, 1);
       const top = parseFloat(getComputedStyle(copy).top || "0") || 0;
       const bottomPad = 28;
       const maxY = Math.max(0, card.clientHeight - copy.offsetHeight - top - bottomPad);

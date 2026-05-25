@@ -750,9 +750,9 @@ body.menu-open .mobile-menu-panel {
 
 .split-copy {
   position: sticky;
-  top: 110px;
+  top: 88px;
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 
 .check-list {
@@ -4691,7 +4691,7 @@ h3 {
 .author-photo-card {
   position: relative;
   overflow: hidden;
-  margin-top: 18px;
+  margin-top: 2px;
   border: 1px solid rgba(37, 99, 235, 0.18);
   border-radius: 28px;
   background: #fff;
@@ -5421,10 +5421,10 @@ body {
   gap: 16px;
   align-items: start;
   padding: 18px 18px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
+  background: rgba(8, 17, 31, 0.66);
+  backdrop-filter: blur(14px);
 }
 
 .learning-flow > span {
@@ -5441,7 +5441,7 @@ body {
 }
 
 .learning-flow p {
-  color: rgba(255, 255, 255, 0.66);
+  color: rgba(255, 255, 255, 0.92);
   font-size: clamp(0.95rem, 1.05vw, 1.04rem);
   font-weight: 650;
   line-height: 1.5;
