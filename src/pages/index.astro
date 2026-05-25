@@ -1,36 +1,28 @@
 ---
-// Sections rendered in order from RESEARCH.md §4.
-import Base from '@/layouts/Base.astro';
-import CookieBanner from '@/components/ui/CookieBanner.astro';
-// — Phase 2 sections (added progressively) —
-import Hero     from '@/components/sections/Hero.astro';
-import Bridge   from '@/components/sections/Bridge.astro';
-import Magazine from '@/components/sections/Magazine.astro';
-import Donate    from '@/components/sections/Donate.astro';
-import Club      from '@/components/sections/Club.astro';
-import Services  from '@/components/sections/Services.astro';
-import Cases     from '@/components/sections/Cases.astro';
-import Reviews   from '@/components/sections/Reviews.astro';
-import Channels  from '@/components/sections/Channels.astro';
-import Affiliate from '@/components/sections/Affiliate.astro';
-import Footer    from '@/components/sections/Footer.astro';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Hero from "@/components/landing/Hero.astro";
+import PainSection from "@/components/landing/PainSection.astro";
+import AudienceSection from "@/components/landing/AudienceSection.astro";
+import InsideSection from "@/components/landing/InsideSection.astro";
+import ProgramSection from "@/components/landing/ProgramSection.astro";
+import PricingSection from "@/components/landing/PricingSection.astro";
+import FaqSection from "@/components/landing/FaqSection.astro";
+import FinalCta from "@/components/landing/FinalCta.astro";
 ---
 
-<Base>
-  <main id="main-content">
+<BaseLayout>
+  <Header />
+  <main>
     <Hero />
-    <Bridge />
-    <Magazine />
-    <Donate />
-    <Club />
-    <Services />
-    <Cases />
-    <Reviews />
-    <Channels />
-    <Affiliate />
+    <PainSection />
+    <InsideSection />
+    <ProgramSection />
+    <AudienceSection />
+    <PricingSection />
+    <FaqSection />
+    <FinalCta />
   </main>
-
   <Footer />
-  <!-- Fixed bottom — outside <main> intentionally -->
-  <CookieBanner />
-</Base>
+</BaseLayout>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title>Pixel coin</title>
+  <rect width="96" height="96" rx="18" fill="#171817"/>
+  <rect x="28" y="16" width="40" height="8" fill="#ffb05c"/>
+  <rect x="20" y="24" width="56" height="48" fill="#ee6b3a"/>
+  <rect x="28" y="72" width="40" height="8" fill="#b94320"/>
+  <rect x="32" y="32" width="32" height="8" fill="#ffd08f"/>
+  <rect x="36" y="44" width="24" height="8" fill="#171817"/>
+  <rect x="36" y="56" width="24" height="8" fill="#171817"/>
+</svg>

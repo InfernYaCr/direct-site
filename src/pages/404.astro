@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout title="Страница не найдена" noindex={true}>
+  <Header />
+  <main class="not-found-page" id="top">
+    <section class="section not-found-hero">
+      <div class="not-found-card reveal">
+        <div>
+          <p class="eyebrow">404 • bug report</p>
+          <h1>Страница ушла в failed test.</h1>
+          <p>
+            Похоже, этот URL не проходит проверку. Вернись на главную, скачай гайд
+            или напиши в поддержку, если ссылка должна была работать.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href={base}>На главную</a>
+            <a class="button ghost" href={`${base}thank-you/`}>Страница доступа</a>
+          </div>
+        </div>
+        <div class="bug-card" aria-label="Ошибка 404">
+          <span>HTTP 404</span>
+          <strong>Expected: page</strong>
+          <p>Actual: nothing found</p>
+          <small>severity: medium</small>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

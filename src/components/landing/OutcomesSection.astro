@@ -1,0 +1,21 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+import { outcomes } from "@/data/site";
+---
+
+<section class="section outcomes-section">
+  <SectionHeading
+    eyebrow="Что изменится после"
+    title="Три сдвига, которые ты почувствуешь уже после первого вечера"
+    text="Не магия и не замена опыту — а понятный рычаг: что внедрить в работу прямо сейчас и как показать это работодателю."
+  />
+  <div class="outcomes-grid">
+    {outcomes.map((item) => (
+      <article class="outcome-card reveal">
+        <span>{item.metric}</span>
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </article>
+    ))}
+  </div>
+</section>

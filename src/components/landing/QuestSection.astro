@@ -1,0 +1,53 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const quests = [
+  {
+    level: "01",
+    title: "Разобрать риск",
+    text: "Понять, какие QA-задачи AI ускоряет, а где его ответ нужно проверять вручную.",
+    icon: `${base}images/pixel-robot.svg`,
+  },
+  {
+    level: "02",
+    title: "Собрать примеры",
+    text: "Подготовить вопросы и ожидаемые ответы, чтобы проверять AI не на ощущениях, а на понятных примерах.",
+    icon: `${base}images/pixel-scroll.svg`,
+  },
+  {
+    level: "03",
+    title: "Написать проверки",
+    text: "Сделать первые простые проверки и понять, где AI помогает, а где создаёт риск.",
+    icon: `${base}images/pixel-cv.svg`,
+  },
+  {
+    level: "04",
+    title: "Собрать итоговый отчёт",
+    text: "Описать, что проверил, какие риски нашёл и какой вывод сделал по качеству.",
+    icon: `${base}images/pixel-trophy.svg`,
+  },
+];
+---
+
+<section class="section quest-section">
+  <div class="quest-heading-panel">
+    <SectionHeading
+      eyebrow="Геймификация без воды"
+      title="30 дней как квест: каждый шаг — готовый результат, а не галочка"
+      text="Никаких бейджей ради бейджей. Прошёл уровень — получил понятный результат: карту рисков, примеры, проверки или итоговый отчёт."
+    />
+  </div>
+  <div class="quest-board reveal">
+    <div class="quest-line" aria-hidden="true"></div>
+    {quests.map((quest) => (
+      <article class="quest-card">
+        <img src={quest.icon} alt="" loading="lazy" />
+        <span>Level {quest.level}</span>
+        <h3>{quest.title}</h3>
+        <p>{quest.text}</p>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout
+  title="Политика cookies"
+  description="Как QA x AI использует cookies, localStorage, технические и аналитические идентификаторы."
+>
+  <Header />
+  <main class="legal-page" id="top">
+    <section class="section legal-content">
+      <p class="eyebrow">Cookies</p>
+      <h1>Политика cookies</h1>
+      <p>
+        Сайт использует технические cookies и localStorage для сохранения пользовательских настроек,
+        работы формы оплаты, аналитики и улучшения рекламы.
+      </p>
+
+      <h2>1. Какие технологии используются</h2>
+      <p>
+        Cookies — небольшие файлы в браузере. LocalStorage — локальное хранилище браузера.
+        Аналитические идентификаторы помогают понять, какие страницы и кнопки работают лучше.
+      </p>
+
+      <h2>2. Зачем это нужно</h2>
+      <p>
+        Мы используем эти технологии для запоминания согласия с cookies, сохранения email в форме оплаты
+        на текущем устройстве, базовой аналитики, UTM-меток и улучшения рекламных кампаний.
+      </p>
+
+      <h2>3. Как отказаться</h2>
+      <p>
+        Можно отключить cookies в настройках браузера. Часть функций сайта может работать менее удобно.
+        Для вопросов напишите на <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

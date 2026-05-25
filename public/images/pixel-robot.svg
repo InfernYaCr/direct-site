@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title>Pixel AI assistant</title>
+  <rect width="96" height="96" rx="18" fill="#171817"/>
+  <rect x="24" y="28" width="48" height="38" fill="#fffdf7"/>
+  <rect x="30" y="34" width="10" height="10" fill="#2f7f46"/>
+  <rect x="56" y="34" width="10" height="10" fill="#2f7f46"/>
+  <rect x="36" y="54" width="24" height="6" fill="#ee6b3a"/>
+  <rect x="44" y="16" width="8" height="12" fill="#8fcf9a"/>
+  <rect x="16" y="40" width="8" height="14" fill="#8fcf9a"/>
+  <rect x="72" y="40" width="8" height="14" fill="#8fcf9a"/>
+</svg>

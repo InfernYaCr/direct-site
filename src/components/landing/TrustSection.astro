@@ -1,0 +1,48 @@
+---
+const tools = ["ChatGPT", "API", "Playwright", "pytest", "RAG", "Locust"];
+
+const people = [
+  {
+    initials: "QA",
+    name: "Автор проекта",
+    role: "QA-практик и редактор материалов",
+    text: "Собирает материалы вокруг реальных задач: требования, риски, тесты, ответы AI и решение перед релизом.",
+  },
+  {
+    initials: "AI",
+    name: "AI-ассистент",
+    role: "Помощник, не автопилот",
+    text: "Помогает быстро собрать черновики, но финальный scope, review, метрики и решение остаются за QA.",
+  },
+];
+---
+
+<section class="section trust-section">
+  <div class="trust-panel reveal">
+    <div class="trust-head">
+      <p class="eyebrow">Кто за этим стоит</p>
+      <h2>Не “огромная команда”, а понятный авторский продукт</h2>
+      <p>
+        Ты видишь, кто отвечает за материал. Набор собран вокруг реальной QA-практики:
+        требований, тестов, AI-ответов, рисков и решений перед релизом — а не вокруг красивой упаковки.
+      </p>
+    </div>
+    <div class="people-row">
+      {people.map((person) => (
+        <article class="person-card">
+          <div class="person-avatar">
+            <span>{person.initials}</span>
+          </div>
+          <div>
+            <h3>{person.name}</h3>
+            <strong>{person.role}</strong>
+            <p>{person.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="logo-cloud compact" aria-label="Инструменты и темы">
+      {tools.map((tool) => <span>{tool}</span>)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,99 @@
+---
+import { navigation, site } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<header class="site-header">
+  <a class="brand" href={base} aria-label="На главную">
+    <span class="brand-mark" aria-hidden="true">
+      <span>УН</span>
+      <i></i>
+    </span>
+    <span class="brand-word">
+      <strong>Умный<span>Навигатор</span></strong>
+      <em>для стоматологий</em>
+    </span>
+  </a>
+
+  <nav class="desktop-nav" aria-label="Основная навигация">
+    {navigation.map((item) => <a href={`${base}${item.href}`}>{item.label}</a>)}
+  </nav>
+
+  <div class="header-actions">
+    <a class="social-link" href={site.telegramUrl} aria-label="Telegram">TG</a>
+    <a class="social-link" href={site.vkUrl} aria-label="VK">VK</a>
+    <a class="header-cta" href={`${base}#pricing`}>Диагностика 0 ₽</a>
+  </div>
+
+  <button
+    class="burger"
+    type="button"
+    aria-label="Открыть меню"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    data-burger
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+  <button class="mobile-menu-backdrop" type="button" aria-label="Закрыть меню" data-menu-close></button>
+  <nav class="mobile-menu-panel" aria-label="Мобильная навигация">
+    {navigation.map((item) => (
+      <a href={`${base}${item.href}`} data-menu-link>{item.label}</a>
+    ))}
+    <a class="mobile-menu-cta" href={`${base}#pricing`} data-menu-link>Диагностика 0 ₽</a>
+    <div class="mobile-menu-social">
+      <a href={site.telegramUrl} aria-label="Telegram">Telegram</a>
+      <a href={site.vkUrl} aria-label="VK">VK</a>
+    </div>
+  </nav>
+</div>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>("[data-burger]");
+  const menu = document.querySelector<HTMLElement>("[data-mobile-menu]");
+
+  if (burger && menu) {
+    // меню всегда в DOM, переключаем только классом — без hidden/таймеров
+    menu.hidden = false;
+
+    const isOpen = () => document.body.classList.contains("menu-open");
+
+    const open = () => {
+      document.body.classList.add("menu-open");
+      burger.classList.add("is-active");
+      burger.setAttribute("aria-expanded", "true");
+      burger.setAttribute("aria-label", "Закрыть меню");
+    };
+
+    const close = () => {
+      document.body.classList.remove("menu-open");
+      burger.classList.remove("is-active");
+      burger.setAttribute("aria-expanded", "false");
+      burger.setAttribute("aria-label", "Открыть меню");
+    };
+
+    const toggle = (e: Event) => {
+      e.preventDefault();
+      isOpen() ? close() : open();
+    };
+
+    burger.addEventListener("click", toggle);
+
+    // закрытие по клику на пункт, на фон или Escape
+    menu.querySelectorAll<HTMLElement>("[data-menu-link]").forEach((el) =>
+      el.addEventListener("click", close)
+    );
+    menu.querySelectorAll<HTMLElement>("[data-menu-close]").forEach((el) =>
+      el.addEventListener("click", close)
+    );
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen()) close();
+    });
+  }
+</script>

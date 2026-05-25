@@ -1,0 +1,129 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { offers, site } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const checkoutOffers = offers.map((offer) => ({
+  id: offer.id,
+  name: offer.name,
+  price: offer.price,
+  description: offer.description,
+  features: offer.features.slice(0, 4),
+  paymentUrl: offer.paymentUrl,
+  highlighted: offer.highlighted,
+}));
+---
+
+<BaseLayout
+  title="Оплата AI QA набора"
+  description="Выберите тариф, укажите email для доступа к материалам и перейдите к безопасной оплате."
+  noindex={true}
+>
+  <Header />
+  <main class="checkout-page" id="top">
+    <section class="section checkout-hero">
+      <div class="checkout-copy reveal">
+        <p class="eyebrow">Безопасная оплата</p>
+        <h1>Остался один шаг до AI QA набора</h1>
+        <p>
+          Укажи email, выбери тариф и переходи к оплате. После оплаты материалы
+          придут на email, указанный при покупке. Если письмо не пришло — напиши в поддержку.
+        </p>
+      </div>
+
+      <form class="checkout-form reveal delay-1" id="checkout-form">
+        <fieldset>
+          <legend>Тариф</legend>
+          <div class="checkout-plans">
+            {checkoutOffers.map((offer) => (
+              <label class:list={["checkout-plan", { "is-highlighted": offer.highlighted }]}>
+                <input
+                  type="radio"
+                  name="plan"
+                  value={offer.id}
+                  data-payment-url={offer.paymentUrl}
+                  checked={offer.highlighted}
+                />
+                <span>
+                  <strong>{offer.name}</strong>
+                  <em>{offer.price}</em>
+                </span>
+                <small>{offer.description}</small>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label class="field">
+          <span>Email для доступа</span>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <div class="checkout-consents">
+          <label>
+            <input type="checkbox" name="offer" required />
+            <span>
+              Принимаю <a href={`${base}offer/`} target="_blank">оферту</a> и понимаю, что покупаю
+              цифровые материалы.
+            </span>
+          </label>
+          <label>
+            <input type="checkbox" name="privacy" required />
+            <span>
+              Согласен с <a href={`${base}privacy/`} target="_blank">политикой обработки персональных данных</a>.
+            </span>
+          </label>
+        </div>
+
+        <button class="button primary full" type="submit">Перейти к оплате</button>
+        <p class="checkout-hint">
+          Оплата откроется на стороне платёжного сервиса. Сейчас ссылки ЮKassa нужно заменить
+          в настройках сайта после создания платёжных ссылок.
+        </p>
+      </form>
+    </section>
+  </main>
+  <Footer />
+
+  <script define:vars={{ offers: checkoutOffers }}>
+    const params = new URLSearchParams(window.location.search);
+    const selectedPlan = params.get("plan");
+    const form = document.querySelector("#checkout-form");
+    const emailInput = form?.querySelector('input[name="email"]');
+
+    if (selectedPlan && form) {
+      const input = form.querySelector(`input[name="plan"][value="${CSS.escape(selectedPlan)}"]`);
+      if (input) input.checked = true;
+    }
+
+    const savedEmail = localStorage.getItem("qaai_checkout_email");
+    if (savedEmail && emailInput) emailInput.value = savedEmail;
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const formData = new FormData(form);
+      const plan = formData.get("plan");
+      const email = String(formData.get("email") || "").trim();
+      const offer = offers.find((item) => item.id === plan);
+
+      if (email) localStorage.setItem("qaai_checkout_email", email);
+      if (!offer?.paymentUrl || offer.paymentUrl.includes("replace-")) {
+        alert("Ссылку оплаты нужно заменить на реальную ссылку ЮKassa в src/data/site.ts.");
+        return;
+      }
+
+      window.location.href = offer.paymentUrl;
+    });
+  </script>
+</BaseLayout>

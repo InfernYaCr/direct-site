@@ -1,0 +1,81 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const cases = [
+  {
+    tag: "AI Docs",
+    title: "Карта рисков и план проверок",
+    image: `${base}images/pixel-cat-pointing-left-v1.webp`,
+    prompt: "Разбери задачу с AI: что может пойти не так, какие сценарии критичны и что нельзя выпускать без проверки.",
+    result: "Получаешь понятный план проверок, а не просто список красивых тест-кейсов.",
+    tools: ["ChatGPT", "Cursor", "Allure", "Markdown"],
+    metrics: [
+      { value: "×5", label: "быстрее документация" },
+      { value: "0", label: "пустых тест-кейсов" },
+    ],
+  },
+  {
+    tag: "RAG QA",
+    title: "Метрики качества AI-агентов",
+    image: `${base}images/pixel-cat-rag-looking-right-v1.webp`,
+    catLeft: true,
+    prompt: "Оцени ответ RAG-агента: faithfulness, relevance и где он галлюцинирует.",
+    result: "Понимаешь, почему агент врёт и что именно мерить: точность, релевантность контекста, галлюцинации.",
+    tools: ["DeepEval", "Ragas", "LangSmith", "TruLens"],
+    metrics: [
+      { value: "faithfulness", label: "ответ ≈ контексту" },
+      { value: "relevance", label: "контекст ≈ вопросу" },
+    ],
+  },
+  {
+    tag: "Locust",
+    title: "Нагрузочное с нуля",
+    image: `${base}images/pixel-cat-load-gauge-v1.webp`,
+    prompt: "Напиши locustfile на 100 RPS для endpoint логина и объясни шаги запуска.",
+    result: "Готовый сценарий нагрузки + на что смотреть в отчёте: RPS, latency, ошибки под нагрузкой.",
+    tools: ["Locust", "k6", "Grafana", "Prometheus"],
+    metrics: [
+      { value: "RPS", label: "сколько держит" },
+      { value: "p95", label: "latency под нагрузкой" },
+    ],
+  },
+];
+---
+
+<section class="section testcases-section" id="testcases">
+  <SectionHeading
+    eyebrow="Пример применения"
+    title="Не просто промты. Сценарии под реальные задачи QA"
+    text="Показываем пользу через понятные задачи: разобрать риски, проверить ответы AI, посмотреть безопасность и нагрузку."
+  />
+  <div class="testcase-showcase">
+    {cases.map((item, index) => (
+      <article class:list={["testcase-card reveal", { "cat-left": item.catLeft }]} style={`--delay:${index * 100}ms`}>
+        <img class="testcase-bg" src={item.image} alt={`Иллюстрация: ${item.title}`} loading="lazy" decoding="async" />
+        <div class="testcase-copy">
+          <span>{item.tag}</span>
+          <h3>{item.title}</h3>
+          <div class="prompt-box">
+            <small>Prompt</small>
+            <p>{item.prompt}</p>
+          </div>
+          <p class="testcase-result">{item.result}</p>
+          <div class="testcase-metrics">
+            {item.metrics.map((m) => (
+              <div class="metric-chip">
+                <strong>{m.value}</strong>
+                <span>{m.label}</span>
+              </div>
+            ))}
+          </div>
+          <div class="testcase-tools" aria-label="Инструменты">
+            <span class="tools-label">Инструменты</span>
+            {item.tools.map((tool) => <span class="tool-tag">{tool}</span>)}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

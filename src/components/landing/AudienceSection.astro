@@ -1,0 +1,38 @@
+---
+import { audience, audienceNot } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<section class="section split-section" id="author">
+  <div class="split-copy reveal">
+    <p class="eyebrow">Эксперт</p>
+    <h2>Но кто <span class="text-blue">я такой?</span></h2>
+    <div class="author-photo-card">
+      <img
+        src={`${base}images/author-marketer.png`}
+        alt="Ростислав Загребин, маркетолог для медицинских проектов"
+        loading="lazy"
+        decoding="async"
+      />
+      <div>
+        <strong>Ростислав Загребин</strong>
+        <span>Яндекс.Директ и ВК для медицины</span>
+      </div>
+    </div>
+  </div>
+  <div class="check-list">
+    {audience.map((item) => (
+      <div class="check-item reveal">
+        <span>✓</span>
+        <p>{item}</p>
+      </div>
+    ))}
+    {audienceNot.map((item) => (
+      <div class="check-item reveal is-negative">
+        <span>✕</span>
+        <p>{item}</p>
+      </div>
+    ))}
+  </div>
+</section>

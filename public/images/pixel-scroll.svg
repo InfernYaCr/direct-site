@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
+  <title>Pixel PDF guide</title>
+  <rect width="96" height="96" rx="18" fill="#fffdf7"/>
+  <rect x="24" y="14" width="48" height="68" fill="#171817"/>
+  <rect x="32" y="24" width="24" height="6" fill="#8fcf9a"/>
+  <rect x="32" y="38" width="32" height="5" fill="#fffdf7"/>
+  <rect x="32" y="50" width="24" height="5" fill="#fffdf7"/>
+  <rect x="32" y="62" width="30" height="5" fill="#ee6b3a"/>
+  <rect x="64" y="14" width="8" height="8" fill="#ee6b3a"/>
+</svg>

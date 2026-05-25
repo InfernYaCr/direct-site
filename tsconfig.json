@@ -3,9 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@content": ["./src/content/site.ts"]
+      "@/*": ["src/*"]
     }
-  },
-  "include": ["src/**/*", "astro.config.ts"]
+  }
 }

@@ -1,0 +1,49 @@
+---
+import { site } from "@/data/site";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  text?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  compact?: boolean;
+}
+
+const {
+  eyebrow = "Сделай первый шаг",
+  title = "Забери бесплатный starter guide и посмотри, как устроен подход AI QA.",
+  text = "Посмотри стиль материалов и реши по факту, нужен ли полный набор. На странице тарифов есть и платный, и бесплатный вариант.",
+  primaryLabel = "Забрать гайд",
+  primaryHref = "#pricing",
+  secondaryLabel = "Подписаться",
+  secondaryHref = site.telegramUrl,
+  compact = false,
+} = Astro.props;
+---
+
+<section class:list={["soft-cta reveal", { compact }]}>
+  <div class="soft-cta-copy">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2>{title}</h2>
+    {!compact && text && <p>{text}</p>}
+  </div>
+  <div class="soft-cta-actions">
+    <a class="cta-pill primary" href={primaryHref} data-goal="lead_free_guide">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M14 3v4a1 1 0 0 0 1 1h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M5 3h9l5 5v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8 13h8M8 17h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <span>{primaryLabel}</span>
+    </a>
+    <a class="cta-pill ghost" href={secondaryHref}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M21 4 3 11l6 2 2 6 4-5 4 5 2-15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span>{secondaryLabel}</span>
+    </a>
+  </div>
+</section>

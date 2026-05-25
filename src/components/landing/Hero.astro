@@ -1,0 +1,53 @@
+---
+import { leadMagnet } from "@/data/site";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<section class="hero section" id="top">
+  <div class="hero-backdrop" aria-hidden="true">
+    <span class="scan-ring ring-one"></span>
+    <span class="scan-ring ring-two"></span>
+    <span class="scan-line"></span>
+  </div>
+  <div class="hero-copy reveal">
+    <p class="eyebrow">30-минутная диагностика</p>
+    <h1>Сливаете 100 000 ₽/мес<br class="hero-title-break" /> на рекламу, а в кресле пусто?</h1>
+    <p class="hero-text">
+      За 30 минут покажу, где утекают деньги — и как получать 30–50
+      платёжеспособных пациентов в месяц на имплантацию по цене до 1 500 ₽
+      за запись.
+    </p>
+    <p class="hero-text">
+      Без новых тестов, без слива ещё одного бюджета на «обучение алгоритма»
+      и без вашего личного участия в настройках.
+    </p>
+    <div class="hero-actions">
+      <a
+        class="button primary"
+        href="#pricing"
+        data-goal="paid_tariff_full"
+      >
+        Записаться на бесплатную диагностику
+      </a>
+      <a class="button ghost" href="#pain" data-goal={leadMagnet.goalId}>
+        Сначала понять проблему
+      </a>
+    </div>
+  </div>
+  <div class="hero-card human-hero-card reveal delay-1" aria-label="Диагностика рекламы для стоматологии">
+    <div class="human-visual">
+      <img
+        src={`${base}images/hero-dentist-mask.png`}
+        alt="Специалист в стоматологической клинике"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="hero-level-card">
+        <span>Сейчас 0 ₽</span>
+        <strong>Аудит рекламы</strong>
+        <p>30 минут: кабинет, связки, заявки</p>
+      </div>
+    </div>
+  </div>
+</section>

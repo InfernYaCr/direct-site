@@ -1,0 +1,128 @@
+---
+import "../styles/global.css";
+import { site as defaultSite } from "@/data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = defaultSite.title,
+  description = defaultSite.description,
+  canonical = Astro.url.href,
+  noindex = false,
+} = Astro.props;
+const pageTitle = title === defaultSite.title ? title : `${title} | ${defaultSite.name}`;
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const ogImage = new URL(`${base}images/hero-dentist-mask.png`, Astro.site ?? Astro.url).href;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#151716" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={defaultSite.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: defaultSite.name,
+      description,
+      url: new URL(base, Astro.site ?? Astro.url).href,
+      image: ogImage,
+      areaServed: "RU",
+      serviceType: "Настройка рекламы Яндекс.Директ и ВК для стоматологий",
+      provider: {
+        "@type": "Person",
+        name: "Ростислав Загребин",
+        jobTitle: "Маркетолог по Яндекс.Директ и ВК для медицины",
+      },
+      offers: {
+        "@type": "Offer",
+        name: "Бесплатная 30-минутная диагностика рекламного кабинета",
+        price: "0",
+        priceCurrency: "RUB",
+      },
+    })} />
+  </head>
+  <body>
+    <slot />
+    <a class="back-to-top" href="#top" aria-label="Наверх">↑</a>
+    <div class="cookie-banner" data-cookie-banner hidden>
+      <div>
+        <strong>Cookies и аналитика</strong>
+        <p>
+          Используем технические cookies/localStorage и аналитику, чтобы сайт работал стабильнее
+          и реклама не стреляла вслепую.
+        </p>
+      </div>
+      <div class="cookie-actions">
+        <a class="button ghost" href={`${base}cookies/`}>Подробнее</a>
+        <button class="button primary" type="button" data-cookie-accept>Ок</button>
+      </div>
+    </div>
+    <script>
+      const revealItems = document.querySelectorAll(".reveal");
+      const show = (el) => el.classList.add("is-visible");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                show(entry.target);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          // появляться как только край блока вошёл в экран — порог 0,
+          // чтобы высокие карточки на мобилке не застревали невидимыми
+          { threshold: 0, rootMargin: "0px 0px -40px 0px" },
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+
+        // страховка: всё, что уже в зоне видимости при загрузке — показать сразу
+        requestAnimationFrame(() => {
+          revealItems.forEach((item) => {
+            const rect = item.getBoundingClientRect();
+            if (rect.top < window.innerHeight) show(item);
+          });
+        });
+      } else {
+        revealItems.forEach(show);
+      }
+
+      const cookieBanner = document.querySelector("[data-cookie-banner]");
+      const cookieAccept = document.querySelector("[data-cookie-accept]");
+      const cookieKey = "qaai_cookie_notice_accepted";
+
+      if (cookieBanner && localStorage.getItem(cookieKey) !== "yes") {
+        cookieBanner.hidden = false;
+      }
+
+      cookieAccept?.addEventListener("click", () => {
+        localStorage.setItem(cookieKey, "yes");
+        if (cookieBanner) cookieBanner.hidden = true;
+      });
+    </script>
+  </body>
+</html>

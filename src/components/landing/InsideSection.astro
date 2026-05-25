@@ -1,0 +1,62 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+
+const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const items = [
+  {
+    title: "3–4 недели обучения за ваш счёт",
+    meta: "причина слива",
+    icon: `${base}images/pixel-scroll.svg`,
+    text: "Каждое агентство запускает кабинет с чистого листа, и первые недели ваш бюджет уходит на обучение алгоритма.",
+  },
+  {
+    title: "Случайный трафик всем подряд",
+    meta: "фаза обучения",
+    icon: `${base}images/pixel-robot.svg`,
+    text: "Нейросеть показывает рекламу школьникам, пенсионерам и тем, кто ищет «бесплатное удаление» или акцию за 19 900.",
+  },
+  {
+    title: "Кресла пустые, лизинг капает",
+    meta: "итог",
+    icon: `${base}images/pixel-cv.svg`,
+    text: "Вы платите за клики людей, которые никогда не запишутся на имплантацию за 80 000 ₽.",
+  },
+  {
+    title: "«Нужно ещё потестить связки»",
+    meta: "повтор сценария",
+    icon: `${base}images/pixel-map.svg`,
+    text: "Через месяц агентство разводит руками, а вы из своего кармана финансируете обучение чужого алгоритма.",
+  },
+];
+---
+
+<section class="section" id="inside">
+  <SectionHeading
+    eyebrow="В чём проблема"
+    title="Дело не в «перегретом аукционе» и не в том, что реклама в стоматологии больше <span class='text-blue'>не работает</span>"
+    text="Настоящая причина: кабинет запускают с нуля, алгоритм действует методом тыка, а вы оплачиваете каждый этот тычок."
+  />
+  <div class="problem-board reveal">
+    <div class="problem-board__visual" data-scroll-card data-scroll-scope="#inside .problem-board">
+      <img src={`${base}images/problem-empty-chair.png`} alt="Пустое стоматологическое кресло вечером" loading="lazy" />
+      <div class="problem-board__copy scroll-photo-copy" data-scroll-copy>
+        <span>фаза обучения</span>
+        <strong>3–4 недели</strong>
+        <p>алгоритм ищет вслепую за ваш счёт</p>
+      </div>
+    </div>
+    <div class="problem-board__list">
+      {items.map((item, index) => (
+        <article class="problem-step">
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <p>{item.meta}</p>
+            <h3>{item.title}</h3>
+            <small>{item.text}</small>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

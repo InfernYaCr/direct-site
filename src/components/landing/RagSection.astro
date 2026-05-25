@@ -1,0 +1,26 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+import { ragMetrics } from "@/data/site";
+---
+
+<section class="section rag-section" id="rag">
+  <SectionHeading
+    eyebrow="Главный сдвиг"
+    title="Сначала научись не доверять AI вслепую"
+    text="Смысл не в модных названиях инструментов. Смысл в том, чтобы QA мог сказать: я проверил ответ AI, вижу риски и понимаю, можно ли это использовать."
+  />
+  <div class="rag-grid">
+    {ragMetrics.map((item) => (
+      <article class:list={["rag-card reveal", item.status]}>
+        <div class="rag-top">
+          <span>{item.label}</span>
+          <h3>{item.title}</h3>
+        </div>
+        <p>{item.text}</p>
+        <div class="key-list" aria-label={`Ключи ${item.label}`}>
+          {item.keys.map((key) => <small>{key}</small>)}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

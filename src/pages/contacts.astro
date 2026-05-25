@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout
+  title="Контакты"
+  description="Контакты поддержки QA x AI: вопросы по оплате, доступу к материалам и юридическим документам."
+>
+  <Header />
+  <main class="legal-page" id="top">
+    <section class="section legal-content contacts-content">
+      <p class="eyebrow">Поддержка</p>
+      <h1>Контакты</h1>
+      <p>
+        Если не пришёл доступ, возник вопрос по оплате или нужен документ по заказу — напишите в поддержку.
+      </p>
+
+      <div class="contact-grid">
+        <a class="contact-card" href={`mailto:${site.supportEmail}`}>
+          <span>Email</span>
+          <strong>{site.supportEmail}</strong>
+          <p>Для вопросов по оплате, доступу и возвратам.</p>
+        </a>
+        <a class="contact-card" href={site.telegramUrl}>
+          <span>Telegram</span>
+          <strong>Канал / поддержка</strong>
+          <p>Новости, обновления материалов и быстрые объявления.</p>
+        </a>
+        <a class="contact-card" href={site.vkUrl}>
+          <span>VK</span>
+          <strong>Сообщество</strong>
+          <p>Дополнительный канал связи и публикаций.</p>
+        </a>
+      </div>
+
+      <h2>Реквизиты продавца</h2>
+      <p>
+        {site.seller.name}. ИНН: {site.seller.inn}. ОГРН/ОГРНИП: {site.seller.ogrn}.
+        Адрес: {site.seller.address}.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

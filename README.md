@@ -1,146 +1,165 @@
-# Direct Site
+# QA x AI landing
 
-Astro + TypeScript шаблон продающего сайта эксперта с двумя страницами:
+Astro-сайт для продажи AI QA инфопродукта: PDF-гайд, промты, roadmap, CV-шаблоны и дополнительные форматы разбора. Проект собран как статический лендинг с SEO-мета, юридическими черновиками, страницей успешной оплаты и готовой структурой под подключение платежей и аналитики.
 
-- `/` — главная страница-хаб с офферами, кейсами, отзывами и футером.
-- `/product` — продуктовая sales page по структуре референса с hero, кейсами, болями, программой, бонусом и CTA.
+## Как запустить
 
-Контент сейчас плейсхолдерный. Все тексты, ссылки и данные секций меняются в одном файле: `src/content/site.ts`.
-
-## Стек
-
-- Astro 5
-- TypeScript
-- CSS custom properties
-- Onest Variable через `@fontsource-variable/onest`
-- Статическая сборка без клиентского JS для страниц
-
-## Установка
+Нужен Node.js 18+.
 
 ```bash
 npm install
-```
-
-## Локальный запуск
-
-```bash
-npm run dev -- --host 127.0.0.1
+npm run dev
 ```
 
 После запуска Astro покажет локальный адрес, обычно:
 
 ```text
-http://127.0.0.1:4321/
+http://localhost:4321
 ```
 
-Основные страницы:
-
-```text
-http://127.0.0.1:4321/
-http://127.0.0.1:4321/product
-```
-
-Если порт `4321` занят, Astro автоматически предложит следующий порт, например `4322`.
-
-## Проверка и сборка
-
-Проверка Astro/TypeScript:
+## Основные команды
 
 ```bash
-npm run check
+npm run dev
 ```
 
-Production build:
+Запускает локальный dev-сервер.
 
 ```bash
 npm run build
 ```
 
-Локальный просмотр production-сборки:
+Собирает статическую версию сайта в `dist/`.
 
 ```bash
-npm run preview -- --host 127.0.0.1
+npm run preview
 ```
+
+Запускает локальный preview уже собранного сайта. Перед этим нужно выполнить `npm run build`.
 
 ## Структура проекта
 
 ```text
 src/
-  content/site.ts              # единый источник контента
-  layouts/Base.astro           # базовый layout, head, стили
-  pages/index.astro            # главная страница
-  pages/product.astro          # продуктовая страница
   components/
-    sections/                  # секции главной страницы
-    product/                   # секции продуктовой страницы
-    ui/                        # UI-примитивы
+    landing/       # секции главной страницы
+  data/
+    site.ts        # оффер, тарифы, FAQ, контакты, ссылки
+  layouts/
+    BaseLayout.astro
+  pages/
+    index.astro    # главная
+    thank-you.astro
+    privacy.astro
+    offer.astro
+    404.astro
+    sitemap.xml.ts
   styles/
-    tokens.css                 # дизайн-токены
-    typography.css
     global.css
+public/
+  downloads/       # PDF и другие файлы для скачивания
 ```
 
 ## Где менять контент
 
-Основной файл:
+Главные тексты, тарифы, FAQ, контакты и ссылки лежат в:
 
 ```text
-src/content/site.ts
+src/data/site.ts
 ```
 
-В нём находятся:
+Там же меняются:
 
-- `meta` — title, description, язык, OG.
-- `hero`, `bridge`, `magazine`, `donate`, `club`, `services`, `cases`, `reviews`, `channels`, `affiliate`, `footer`, `cookie` — контент главной.
-- `product` — весь контент продуктовой страницы `/product`.
+- `site.url` - публичный домен;
+- `site.telegramUrl` - ссылка на Telegram;
+- `site.vkUrl` - ссылка на VK;
+- `site.supportEmail` - email поддержки;
+- `offers` - тарифы, цены, состав и ссылки оплаты;
+- `faq` - вопросы и ответы;
+- `program`, `cases`, `testimonials` - продающие блоки.
 
-Компоненты рассчитаны на то, что финальные тексты и ссылки заменяются в `site.ts`, без правки вёрстки.
-
-## Деплой на GitHub
-
-Проект подготовлен для GitHub Pages через GitHub Actions.
-
-После успешного workflow сайт будет доступен по адресу:
+Секции главной страницы лежат в:
 
 ```text
-https://infernyacr.github.io/direct-site/
+src/components/landing/
 ```
 
-Основные страницы на хостинге:
+Порядок секций задаётся в:
 
 ```text
-https://infernyacr.github.io/direct-site/
-https://infernyacr.github.io/direct-site/product
-https://infernyacr.github.io/direct-site/privacy
-https://infernyacr.github.io/direct-site/policyopd
-https://infernyacr.github.io/direct-site/oferta/avtovoronki
+src/pages/index.astro
 ```
 
-В настройках репозитория GitHub нужно открыть `Settings → Pages` и выбрать `Source: GitHub Actions`.
-Для бесплатного GitHub Pages репозиторий должен быть публичным. Для приватного
-репозитория нужен тариф GitHub, который поддерживает Pages для private repos,
-либо деплой на Vercel / Netlify / Cloudflare Pages.
+## Переменные окружения
 
-Если remote ещё не настроен:
+Для корректных canonical URL и sitemap можно задать домен:
 
 ```bash
-git remote add origin https://github.com/InfernYaCr/direct-site.git
+SITE_URL=https://your-domain.ru npm run build
 ```
 
-Проверить remote:
+Если переменная не задана, Astro использует значение по умолчанию из `astro.config.mjs`.
 
-```bash
-git remote -v
+## Страницы
+
+- `/` - основной лендинг.
+- `/thank-you/` - страница после оплаты с кнопкой скачивания материалов.
+- `/privacy/` - черновик политики конфиденциальности.
+- `/offer/` - черновик публичной оферты.
+- `/404/` - страница ошибки.
+- `/sitemap.xml` - sitemap.
+
+## Файлы для скачивания
+
+Сейчас кнопка скачивания на странице `/thank-you/` ведёт на:
+
+```text
+public/downloads/ai-qa-guide-sample.pdf
 ```
 
-После коммита отправить ветку:
+Перед запуском продаж замените этот файл на реальный продукт или обновите ссылку в `src/pages/thank-you.astro`.
 
-```bash
-git push -u origin phase/5-product-page
+## Подключение оплаты
+
+Ссылки кнопок тарифов находятся в `offers` внутри `src/data/site.ts`.
+
+Сейчас они ведут на тестовую страницу успешной оплаты:
+
+```text
+/thank-you/?plan=...
 ```
 
-Для публикации статической сборки используйте содержимое папки `dist/`, которая создаётся командой:
+Перед рекламой замените `paymentUrl` на реальные ссылки ЮKassa или обработчик оплаты. Не храните секретные ключи в репозитории.
+
+## Аналитика
+
+Проект готов к добавлению Яндекс.Метрики, целей на CTA и событий по тарифам, но реальные счётчики не захардкожены.
+
+Перед запуском рекламы стоит настроить:
+
+- цель на клик по основному CTA;
+- цель на выбор тарифа;
+- цель на переход к оплате;
+- цель на успешную оплату;
+- UTM-метки для Яндекс.Директа.
+
+## Перед публикацией
+
+Проверьте и замените placeholders:
+
+- домен в `SITE_URL` и `src/data/site.ts`;
+- Telegram, VK и email поддержки;
+- реальные цены и состав тарифов;
+- ссылки оплаты;
+- PDF-файл в `public/downloads/`;
+- юридические данные в `/privacy/` и `/offer/`;
+- favicon и Open Graph изображение, если нужно.
+
+Проверка перед деплоем:
 
 ```bash
 npm run build
+npm run preview
 ```
+
+После preview проверьте первый экран, мобильную версию, блок тарифов, CTA, юридические ссылки и скачивание материалов.
