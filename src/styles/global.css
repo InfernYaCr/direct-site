@@ -293,6 +293,11 @@ svg {
     color 180ms ease;
 }
 
+.social-link svg {
+  width: 19px;
+  height: 19px;
+}
+
 .social-link:hover {
   transform: translateY(-2px);
   background: var(--dark);
@@ -6223,8 +6228,8 @@ body {
 
 .diagnostic-media-card {
   position: absolute;
+  top: 28px;
   right: 28px;
-  bottom: 28px;
   left: 28px;
   z-index: 1;
   display: grid;
@@ -6430,6 +6435,7 @@ body {
   }
 
   .diagnostic-media-card {
+    top: auto;
     right: 16px;
     bottom: 16px;
     left: 16px;
@@ -7401,8 +7407,8 @@ body:has(.home-main) .header-cta {
   }
 
   .diagnostic-media-card {
+    top: 22px;
     right: 22px;
-    bottom: 22px;
     left: 22px;
     padding: 18px;
     border-radius: 20px;

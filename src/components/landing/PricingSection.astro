@@ -13,14 +13,18 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
   />
 
   <div class="diagnostic-offer reveal" id="free-guide">
-    <div class="diagnostic-offer__media">
+    <div
+      class="diagnostic-offer__media"
+      data-scroll-card
+      data-scroll-scope="#pricing .diagnostic-offer"
+    >
       <img
         src={`${base}images/dental-diagnostics-bg.webp`}
         alt="Аналитика рекламы и планирование лечения в стоматологической клинике"
         loading="lazy"
         decoding="async"
       />
-      <div class="diagnostic-media-card">
+      <div class="diagnostic-media-card scroll-photo-copy" data-scroll-copy>
         <span>что проверю</span>
         <strong>Кабинет, заявки, стоимость пациента</strong>
       </div>
