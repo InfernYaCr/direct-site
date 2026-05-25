@@ -14,12 +14,12 @@ interface Props {
 
 const {
   eyebrow = "Сделай первый шаг",
-  title = "Забери бесплатный starter guide и посмотри, как устроен подход AI QA.",
-  text = "Посмотри стиль материалов и реши по факту, нужен ли полный набор. На странице тарифов есть и платный, и бесплатный вариант.",
-  primaryLabel = "Забрать гайд",
-  primaryHref = "#lead-form",
-  secondaryLabel = "Подписаться",
-  secondaryHref = "#lead-form",
+  title = "Оставьте заявку на бесплатную диагностику рекламного кабинета.",
+  text = "Разберём ВК или Яндекс.Директ, заявки и стоимость пациента без обязательств работать дальше.",
+  primaryLabel = "Оставить заявку",
+  primaryHref = "#diagnostic-request",
+  secondaryLabel,
+  secondaryHref = "#diagnostic-request",
   compact = false,
 } = Astro.props;
 ---
@@ -39,11 +39,13 @@ const {
       </svg>
       <span>{primaryLabel}</span>
     </a>
-    <a class="cta-pill ghost" href={secondaryHref}>
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M21 4 3 11l6 2 2 6 4-5 4 5 2-15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <span>{secondaryLabel}</span>
-    </a>
+    {secondaryLabel && (
+      <a class="cta-pill ghost" href={secondaryHref}>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 4 3 11l6 2 2 6 4-5 4 5 2-15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>{secondaryLabel}</span>
+      </a>
+    )}
   </div>
 </section>

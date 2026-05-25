@@ -10,6 +10,7 @@ import ProgramSection from "@/components/landing/ProgramSection.astro";
 import PricingSection from "@/components/landing/PricingSection.astro";
 import FaqSection from "@/components/landing/FaqSection.astro";
 import FinalCta from "@/components/landing/FinalCta.astro";
+import SoftCta from "@/components/landing/SoftCta.astro";
 ---
 
 <BaseLayout>
@@ -17,9 +18,33 @@ import FinalCta from "@/components/landing/FinalCta.astro";
   <main class="home-main">
     <Hero />
     <PainSection />
+    <SoftCta
+      eyebrow="Узнаёте свою ситуацию?"
+      title="Оставьте заявку — покажу, какие настройки прямо сейчас съедают бюджет."
+      text="На диагностике разберём кабинет, заявки и стоимость пациента без обязательств работать дальше."
+      primaryLabel="Проверить рекламный кабинет"
+      primaryHref="#diagnostic-request"
+      compact
+    />
     <InsideSection />
+    <SoftCta
+      eyebrow="Не начинаем с новых тестов"
+      title="Сначала разберём текущий кабинет и найдём, что чинить первым."
+      text="Без просьбы залить ещё месяц бюджета на обучение алгоритма."
+      primaryLabel="Получить разбор текущей рекламы"
+      primaryHref="#diagnostic-request"
+      compact
+    />
     <ProgramSection />
     <AudienceSection />
+    <SoftCta
+      eyebrow="Покажете кабинет лично"
+      title="Заявку разбираю сам: кампании, аудитории, заявки и экономика пациента."
+      text="Пишу и звоню лично, без передачи в отдел продаж."
+      primaryLabel="Оставить заявку Ростиславу"
+      primaryHref="#diagnostic-request"
+      compact
+    />
     <PricingSection />
     <FaqSection />
     <FinalCta />
