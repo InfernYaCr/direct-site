@@ -10,7 +10,6 @@ const pains = [
   "Вечерами сами лезете в отчёты и считаете заявки в Excel — потому что доверять уже некому.",
   "Сарафан закончился, конкурент через дорогу демпингует «имплант за 19 900», а вы честно держите 45 000 — и проигрываете.",
   "Каждый новый маркетолог обещает «лиды по 300 рублей», а через месяц — снова кассовый разрыв.",
-  "И главное ощущение — вы не понимаете, кому ещё можно верить.",
 ];
 ---
 
@@ -25,17 +24,25 @@ const pains = [
       class="pain-board__main"
       style={`--pain-bg: url("${base}images/blok-2-vam-eto-znakomo.webp")`}
     >
+      <span class="pain-board__num">01</span>
       <span>главный симптом</span>
       <h3>Деньги уходят, а платёжеспособных записей нет</h3>
       <p>{pains[0]}</p>
     </article>
     <div class="pain-board__rail">
-      {pains.slice(1).map((pain, index) => (
-        <article class="pain-board__item">
+      {pains.slice(1, 6).map((pain, index) => (
+        <article class:list={["pain-board__item", { "pain-board__item--wide": index === 4 }]}>
           <span>{String(index + 2).padStart(2, "0")}</span>
           <p>{pain}</p>
         </article>
       ))}
     </div>
+  </div>
+  <div class="pain-conclusion reveal">
+    <span class="pain-conclusion__mark" aria-hidden="true"></span>
+    <p class="pain-conclusion__text">
+      И главное ощущение — вы <span class="text-blue">не понимаете</span>,
+      <span class="text-blue">кому ещё можно верить</span>.
+    </p>
   </div>
 </section>

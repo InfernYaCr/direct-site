@@ -3,6 +3,14 @@ import SectionHeading from "@/components/SectionHeading.astro";
 import { program } from "@/data/site";
 
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const compareRows = [
+  ["3–4 недели обучения за ваш счёт", "Заявки уже на 3–5 день"],
+  ["Случайный трафик «всем подряд»", "Только платёжеспособные пациенты"],
+  ["Заявки «на бесплатное удаление»", "Заявки на имплантацию, виниры, All-on-4"],
+  ["САС 8 000–15 000 ₽", "САС до 4 000 ₽ за запись"],
+  ["«Дайте ещё месяц на тесты»", "Прогнозируемые 30–50 пациентов/мес"],
+];
 ---
 
 <section class="section soft" id="program">
@@ -27,13 +35,42 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
       <div class="program-visual-note__copy scroll-photo-copy" data-scroll-copy>
         <h3>Ключевые темы</h3>
         <p>
-          Когда мы запускаем вашу клинику, я загружаю в кабинет готовые
-          «данные-доноры» — и алгоритм быстрее переходит в рабочий режим.
-          Маркетинг работает как кран: открыли бюджет — пошли пациенты.
+          Когда мы запускаем вашу клинику, я не начинаю с нуля. Я загружаю
+          в ваш кабинет готовые «данные-доноры» — и алгоритм мгновенно
+          переходит в рабочий режим.
         </p>
         <a class="button ghost" href="#diagnostic-request">Записаться на диагностику</a>
       </div>
     </aside>
+  </div>
+
+  <div class="program-compare reveal">
+    <p class="program-compare__caption">Что это даёт вам</p>
+    <div class="compare">
+      <div class="compare__row compare__row--head">
+        <div class="compare__head compare__head--bad">Стандартное агентство</div>
+        <div class="compare__head compare__head--good">Метод «Умный Навигатор»</div>
+      </div>
+      {compareRows.map(([bad, good]) => (
+        <div class="compare__row">
+          <div class="compare__cell compare__cell--bad">
+            <span class="compare__icon" aria-hidden="true">✕</span>
+            <span>{bad}</span>
+          </div>
+          <div class="compare__cell compare__cell--good">
+            <span class="compare__icon" aria-hidden="true">✓</span>
+            <span>{good}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="pain-conclusion reveal">
+    <span class="pain-conclusion__mark" aria-hidden="true"></span>
+    <p class="pain-conclusion__text">
+      Маркетинг работает как кран:
+      <span class="text-blue">открыли бюджет — пошли пациенты</span>. Закрыли — встало.
+    </p>
   </div>
 </section>
 

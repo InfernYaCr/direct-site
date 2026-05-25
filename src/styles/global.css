@@ -5483,9 +5483,57 @@ body {
   line-height: 1.45;
 }
 
+.pain-board__main .pain-board__num {
+  margin-bottom: auto;
+  color: #fff;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+.pain-board__item--wide {
+  grid-column: 1 / -1;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: center;
+  align-items: center;
+  gap: clamp(16px, 2vw, 26px);
+}
+
+.pain-conclusion {
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 1.8vw, 22px);
+  width: min(var(--max), calc(100vw - 36px));
+  margin: clamp(18px, 2.2vw, 30px) auto 0;
+  padding: clamp(34px, 4.6vw, 60px) clamp(24px, 4vw, 56px);
+  border-radius: 30px;
+  background:
+    radial-gradient(120% 200% at 50% -45%, rgba(37, 99, 235, 0.14), transparent 60%),
+    linear-gradient(180deg, rgba(219, 234, 254, 0.55), rgba(255, 255, 255, 0.85));
+  box-shadow: 0 22px 56px rgba(15, 46, 86, 0.07);
+  text-align: center;
+}
+
+.pain-conclusion__mark {
+  width: 52px;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-2));
+}
+
+.pain-conclusion__text {
+  max-width: 920px;
+  color: var(--text);
+  font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.26;
+  letter-spacing: -0.01em;
+}
+
 .problem-board {
   display: grid;
-  grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 22px;
   align-items: stretch;
   padding: clamp(16px, 2vw, 24px);
@@ -5601,11 +5649,17 @@ body {
   line-height: 1.5;
 }
 
+.learning-headline {
+  color: #fff;
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
 .problem-board__list {
   display: grid;
-  order: 1;
   gap: 14px;
-  align-content: center;
 }
 
 .problem-story,
@@ -5619,14 +5673,27 @@ body {
 
 .problem-story {
   display: grid;
-  gap: 12px;
+  align-content: center;
+  gap: clamp(14px, 1.6vw, 20px);
+  padding: clamp(28px, 3vw, 44px);
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(219, 234, 254, 0.5), transparent 46%),
+    rgba(255, 255, 255, 0.92);
+  box-shadow: 0 20px 50px rgba(15, 46, 86, 0.06);
 }
 
 .problem-story p {
-  color: #334155;
-  font-size: clamp(1rem, 1.2vw, 1.12rem);
-  font-weight: 620;
-  line-height: 1.58;
+  color: #1e293b;
+  font-size: clamp(1.05rem, 1.35vw, 1.28rem);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.problem-story p strong {
+  color: var(--blue);
+  font-weight: 850;
 }
 
 .problem-summary {
@@ -5725,7 +5792,8 @@ body {
 
 @media (max-width: 680px) {
   .pain-board,
-  .problem-board {
+  .problem-board,
+  .pain-conclusion {
     width: min(var(--max), calc(100vw - 28px));
   }
 
@@ -6575,6 +6643,116 @@ body {
   transform: translate3d(0, var(--photo-copy-y, 0px), 0);
   transition: transform 80ms linear;
   will-change: transform;
+}
+
+/* Сравнительная таблица: «что это даёт» */
+.program-compare {
+  width: min(1040px, calc(100vw - 36px));
+  margin: clamp(28px, 4vw, 52px) auto 0;
+  display: grid;
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+.program-compare__caption {
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.compare {
+  display: grid;
+  gap: clamp(8px, 1vw, 12px);
+}
+
+.compare__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 1vw, 14px);
+}
+
+.compare__head {
+  padding: clamp(13px, 1.5vw, 18px) clamp(18px, 2vw, 26px);
+  border-radius: 16px;
+  font-size: clamp(0.98rem, 1.25vw, 1.16rem);
+  font-weight: 850;
+}
+
+.compare__head--bad {
+  border: 1px solid rgba(214, 93, 79, 0.22);
+  background: rgba(214, 93, 79, 0.08);
+  color: #c0564b;
+}
+
+.compare__head--good {
+  border: 1px solid rgba(37, 99, 235, 0.28);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(14, 165, 233, 0.1));
+  color: var(--blue);
+}
+
+.compare__cell {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: clamp(15px, 1.7vw, 20px) clamp(16px, 1.8vw, 22px);
+  border-radius: 16px;
+  font-size: clamp(0.96rem, 1.1vw, 1.08rem);
+  line-height: 1.4;
+}
+
+.compare__cell--bad {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.66);
+  color: #64748b;
+}
+
+.compare__cell--good {
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  background:
+    radial-gradient(120% 150% at 100% 0%, rgba(37, 99, 235, 0.09), transparent 52%),
+    rgba(255, 255, 255, 0.95);
+  color: var(--text);
+  font-weight: 720;
+}
+
+.compare__icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.compare__cell--bad .compare__icon {
+  background: rgba(214, 93, 79, 0.16);
+  color: #d65d4f;
+}
+
+.compare__cell--good .compare__icon {
+  background: rgba(37, 99, 235, 0.16);
+  color: var(--blue);
+}
+
+#program .pain-conclusion {
+  max-width: 1040px;
+}
+
+@media (max-width: 680px) {
+  .compare__row--head {
+    display: none;
+  }
+
+  .compare__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .compare {
+    gap: 16px;
+  }
 }
 
 .problem-board__visual .problem-board__copy {
