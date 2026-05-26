@@ -1,0 +1,96 @@
+---
+import { getImage } from "astro:assets";
+import screenshotRaw from "@/assets/form-zapisi.jpg";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const screenshot = await getImage({
+  src: screenshotRaw,
+  format: "webp",
+  quality: 82,
+  width: 900,
+});
+---
+
+<section class="section diag-offer-section">
+  <div class="diag-offer-section__left reveal">
+    <h2 class="diag-offer-section__heading">
+      Оставь заявку и получи <span class="text-blue">бесплатно</span><br class="br-desktop">
+      30-минутный видео-разбор<br class="br-desktop">
+      своей рекламы и сайта
+    </h2>
+    <div class="diag-offer-section__screenshot">
+      <img
+        src={screenshot.src}
+        alt="Пример видео-разбора рекламного кабинета"
+        loading="lazy"
+        decoding="async"
+        width="900"
+        height="507"
+      />
+    </div>
+  </div>
+
+  <div class="diag-offer-section__right reveal">
+    <div class="diag-offer-card">
+      <p class="diag-offer-card__title">
+        Форма для записи на бесплатную диагностику по методу «Умный навигатор»
+      </p>
+      <form
+        class="diag-offer-form"
+        action={`${base}send-lead.php`}
+        method="post"
+        data-goal="video_audit_form"
+      >
+        <input type="hidden" name="source" value="video_audit" />
+        <input type="hidden" name="redirect" value={`${base}thank-you/?lead=video-audit`} />
+
+        <label>
+          <span>Имя</span>
+          <input
+            type="text"
+            name="name"
+            placeholder="Как к вам обращаться"
+            autocomplete="name"
+            minlength="2"
+            maxlength="80"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Телефон</span>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+7 999 123-45-67"
+            autocomplete="tel"
+            inputmode="tel"
+            minlength="8"
+            maxlength="32"
+            required
+          />
+        </label>
+
+        <label class="diag-offer-form__trap" aria-hidden="true">
+          <span>Сайт</span>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" />
+        </label>
+
+        <label class="diag-offer-form__consent">
+          <input type="checkbox" name="consent" value="yes" required />
+          <span>
+            Согласен на обработку персональных данных и принимаю условия
+            <a href={`${base}privacy/`} target="_blank">политики конфиденциальности</a>.
+          </span>
+        </label>
+
+        <button class="button primary diag-offer-form__submit" type="submit">
+          Получить видео-разбор бесплатно
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
