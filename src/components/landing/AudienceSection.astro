@@ -1,7 +1,9 @@
 ---
+import { getImage } from "astro:assets";
 import { audience, audienceNot } from "@/data/site";
+import rostikOboMneRaw from "@/assets/rostik-obo-mne.png";
 
-const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const authorPhoto = await getImage({ src: rostikOboMneRaw, format: "webp", quality: 82, width: 620 });
 ---
 
 <section class="section split-section" id="author">
@@ -12,10 +14,12 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
   <div class="split-body">
     <div class="author-photo-card reveal">
       <img
-        src={`${base}images/Rostislav-photo.webp`}
+        src={authorPhoto.src}
         alt="Ростислав Загребин, маркетолог для медицинских проектов"
         loading="lazy"
         decoding="async"
+        width="620"
+        height={Math.round(620 * (1491 / 1055))}
       />
       <div>
         <strong>Ростислав Загребин</strong>
