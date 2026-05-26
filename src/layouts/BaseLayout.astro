@@ -124,5 +124,65 @@ const ogImage = new URL(`${base}images/hero-dentist-mask.png`, Astro.site ?? Ast
         if (cookieBanner) cookieBanner.hidden = true;
       });
     </script>
+    <script>
+      // Phone mask: +7 (___) ___-__-__
+      function applyPhoneMask(input) {
+        function format(raw) {
+          const digits = raw.replace(/\D/g, "").replace(/^[78]/, "");
+          let out = "+7";
+          if (digits.length === 0) return out;
+          out += " (" + digits.slice(0, 3);
+          if (digits.length < 3) return out;
+          out += ") " + digits.slice(3, 6);
+          if (digits.length < 6) return out;
+          out += "-" + digits.slice(6, 8);
+          if (digits.length < 8) return out;
+          out += "-" + digits.slice(8, 10);
+          return out;
+        }
+
+        input.addEventListener("focus", () => {
+          if (!input.value) input.value = "+7 ";
+        });
+
+        input.addEventListener("blur", () => {
+          if (input.value === "+7 " || input.value === "+7") input.value = "";
+        });
+
+        input.addEventListener("input", (e) => {
+          const pos = input.selectionStart;
+          const prev = input.value;
+          const formatted = format(input.value);
+          input.value = formatted;
+          // restore cursor roughly at same position
+          const shift = formatted.length - prev.length;
+          const newPos = Math.max(3, pos + shift);
+          input.setSelectionRange(newPos, newPos);
+        });
+
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Backspace") {
+            const pos = input.selectionStart;
+            // skip over mask characters when backspacing
+            if (input.selectionStart === input.selectionEnd) {
+              const ch = input.value[pos - 1];
+              if (ch && /[\s\(\)\-\+]/.test(ch)) {
+                e.preventDefault();
+                const newPos = pos - 1;
+                input.setSelectionRange(newPos, newPos);
+              }
+            }
+          }
+        });
+
+        input.addEventListener("paste", (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData("text");
+          input.value = format(pasted);
+        });
+      }
+
+      document.querySelectorAll("input[type='tel']").forEach(applyPhoneMask);
+    </script>
   </body>
 </html>
