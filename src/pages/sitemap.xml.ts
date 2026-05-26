@@ -1,6 +1,6 @@
 import { site as fallbackSite } from "@/data/site";
 
-const pages = ["", "contacts/", "privacy/", "offer/", "refund/", "cookies/"];
+const pages = ["", "privacy/", "offer/", "cookies/"];
 
 export function GET({ site }: { site?: URL }) {
   const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;

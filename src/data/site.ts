@@ -3,15 +3,15 @@ export const site = {
   title: "Умный Навигатор — диагностика рекламы для стоматологий",
   description:
     "Бесплатная 30-минутная диагностика рекламного кабинета ВК или Яндекс.Директ для владельцев стоматологий. Покажу, где утекают деньги и как получать 30–50 платёжеспособных пациентов в месяц.",
-  url: "https://navigator.example",
+  url: "https://rosa-zagrebin.ru",
   telegramUrl: "https://t.me/your_username",
   vkUrl: "https://vk.com/valen_group",
-  supportEmail: "hello@example.com",
+  supportEmail: "rostislavkocerov@gmail.com",
   seller: {
-    name: "Загребин Ростислав — заменить реквизиты перед запуском",
+    name: "Загребин Ростислав Олегович",
     inn: "ИНН — заменить",
-    ogrn: "ОГРН/ОГРНИП — заменить, если применимо",
-    address: "Регион / город — заменить",
+    ogrn: "ОГРНИП — заменить",
+    address: "Адрес — заменить",
   },
 };
 
