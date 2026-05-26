@@ -70,7 +70,7 @@ $lead = [
     'user_agent' => $userAgent,
 ];
 
-$mailTo = getenv('LEAD_EMAIL') ?: 'hello@example.com';
+$mailTo = getenv('LEAD_EMAIL') ?: 'rostislavkocerov@gmail.com';
 $mailSubject = 'Новая заявка на диагностику рекламы';
 $mailBody = implode("\n", [
     'Новая заявка с сайта.',
