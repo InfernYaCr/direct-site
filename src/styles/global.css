@@ -4148,18 +4148,12 @@ body.menu-open .mobile-menu-panel {
   .mobile-cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 10px 16px;
+    padding: 11px 18px;
+    border: 1px solid rgba(47, 127, 70, 0.28);
     border-radius: 999px;
-    background: var(--blue);
-    color: #fff;
-    font-size: 0.88rem;
-    font-weight: 800;
+    background: rgba(255, 253, 247, 0.78);
+    font-weight: 750;
     white-space: nowrap;
-    transition: opacity 160ms ease;
-  }
-
-  .mobile-cta-btn:hover {
-    opacity: 0.88;
   }
 
   .brand {
