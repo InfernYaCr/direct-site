@@ -4148,11 +4148,11 @@ body.menu-open .mobile-menu-panel {
   .mobile-cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 8px 14px;
+    padding: 8px 12px;
     border: 1px solid rgba(47, 127, 70, 0.28);
     border-radius: 999px;
     background: rgba(255, 253, 247, 0.78);
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 750;
     white-space: nowrap;
   }
@@ -4177,9 +4177,7 @@ body.menu-open .mobile-menu-panel {
 
   .brand-word em {
     font-size: 0.5rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .mobile-cta-btn {
@@ -4436,10 +4434,9 @@ body.menu-open .mobile-menu-panel {
 @media (max-width: 390px) {
   .brand-word em {
     display: block;
-    max-width: 150px;
     font-size: 0.42rem;
     letter-spacing: 0.06em;
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .hero h1 {
@@ -7481,10 +7478,9 @@ body:has(.home-main) .header-cta {
 
   body:has(.home-main) .brand-word em {
     display: block;
-    max-width: 170px;
     font-size: 0.44rem;
     letter-spacing: 0.08em;
-    white-space: nowrap;
+    white-space: normal;
   }
 }
 
