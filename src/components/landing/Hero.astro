@@ -14,6 +14,11 @@ const bgMobile = await getImage({ src: rostikMobileRaw, format: "webp", quality:
   id="top"
   style={`--hero-bg-desktop: url("${bgDesktop.src}"); --hero-bg-mobile: url("${bgMobile.src}");`}
 >
+  <div class="hero-name-badge" aria-hidden="true">
+    <span class="hero-name-badge__name">Ростислав Загребин</span>
+    <span class="hero-name-badge__role">главный маркетолог</span>
+  </div>
+
   <div class="hero-copy reveal">
     <p class="eyebrow hero-pill"><span></span>30-минутная диагностика</p>
     <h1>
