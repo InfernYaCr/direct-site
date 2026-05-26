@@ -137,9 +137,6 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
       <h2>11. Реквизиты Исполнителя</h2>
       <p>
         {site.seller.name}<br />
-        ИНН: {site.seller.inn}<br />
-        ОГРНИП: {site.seller.ogrn}<br />
-        Адрес: {site.seller.address}<br />
         Email: <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>
       </p>
     </section>

@@ -9,9 +9,6 @@ export const site = {
   supportEmail: "rostislavkocerov@gmail.com",
   seller: {
     name: "Загребин Ростислав Олегович",
-    inn: "ИНН — заменить",
-    ogrn: "ОГРНИП — заменить",
-    address: "Адрес — заменить",
   },
 };
 
