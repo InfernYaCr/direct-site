@@ -4148,17 +4148,42 @@ body.menu-open .mobile-menu-panel {
   .mobile-cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 11px 18px;
+    padding: 8px 14px;
     border: 1px solid rgba(47, 127, 70, 0.28);
     border-radius: 999px;
     background: rgba(255, 253, 247, 0.78);
+    font-size: 0.8rem;
     font-weight: 750;
     white-space: nowrap;
   }
 
   .brand {
+    flex: 1 1 0;
     min-width: 0;
     gap: 10px;
+  }
+
+  .brand-word {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .brand-word strong {
+    font-size: 0.78rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .brand-word em {
+    font-size: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .mobile-cta-btn {
+    flex: 0 0 auto;
   }
 
   .brand-mark {
@@ -4170,6 +4195,7 @@ body.menu-open .mobile-menu-panel {
 
   .brand-word {
     min-width: 0;
+    overflow: hidden;
   }
 
   .hero {
@@ -4213,14 +4239,6 @@ body.menu-open .mobile-menu-panel {
 
   .site-header {
     width: calc(100% - 24px);
-  }
-
-  .brand-word strong {
-    font-size: 1.08rem;
-  }
-
-  .brand-word em {
-    font-size: 0.52rem;
   }
 
   .burger {
@@ -7458,7 +7476,7 @@ body:has(.home-main) .header-cta {
 
 @media (max-width: 480px) {
   body:has(.home-main) .brand-word strong {
-    font-size: 0.98rem;
+    font-size: 0.78rem;
   }
 
   body:has(.home-main) .brand-word em {
