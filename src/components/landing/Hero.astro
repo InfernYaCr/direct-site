@@ -1,11 +1,18 @@
 ---
-const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+import { getImage } from "astro:assets";
+import rostikTitleRaw from "@/assets/rostik-title.png";
+import rostikMobileRaw from "@/assets/rostik-mobile-portrait.png";
+
+// Десктоп — полный landscape-кадр
+const bgDesktop = await getImage({ src: rostikTitleRaw, format: "webp", quality: 82, width: 1800 });
+// Мобилка — портретный кроп 620×1086 (Ростислав по центру, виден весь офис)
+const bgMobile = await getImage({ src: rostikMobileRaw, format: "webp", quality: 82, width: 700 });
 ---
 
 <section
-  class="hero section"
+  class="hero section hero--fullbleed"
   id="top"
-  style={`--hero-office: url("${base}images/title-background.webp");`}
+  style={`--hero-bg-desktop: url("${bgDesktop.src}"); --hero-bg-mobile: url("${bgMobile.src}");`}
 >
   <div class="hero-copy reveal">
     <p class="eyebrow hero-pill"><span></span>30-минутная диагностика</p>
@@ -24,21 +31,8 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
         href="#diagnostic-request"
         data-goal="paid_tariff_full"
       >
-        Получить бесплатную диагностику →
+        Получить бесплатную диагностику
       </a>
-    </div>
-  </div>
-  <div class="hero-card human-hero-card reveal delay-1" aria-label="Ростислав Загребин, маркетолог для стоматологий">
-    <img
-      class="hero-person"
-      src={`${base}images/title-person.webp`}
-      alt="Ростислав Загребин"
-      loading="eager"
-      decoding="async"
-    />
-    <div class="hero-level-card">
-      <strong>Ростислав Загребин</strong>
-      <p>Маркетолог для стоматологий</p>
     </div>
   </div>
 

@@ -8016,3 +8016,85 @@ body:has(.home-main) .header-cta {
     overflow: hidden;
   }
 }
+
+/* ─── Full-bleed hero variant ─────────────────────────────────────────────── */
+
+.hero--fullbleed {
+  display: flex;
+  align-items: flex-end;
+  grid-template-columns: none;
+  min-height: max(100svh, 640px);
+  padding-top: clamp(80px, 8vw, 120px);
+  padding-bottom: clamp(52px, 5.5vw, 80px);
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.52) 0%, rgba(0, 0, 0, 0.36) 36%, rgba(0, 0, 0, 0.10) 64%, rgba(0, 0, 0, 0.0) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.42) 100%),
+    var(--hero-bg-desktop);
+  /* X=68%: Ростислав правее центра; Y=60%: поднимаем его выше в кадре */
+  background-position: 68% 60%;
+  background-size: cover;
+}
+
+.hero--fullbleed .hero-copy {
+  width: min(700px, 60vw);
+  min-height: 0;
+}
+
+.hero--fullbleed .hero-pill {
+  margin-bottom: clamp(14px, 1.6vw, 22px);
+}
+
+.hero--fullbleed .hero-text-lead {
+  margin-top: clamp(12px, 1.4vw, 18px);
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+}
+
+.hero--fullbleed .hero-actions {
+  margin-top: clamp(18px, 2vw, 28px);
+}
+
+@media (max-width: 820px) {
+  .hero--fullbleed {
+    justify-content: flex-end;
+    align-items: stretch;
+    padding: 0 22px 52px;
+    background-image:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.18) 38%, rgba(0, 0, 0, 0.72) 58%, rgba(0, 0, 0, 0.82) 100%),
+      var(--hero-bg-mobile);
+    background-position: 70% 0%;
+    background-size: cover;
+  }
+
+  .hero--fullbleed .hero-copy {
+    width: 100%;
+    min-height: 0;
+    padding-bottom: 52px;
+  }
+}
+
+/* Маленькие телефоны (iPhone SE, 375×667 и меньше) */
+@media (max-width: 480px) {
+  .hero--fullbleed .hero-copy {
+    padding-bottom: 36px;
+  }
+
+  .hero--fullbleed h1 {
+    font-size: clamp(1.25rem, 5.4vw, 1.55rem);
+  }
+
+  .hero--fullbleed .hero-text-lead {
+    margin-top: 10px;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+
+  .hero--fullbleed .hero-actions {
+    margin-top: 14px;
+  }
+
+  .hero--fullbleed .hero .button.primary,
+  .hero--fullbleed .hero-actions .button {
+    min-height: 56px;
+    font-size: 0.96rem;
+  }
+}

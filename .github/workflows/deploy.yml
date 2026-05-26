@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [hero-diagnostic-redesign]
+    branches: [hero-diagnostic-redesign, hero-fullbleed]
   workflow_dispatch:
 
 permissions:
