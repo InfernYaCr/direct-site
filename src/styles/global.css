@@ -8338,43 +8338,53 @@ body:has(.home-main) .header-cta {
   }
 }
 
-/* Hero name badge — mobile only */
+/* Hero name badge */
 .hero-name-badge {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: clamp(110px, 13vw, 180px);
+  right: clamp(32px, 4vw, 72px);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 14, 26, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  gap: 3px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-name-badge__name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.hero-name-badge__role {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.2;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 1100px) {
   .hero-name-badge {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
     top: clamp(100px, 26vw, 140px);
     right: clamp(12px, 4vw, 20px);
     padding: 8px 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(8, 14, 26, 0.82);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    gap: 3px;
-    z-index: 2;
-    pointer-events: none;
   }
 
   .hero-name-badge__name {
     font-size: 0.78rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-    white-space: nowrap;
   }
 
   .hero-name-badge__role {
     font-size: 0.58rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.55);
-    line-height: 1.2;
-    white-space: nowrap;
-    letter-spacing: 0.02em;
   }
 }
