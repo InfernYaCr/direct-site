@@ -5,64 +5,247 @@ import Footer from "@/components/Footer.astro";
 import { site } from "@/data/site";
 
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-
-const nextSteps = [
-  "Я проверю заявку и свяжусь с вами, чтобы согласовать удобное время.",
-  "На созвоне разберём ВК или Яндекс.Директ: кампании, заявки, стоимость пациента.",
-  "После диагностики вы получите короткий план, что чинить в первую очередь.",
-];
 ---
 
 <BaseLayout
-  title="Заявка на диагностику принята"
+  title="Заявка принята — Умный Навигатор"
   description="Спасибо за заявку на бесплатную диагностику рекламы стоматологической клиники."
   noindex={true}
 >
   <Header />
-  <main class="thank-page" id="top">
-    <section class="section thank-hero">
-      <div class="thank-card thank-card--lead reveal">
-        <div class="thank-copy">
-          <p class="eyebrow">Заявка отправлена</p>
-          <h1>Спасибо. Я скоро свяжусь с вами.</h1>
-          <p>
-            Заявка на бесплатную диагностику рекламы принята. Обычно я отвечаю в течение
-            рабочего дня и предлагаю несколько слотов для 30-минутного разбора.
-          </p>
-          <p class="thank-note">
-            Если вопрос срочный, можно сразу написать в Telegram или на email поддержки.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href={site.telegramUrl}>Написать в Telegram</a>
-            <a class="button ghost" href={`mailto:${site.supportEmail}`}>Email</a>
-            <a class="button ghost" href={base}>На главную</a>
+
+  <main class="ty-page" id="top">
+    <section class="ty-hero">
+
+      <div class="ty-glow" aria-hidden="true"></div>
+
+      <div class="ty-card reveal">
+
+        <!-- Иконка успеха -->
+        <div class="ty-icon" aria-hidden="true">
+          <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="27" stroke="currentColor" stroke-width="2" class="ty-circle"/>
+            <path d="M17 28.5L24 35.5L39 20" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" class="ty-check"/>
+          </svg>
+        </div>
+
+        <!-- Заголовок -->
+        <p class="ty-label">Заявка принята</p>
+        <h1 class="ty-heading">Спасибо!<br>Скоро свяжусь с вами</h1>
+        <p class="ty-sub">
+          Обычно отвечаю в течение рабочего дня и предлагаю<br class="br-desktop">
+          несколько слотов для 30-минутного разбора.
+        </p>
+
+        <!-- Шаги -->
+        <div class="ty-steps">
+          <div class="ty-step">
+            <span class="ty-step__num">1</span>
+            <p class="ty-step__text">Проверю заявку и напишу вам, чтобы согласовать удобное время</p>
+          </div>
+          <div class="ty-step">
+            <span class="ty-step__num">2</span>
+            <p class="ty-step__text">На созвоне разберём кабинет: кампании, заявки, стоимость пациента</p>
+          </div>
+          <div class="ty-step">
+            <span class="ty-step__num">3</span>
+            <p class="ty-step__text">Получите конкретный план — что чинить в первую очередь</p>
           </div>
         </div>
 
-        <div class="thank-side">
-          <div class="thank-dental-visual">
-            <img
-              src={`${base}images/dental-diagnostics-bg.webp`}
-              alt="Кабинет стоматологии и аналитика рекламных заявок"
-              loading="eager"
-              decoding="async"
-            />
-            <div class="thank-dental-badge">
-              <span>30 минут</span>
-              <strong>Кабинет, заявки, стоимость пациента</strong>
-            </div>
-          </div>
-          <div class="mini-steps">
-            {nextSteps.map((step, index) => (
-              <div>
-                <span>{index + 1}</span>
-                <p>{step}</p>
-              </div>
-            ))}
-          </div>
+        <!-- CTA -->
+        <div class="ty-actions">
+          <a class="button primary" href={site.vkUrl} target="_blank" rel="noopener noreferrer">
+            Написать во ВКонтакте
+          </a>
+          <a class="button ghost ty-ghost" href={base}>На главную</a>
         </div>
+
       </div>
     </section>
   </main>
+
   <Footer />
 </BaseLayout>
+
+<!-- Цель Яндекс.Метрика -->
+<script>
+  if (typeof ym !== "undefined") {
+    const params = new URLSearchParams(location.search);
+    const lead = params.get("lead") || "diagnostic";
+    ym(109428912, "reachGoal", "lead_submit", { lead });
+  }
+</script>
+
+<style>
+/* ── Layout ─────────────────────────────────────────── */
+.ty-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ty-hero {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(80px, 12vw, 140px) var(--pad);
+  overflow: hidden;
+  background:
+    radial-gradient(130% 150% at 8% -12%, rgba(7, 142, 234, 0.18), transparent 48%),
+    linear-gradient(165deg, #0c1d31 0%, #060d18 72%);
+}
+
+/* Декоративное свечение */
+.ty-glow {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ── Card ───────────────────────────────────────────── */
+.ty-card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  gap: clamp(20px, 3vw, 28px);
+}
+
+/* ── Success icon ───────────────────────────────────── */
+.ty-icon {
+  width: 72px;
+  height: 72px;
+  color: var(--blue);
+}
+
+.ty-circle {
+  stroke-dasharray: 170;
+  stroke-dashoffset: 170;
+  animation: draw-circle 0.6s ease forwards;
+}
+
+.ty-check {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: draw-check 0.4s ease 0.55s forwards;
+}
+
+@keyframes draw-circle {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes draw-check {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Text ───────────────────────────────────────────── */
+.ty-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0;
+}
+
+.ty-heading {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  margin: 0;
+}
+
+.ty-sub {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── Steps ──────────────────────────────────────────── */
+.ty-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.ty-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  text-align: left;
+}
+
+.ty-step__num {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(7, 142, 234, 0.18);
+  border: 1px solid rgba(7, 142, 234, 0.4);
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ty-step__text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+  margin: 0;
+  padding-top: 4px;
+}
+
+/* ── Actions ────────────────────────────────────────── */
+.ty-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.ty-ghost {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.ty-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #fff !important;
+}
+
+@media (max-width: 480px) {
+  .ty-actions {
+    flex-direction: column;
+  }
+
+  .ty-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
