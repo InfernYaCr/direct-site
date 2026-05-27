@@ -37,6 +37,9 @@ if ! command -v lftp &> /dev/null; then
   exit 1
 fi
 
+# Принудительно обновить timestamp чтобы lftp не пропускал файлы
+find dist/ -type f -print0 | xargs -0 touch
+
 echo "▶ Загрузка на FTP $FTP_HOST → $FTP_DIR ..."
 
 lftp -c "
@@ -44,10 +47,12 @@ lftp -c "
   set net:timeout 30;
   set net:max-retries 3;
   open ftp://$FTP_USER:$FTP_PASS@$FTP_HOST;
+  lcd dist;
+  cd $FTP_DIR;
   mirror --reverse --delete --verbose --parallel=4 \
     --exclude='.DS_Store' \
     --exclude='.env*' \
-    dist/ $FTP_DIR;
+    . .;
   bye
 "
 

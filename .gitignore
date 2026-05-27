@@ -22,3 +22,12 @@ Thumbs.db
 .idea/
 .vscode/
 .env.local
+
+# server-side file with real credentials (use send-lead.example.php as template)
+public/send-lead.php
+
+# collected leads — never commit
+leads.csv
+
+# Claude Code session data
+.claude/

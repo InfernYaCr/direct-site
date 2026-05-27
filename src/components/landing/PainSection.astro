@@ -1,11 +1,24 @@
 ---
 import SectionHeading from "@/components/SectionHeading.astro";
+import { getImage } from "astro:assets";
+
+import icon2Raw from "@/assets/pain-icons/2.png";
+import icon3Raw from "@/assets/pain-icons/3.png";
+import icon4Raw from "@/assets/pain-icons/4.png";
+import icon5Raw from "@/assets/pain-icons/5.png";
+import icon6Raw from "@/assets/pain-icons/6.png";
+
+const icons = await Promise.all(
+  [icon2Raw, icon3Raw, icon4Raw, icon5Raw, icon6Raw].map((src) =>
+    getImage({ src, format: "webp", width: 112, height: 112 })
+  )
+);
 
 const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 
 const pains = [
   "Уже отдали 2–3 агентствам по 60–150 тысяч в месяц. Получили красивые отчёты с «кликами» и «охватами» — а в кассе пусто.",
-  "Администратор говорит: «звонят не те, спрашивают только „удалить зуб бесплатно“».",
+  `Администратор говорит: «звонят не те, спрашивают только «удалить зуб бесплатно»».`,
   "Хирурги-имплантологи сидят без работы, а лизинг за оборудование и аренду никто не отменял.",
   "Вечерами сами лезете в отчёты и считаете заявки в Excel — потому что доверять уже некому.",
   "Сарафан закончился, конкурент через дорогу демпингует «имплант за 19 900», а вы честно держите 45 000 — и проигрываете.",
@@ -24,7 +37,6 @@ const pains = [
       class="pain-board__main"
       style={`--pain-bg: url("${base}images/blok-2-vam-eto-znakomo.webp")`}
     >
-      <span class="pain-board__num">01</span>
       <span>главный симптом</span>
       <h3>Деньги уходят, а платёжеспособных записей нет</h3>
       <p>{pains[0]}</p>
@@ -32,7 +44,10 @@ const pains = [
     <div class="pain-board__rail">
       {pains.slice(1, 6).map((pain, index) => (
         <article class:list={["pain-board__item", { "pain-board__item--wide": index === 4 }]}>
-          <span>{String(index + 2).padStart(2, "0")}</span>
+          <div class="pain-icon">
+            <img src={icons[index].src} alt="" width="40" height="40" loading="lazy" decoding="async" />
+            <span class="pain-icon__line" aria-hidden="true"></span>
+          </div>
           <p>{pain}</p>
         </article>
       ))}

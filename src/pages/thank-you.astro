@@ -69,11 +69,11 @@ const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL :
   <Footer />
 </BaseLayout>
 
-<!-- Цель Яндекс.Метрика -->
+<!-- Цель Яндекс.Метрика — только если пришли с формы (есть параметр ?lead=) -->
 <script>
-  if (typeof ym !== "undefined") {
-    const params = new URLSearchParams(location.search);
-    const lead = params.get("lead") || "diagnostic";
+  const params = new URLSearchParams(location.search);
+  const lead = params.get("lead");
+  if (lead && lead !== "error" && typeof ym !== "undefined") {
     ym(109428912, "reachGoal", "lead_submit", { lead });
   }
 </script>
